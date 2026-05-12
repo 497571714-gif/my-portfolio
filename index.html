@@ -1,1 +1,165 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>陈旸朗 | Portfolio</title>
+    <!-- 引入像素风格字体 -->
+    <link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --neon-green: #39FF14;
+            --bg-black: #0a0a0a;
+        }
 
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--bg-black);
+            color: white;
+            font-family: 'DotGothic16', sans-serif;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* 主页面容器 */
+        .container {
+            text-align: center;
+            transition: all 0.8s ease-in-out;
+        }
+
+        /* 像素大标题 */
+        h1 {
+            font-size: clamp(3rem, 10vw, 8rem);
+            margin: 0;
+            letter-spacing: 10px;
+            text-transform: uppercase;
+        }
+
+        /* 姓名 */
+        .name {
+            font-size: 1.5rem;
+            margin-top: 10px;
+            color: #ccc;
+            letter-spacing: 5px;
+        }
+
+        /* 交互按键容器 */
+        .btn-container {
+            position: absolute;
+            bottom: 15%;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        /* 荧光绿描边按键 */
+        .enter-btn {
+            background-color: black;
+            border: 2px solid var(--neon-green);
+            color: var(--neon-green);
+            padding: 15px 40px;
+            cursor: pointer;
+            font-size: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            box-shadow: 0 0 10px rgba(57, 255, 20, 0.2);
+            text-decoration: none;
+        }
+
+        .enter-btn:hover {
+            background-color: var(--neon-green);
+            color: black;
+            box-shadow: 0 0 30px var(--neon-green);
+        }
+
+        /* 箭头图标 (SVG) */
+        .arrow-icon {
+            width: 30px;
+            height: 30px;
+            fill: currentColor;
+        }
+
+        /* 目录页（初始隐藏） */
+        #menu-page {
+            display: none;
+            opacity: 0;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .menu-item {
+            font-size: 2rem;
+            margin: 20px;
+            color: var(--neon-green);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+        }
+
+        .menu-item:hover {
+            border-bottom: 1px solid var(--neon-green);
+        }
+
+        /* 简单的页面切换动画 */
+        .fade-out {
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+
+        .fade-in {
+            display: flex !important;
+            animation: fadeInAnim 1s forwards;
+        }
+
+        @keyframes fadeInAnim {
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 主页面 -->
+    <div id="main-page" class="container">
+        <h1>PORTFOLIO</h1>
+        <div class="name">陈旸朗</div>
+        
+        <div class="btn-container">
+            <button class="enter-btn" onclick="enterSite()">
+                <!-- 向右箭头图标 -->
+                <svg class="arrow-icon" viewBox="0 0 24 24">
+                    <path d="M5,13H16.17L11.07,18.1L12.49,19.52L20,12L12.49,4.48L11.07,5.9L16.17,11H5V13Z" />
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <!-- 目录页内容 -->
+    <div id="menu-page" class="container">
+        <h1>CONTENTS</h1>
+        <a href="#" class="menu-item">01. 研究项目 (RESEARCH)</a>
+        <a href="#" class="menu-item">02. 音乐教育 (EDUCATION)</a>
+        <a href="#" class="menu-item">03. 游戏化设计 (GAMIFICATION)</a>
+        <a href="#" class="menu-item">04. 关于我 (ABOUT)</a>
+    </div>
+
+    <script>
+        function enterSite() {
+            const main = document.getElementById('main-page');
+            const menu = document.getElementById('menu-page');
+
+            // 切换动画
+            main.classList.add('fade-out');
+            
+            setTimeout(() => {
+                main.style.display = 'none';
+                menu.classList.add('fade-in');
+            }, 800);
+        }
+    </script>
+</body>
+</html>
