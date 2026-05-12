@@ -3,13 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>陈旸朗 | Portfolio</title>
-    <!-- 引入像素风格字体 -->
+    <title>陈旸朗 | Portfolio v2.0</title>
     <link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
     <style>
         :root {
             --neon-green: #39FF14;
             --bg-black: #0a0a0a;
+            --transition-speed: 0.5s;
+        }
+
+        * {
+            box-sizing: border-box;
         }
 
         body, html {
@@ -21,26 +25,39 @@
             color: white;
             font-family: 'DotGothic16', sans-serif;
             overflow: hidden;
-            display: flex;
-            justify-content: center;
-            align-items: center;
         }
 
-        /* 主页面容器 */
-        .container {
+        /* 通用容器样式 */
+        .page-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: none; /* 默认隐藏 */
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             text-align: center;
-            transition: all 0.8s ease-in-out;
+            padding: 40px;
+            opacity: 0;
+            transition: opacity var(--transition-speed) ease-in-out;
+        }
+
+        /* 当前激活页面 */
+        .active {
+            display: flex;
+            opacity: 1;
         }
 
         /* 像素大标题 */
         h1 {
-            font-size: clamp(3rem, 10vw, 8rem);
+            font-size: clamp(2.5rem, 8vw, 6rem);
             margin: 0;
-            letter-spacing: 10px;
+            letter-spacing: 8px;
             text-transform: uppercase;
         }
 
-        /* 姓名 */
         .name {
             font-size: 1.5rem;
             margin-top: 10px;
@@ -48,117 +65,169 @@
             letter-spacing: 5px;
         }
 
-        /* 交互按键容器 */
-        .btn-container {
-            position: absolute;
-            bottom: 15%;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        /* 荧光绿描边按键 */
-        .enter-btn {
+        /* 按钮基础样式 */
+        .neon-btn {
             background-color: black;
             border: 2px solid var(--neon-green);
             color: var(--neon-green);
-            padding: 15px 40px;
             cursor: pointer;
-            font-size: 2rem;
+            transition: all 0.3s;
+            box-shadow: 0 0 10px rgba(57, 255, 20, 0.2);
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: all 0.3s;
-            box-shadow: 0 0 10px rgba(57, 255, 20, 0.2);
-            text-decoration: none;
         }
 
-        .enter-btn:hover {
+        .neon-btn:hover {
             background-color: var(--neon-green);
             color: black;
             box-shadow: 0 0 30px var(--neon-green);
         }
 
-        /* 箭头图标 (SVG) */
+        /* 首页进入按钮 */
+        .enter-btn {
+            position: absolute;
+            bottom: 15%;
+            padding: 15px 40px;
+            font-size: 2rem;
+        }
+
+        /* 左上角返回按钮 */
+        .back-btn-corner {
+            position: absolute;
+            top: 30px;
+            left: 30px;
+            width: 50px;
+            height: 50px;
+            border-radius: 5px;
+            z-index: 100;
+        }
+
+        /* 目录项样式 */
+        .menu-list {
+            margin-top: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .menu-item {
+            font-size: clamp(1.2rem, 4vw, 2.2rem);
+            color: var(--neon-green);
+            text-decoration: none;
+            padding: 10px 20px;
+            border: 1px solid transparent;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .menu-item:hover {
+            border: 1px solid var(--neon-green);
+            background: rgba(57, 255, 20, 0.1);
+            transform: scale(1.05);
+        }
+
+        /* 图标样式 */
         .arrow-icon {
             width: 30px;
             height: 30px;
             fill: currentColor;
         }
 
-        /* 目录页（初始隐藏） */
-        #menu-page {
-            display: none;
-            opacity: 0;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .menu-item {
-            font-size: 2rem;
-            margin: 20px;
-            color: var(--neon-green);
-            text-decoration: none;
-            border-bottom: 1px solid transparent;
-        }
-
-        .menu-item:hover {
-            border-bottom: 1px solid var(--neon-green);
-        }
-
-        /* 简单的页面切换动画 */
-        .fade-out {
-            opacity: 0;
-            transform: translateY(-20px);
-        }
-
-        .fade-in {
-            display: flex !important;
-            animation: fadeInAnim 1s forwards;
-        }
-
-        @keyframes fadeInAnim {
-            to { opacity: 1; }
+        /* 子页面留空提示 */
+        .placeholder-text {
+            color: #555;
+            margin-top: 20px;
+            font-size: 1.2rem;
         }
     </style>
 </head>
 <body>
 
-    <!-- 主页面 -->
-    <div id="main-page" class="container">
+    <div id="home-page" class="page-container active">
         <h1>PORTFOLIO</h1>
         <div class="name">陈旸朗</div>
+        <button class="neon-btn enter-btn" onclick="navigateTo('menu-page')">
+            <svg class="arrow-icon" viewBox="0 0 24 24">
+                <path d="M5,13H16.17L11.07,18.1L12.49,19.52L20,12L12.49,4.48L11.07,5.9L16.17,11H5V13Z" />
+            </svg>
+        </button>
+    </div>
+
+    <div id="menu-page" class="page-container">
+        <button class="neon-btn back-btn-corner" onclick="navigateTo('home-page')" title="返回首页">
+            <svg class="arrow-icon" viewBox="0 0 24 24" style="transform: rotate(180deg);">
+                <path d="M5,13H16.17L11.07,18.1L12.49,19.52L20,12L12.49,4.48L11.07,5.9L16.17,11H5V13Z" />
+            </svg>
+        </button>
         
-        <div class="btn-container">
-            <button class="enter-btn" onclick="enterSite()">
-                <!-- 向右箭头图标 -->
-                <svg class="arrow-icon" viewBox="0 0 24 24">
-                    <path d="M5,13H16.17L11.07,18.1L12.49,19.52L20,12L12.49,4.48L11.07,5.9L16.17,11H5V13Z" />
-                </svg>
-            </button>
+        <h1>CONTENTS</h1>
+        <div class="menu-list">
+            <div class="menu-item" onclick="navigateTo('page-1')">01. 个人简历</div>
+            <div class="menu-item" onclick="navigateTo('page-2')">02. AI动画</div>
+            <div class="menu-item" onclick="navigateTo('page-3')">03. 信息可视化设计</div>
+            <div class="menu-item" onclick="navigateTo('page-4')">04. 澳门美食地图设计</div>
+            <div class="menu-item" onclick="navigateTo('page-5')">05. 书籍封面设计</div>
         </div>
     </div>
 
-    <!-- 目录页内容 -->
-    <div id="menu-page" class="container">
-        <h1>CONTENTS</h1>
-        <a href="#" class="menu-item">01. 研究项目 (RESEARCH)</a>
-        <a href="#" class="menu-item">02. 音乐教育 (EDUCATION)</a>
-        <a href="#" class="menu-item">03. 游戏化设计 (GAMIFICATION)</a>
-        <a href="#" class="menu-item">04. 关于我 (ABOUT)</a>
+    <div id="page-1" class="page-container">
+        <button class="neon-btn back-btn-corner" onclick="navigateTo('menu-page')">
+            <svg class="arrow-icon" viewBox="0 0 24 24" style="transform: rotate(180deg);"><path d="M5,13H16.17L11.07,18.1L12.49,19.52L20,12L12.49,4.48L11.07,5.9L16.17,11H5V13Z" /></svg>
+        </button>
+        <h1>个人简历</h1>
+        <p class="placeholder-text">[内容建设中...]</p>
+    </div>
+
+    <div id="page-2" class="page-container">
+        <button class="neon-btn back-btn-corner" onclick="navigateTo('menu-page')">
+            <svg class="arrow-icon" viewBox="0 0 24 24" style="transform: rotate(180deg);"><path d="M5,13H16.17L11.07,18.1L12.49,19.52L20,12L12.49,4.48L11.07,5.9L16.17,11H5V13Z" /></svg>
+        </button>
+        <h1>AI动画</h1>
+        <p class="placeholder-text">[内容建设中...]</p>
+    </div>
+
+    <div id="page-3" class="page-container">
+        <button class="neon-btn back-btn-corner" onclick="navigateTo('menu-page')">
+            <svg class="arrow-icon" viewBox="0 0 24 24" style="transform: rotate(180deg);"><path d="M5,13H16.17L11.07,18.1L12.49,19.52L20,12L12.49,4.48L11.07,5.9L16.17,11H5V13Z" /></svg>
+        </button>
+        <h1>信息可视化设计</h1>
+        <p class="placeholder-text">[内容建设中...]</p>
+    </div>
+
+    <div id="page-4" class="page-container">
+        <button class="neon-btn back-btn-corner" onclick="navigateTo('menu-page')">
+            <svg class="arrow-icon" viewBox="0 0 24 24" style="transform: rotate(180deg);"><path d="M5,13H16.17L11.07,18.1L12.49,19.52L20,12L12.49,4.48L11.07,5.9L16.17,11H5V13Z" /></svg>
+        </button>
+        <h1>澳门美食地图设计</h1>
+        <p class="placeholder-text">[内容建设中...]</p>
+    </div>
+
+    <div id="page-5" class="page-container">
+        <button class="neon-btn back-btn-corner" onclick="navigateTo('menu-page')">
+            <svg class="arrow-icon" viewBox="0 0 24 24" style="transform: rotate(180deg);"><path d="M5,13H16.17L11.07,18.1L12.49,19.52L20,12L12.49,4.48L11.07,5.9L16.17,11H5V13Z" /></svg>
+        </button>
+        <h1>书籍封面设计</h1>
+        <p class="placeholder-text">[内容建设中...]</p>
     </div>
 
     <script>
-        function enterSite() {
-            const main = document.getElementById('main-page');
-            const menu = document.getElementById('menu-page');
+        function navigateTo(targetId) {
+            const currentPage = document.querySelector('.page-container.active');
+            const targetPage = document.getElementById(targetId);
 
-            // 切换动画
-            main.classList.add('fade-out');
-            
+            if (!targetPage || currentPage === targetPage) return;
+
+            currentPage.style.opacity = '0';
+
             setTimeout(() => {
-                main.style.display = 'none';
-                menu.classList.add('fade-in');
-            }, 800);
+                currentPage.classList.remove('active');
+                targetPage.classList.add('active');
+                
+                requestAnimationFrame(() => {
+                    targetPage.style.opacity = '1';
+                });
+            }, 500); 
         }
     </script>
 </body>
