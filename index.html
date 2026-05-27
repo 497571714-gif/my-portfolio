@@ -3,12 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>陈旸朗 | Portfolio v2.0</title>
+    <title>陈旸朗 | Portfolio v2.1</title>
     <link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
     <style>
         :root {
             --neon-green: #39FF14;
             --bg-black: #0a0a0a;
+            --panel-bg: #121212;
             --transition-speed: 0.5s;
         }
 
@@ -34,7 +35,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            display: none; /* 默认隐藏 */
+            display: none;
             flex-direction: column;
             justify-content: center;
             align-items: center;
@@ -42,6 +43,23 @@
             padding: 40px;
             opacity: 0;
             transition: opacity var(--transition-speed) ease-in-out;
+        }
+
+        /* 专门为长内容的简历页定制滚动条和内边距 */
+        #page-1 {
+            overflow-y: auto;
+            justify-content: flex-start;
+            padding-top: 100px;
+            padding-bottom: 60px;
+        }
+
+        /* 隐藏默认滚动条，使其更像完整终端系统 */
+        #page-1::-webkit-scrollbar {
+            width: 6px;
+        }
+        #page-1::-webkit-scrollbar-thumb {
+            background: var(--neon-green);
+            border-radius: 3px;
         }
 
         /* 当前激活页面 */
@@ -94,7 +112,7 @@
 
         /* 左上角返回按钮 */
         .back-btn-corner {
-            position: absolute;
+            position: fixed; /* 改为fixed防止随简历滚动而消失 */
             top: 30px;
             left: 30px;
             width: 50px;
@@ -140,6 +158,137 @@
             margin-top: 20px;
             font-size: 1.2rem;
         }
+
+        /* ==================== 个人简历板块专属样式 ==================== */
+        .resume-wrapper {
+            width: 100%;
+            max-width: 1000px;
+            text-align: left;
+            margin-top: 40px;
+        }
+
+        /* 基础信息栏 */
+        .info-header {
+            border-bottom: 2px dashed var(--neon-green);
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        .info-header .title-group h2 {
+            font-size: 2.5rem;
+            margin: 0;
+            color: var(--neon-green);
+        }
+        .info-header .title-group p {
+            margin: 5px 0 0 0;
+            color: #aaa;
+            font-size: 1.1rem;
+        }
+        .info-header .contact-group {
+            text-align: right;
+            font-size: 1rem;
+            color: #ccc;
+            line-height: 1.6;
+        }
+
+        /* 简历双栏/单栏栅格 */
+        .resume-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+        }
+        @media (max-width: 768px) {
+            .resume-grid { grid-template-columns: 1fr; }
+            .info-header { text-align: center; justify-content: center; }
+            .info-header .contact-group { text-align: center; }
+        }
+
+        /* 控制台卡片 */
+        .console-card {
+            background-color: var(--panel-bg);
+            border: 1px solid #333;
+            padding: 20px;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+        .console-card:hover {
+            border-color: var(--neon-green);
+            box-shadow: 0 0 15px rgba(57, 255, 20, 0.1);
+        }
+        .card-title {
+            color: var(--neon-green);
+            font-size: 1.4rem;
+            margin-top: 0;
+            margin-bottom: 15px;
+            border-left: 4px solid var(--neon-green);
+            padding-left: 10px;
+        }
+
+        /* 经历项 */
+        .timeline-item {
+            margin-bottom: 15px;
+            border-bottom: 1px solid #222;
+            padding-bottom: 15px;
+        }
+        .timeline-item:last-child {
+            margin-bottom: 0;
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+        .time-location {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9rem;
+            color: #888;
+            margin-bottom: 5px;
+        }
+        .item-name {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #fff;
+            margin-bottom: 5px;
+        }
+        .item-desc {
+            font-size: 0.95rem;
+            color: #bbb;
+            line-height: 1.5;
+            margin: 0;
+            text-align: justify;
+        }
+
+        /* 跨两栏的卡片 */
+        .full-width {
+            grid-column: span 2;
+        }
+        @media (max-width: 768px) {
+            .full-width { grid-column: span 1; }
+        }
+
+        /* 技能标签群 */
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .tag {
+            background: #000;
+            border: 1px solid var(--neon-green);
+            color: var(--neon-green);
+            padding: 6px 12px;
+            font-size: 0.9rem;
+            border-radius: 3px;
+            transition: all 0.3s;
+        }
+        .tag:hover {
+            background: var(--neon-green);
+            color: #000;
+            font-weight: bold;
+            box-shadow: 0 0 10px var(--neon-green);
+        }
     </style>
 </head>
 <body>
@@ -175,8 +324,112 @@
         <button class="neon-btn back-btn-corner" onclick="navigateTo('menu-page')">
             <svg class="arrow-icon" viewBox="0 0 24 24" style="transform: rotate(180deg);"><path d="M5,13H16.17L11.07,18.1L12.49,19.52L20,12L12.49,4.48L11.07,5.9L16.17,11H5V13Z" /></svg>
         </button>
-        <h1>个人简历</h1>
-        <p class="placeholder-text">[内容建设中...]</p>
+        
+        <div class="resume-wrapper">
+            <div class="info-header">
+                <div class="title-group">
+                    <h2>陈旸朗</h2>
+                    <p>意向岗位: 平面UI / 多媒体视频编辑 / 视觉设计</p>
+                </div>
+                <div class="contact-group">
+                    学历: 硕士 (全职)<br>
+                    电话: 18950821079<br>
+                    邮箱: 497571714@qq.com
+                </div>
+            </div>
+
+            <div class="resume-grid">
+                
+                <div class="console-card">
+                    <div class="card-title">EDUCATION / 教育背景</div>
+                    <div class="timeline-item">
+                        <div class="time-location"><span>2024.08 - 2026.06</span><span>GPA: 3.8/4.0</span></div>
+                        <div class="item-name">澳门城市大学 · 创新设计学院</div>
+                        <p class="item-desc">设计学专业 (硕士)</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="time-location"><span>2020.09 - 2024.06</span><span>本科</span></div>
+                        <div class="item-name">澳门科技大学 · 人文艺术学院</div>
+                        <p class="item-desc">视觉传达设计专业 (本科)</p>
+                    </div>
+                </div>
+
+                <div class="console-card">
+                    <div class="card-title">SKILLS & CERTIFICATES / 技能证书</div>
+                    <div class="skill-tags" style="margin-bottom: 15px;">
+                        <span class="tag">精通 PS & AI</span>
+                        <span class="tag">AI 图像/视频制作</span>
+                        <span class="tag">PR / AE 特效剪辑</span>
+                        <span class="tag">Cubase / 库乐队音频</span>
+                        <span class="tag">办公自动化 (Office)</span>
+                    </div>
+                    <div class="item-desc" style="color: #888;">
+                        • 大学英语四级证书 (CET-4)<br>
+                        • C1E 驾照 & 澳门特别驾驶许可 A1
+                    </div>
+                </div>
+
+                <div class="console-card full-width">
+                    <div class="card-title">INTERNSHIP / 实习经历</div>
+                    <div class="timeline-item">
+                        <div class="time-location"><span>2023.06 - 2023.08</span><span>上海</span></div>
+                        <div class="item-name">上海伯季文化有限公司 (平面设计师)</div>
+                        <p class="item-desc">负责制图、排版以及书籍排版等。其中参与了音乐节活动策划项目的实践。</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="time-location"><span>2022.06 - 2022.08</span><span>龙岩</span></div>
+                        <div class="item-name">龙岩市电视台 (见习美术编辑)</div>
+                        <p class="item-desc">跟随记者外出采访，学习新闻排版编辑等。</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="time-location"><span>2022.05 - 2022.06</span><span>深圳</span></div>
+                        <div class="item-name">深圳开思时代科技有限公司 / 开思集团 (多媒体创作实习)</div>
+                        <p class="item-desc">负责多媒体视频的剪辑、拍摄及创意后期工作。</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="time-location"><span>2021.05 - 2021.08</span><span>龙岩</span></div>
+                        <div class="item-name">龙岩市融媒体中心 / 闽西日报社 (美术编辑实习)</div>
+                        <p class="item-desc">负责设计与制作宣传海报、官方公众号排版及视觉设计，并跟随记者进行外出采访。</p>
+                    </div>
+                </div>
+
+                <div class="console-card">
+                    <div class="card-title">CAMPUS / 校园与学术</div>
+                    <div class="timeline-item">
+                        <div class="time-location"><span>2024.09 - 2026.06</span><span>澳门城市大学</span></div>
+                        <div class="item-name">人文社会科学学院 · 助理职位</div>
+                        <p class="item-desc">负责平面设计、微信公众号排版制作、文件处理等学院行政与视觉事务。</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="time-location"><span>学术成果</span><span>Google Scholar 可查</span></div>
+                        <div class="item-name">发表学术论文</div>
+                        <p class="item-desc">发表论文《听众对人工智能创作流行音乐的辨识度研究》，收录于学术期刊《Art Horizon》。</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="time-location"><span>2020.09 - 2024.06</span><span>澳门科技大学</span></div>
+                        <div class="item-name">艺术团电声乐队 · 乐手/主唱/队长顾问</div>
+                        <p class="item-desc">参加迎新晚会、毕业晚会、艺术团专场等，并主导参与了各项演出的视觉海报设计。</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="time-location"><span>策展实践</span><span>横琴</span></div>
+                        <div class="item-name">横琴粤澳深度合作区华联会展研究院</div>
+                        <p class="item-desc">作为核心成员参与了研究院的策展与空间视觉设计。</p>
+                    </div>
+                </div>
+
+                <div class="console-card">
+                    <div class="card-title">AWARDS / 荣誉奖项</div>
+                    <div class="item-desc" style="line-height: 1.8; color: #ddd;">
+                        • <span style="color:var(--neon-green)">2025.06</span> 获得澳门城市大学体验学习奖学金<br>
+                        • <span style="color:var(--neon-green)">2024.09</span> 参与中华设计奖“帮农客杯”设计大赛并入围<br>
+                        • <span style="color:var(--neon-green)">2024.03</span> 代表澳门科技大学参加粤港澳高校联演并获一等奖<br>
+                        • <span style="color:var(--neon-green)">2022.11</span> 获得澳门科技大学艺术团“年度卓越表现团员”校级奖<br>
+                        • <span style="color:var(--neon-green)">2022.02</span> 参加首届“方正杯”字体设计比赛并获奖
+                    </div>
+                </div>
+
+            </div>
+        </div>
     </div>
 
     <div id="page-2" class="page-container">
