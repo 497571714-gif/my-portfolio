@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>陈旸朗 | Portfolio v2.1</title>
+    <title>陈旸朗 | Portfolio v2.2</title>
     <link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -11,6 +11,7 @@
             --bg-black: #0a0a0a;
             --panel-bg: #121212;
             --transition-speed: 0.5s;
+            --macau-warm: #ff5722;
         }
 
         * {
@@ -45,19 +46,20 @@
             transition: opacity var(--transition-speed) ease-in-out;
         }
 
-        /* 专门为长内容的简历页定制滚动条和内边距 */
-        #page-1 {
+        /* 滚动页面定制（简历页与美食地图页） */
+        #page-1, #page-4 {
             overflow-y: auto;
             justify-content: flex-start;
             padding-top: 100px;
             padding-bottom: 60px;
+            scroll-behavior: smooth;
         }
 
         /* 隐藏默认滚动条，使其更像完整终端系统 */
-        #page-1::-webkit-scrollbar {
+        #page-1::-webkit-scrollbar, #page-4::-webkit-scrollbar {
             width: 6px;
         }
-        #page-1::-webkit-scrollbar-thumb {
+        #page-1::-webkit-scrollbar-thumb, #page-4::-webkit-scrollbar-thumb {
             background: var(--neon-green);
             border-radius: 3px;
         }
@@ -112,7 +114,7 @@
 
         /* 左上角返回按钮 */
         .back-btn-corner {
-            position: fixed; /* 改为fixed防止随简历滚动而消失 */
+            position: fixed;
             top: 30px;
             left: 30px;
             width: 50px;
@@ -159,15 +161,13 @@
             font-size: 1.2rem;
         }
 
-        /* ==================== 个人简历板块专属样式 ==================== */
+        /* ==================== 个人简历板块样式 ==================== */
         .resume-wrapper {
             width: 100%;
             max-width: 1000px;
             text-align: left;
             margin-top: 40px;
         }
-
-        /* 基础信息栏 */
         .info-header {
             border-bottom: 2px dashed var(--neon-green);
             padding-bottom: 20px;
@@ -194,8 +194,6 @@
             color: #ccc;
             line-height: 1.6;
         }
-
-        /* 简历双栏/单栏栅格 */
         .resume-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -206,8 +204,6 @@
             .info-header { text-align: center; justify-content: center; }
             .info-header .contact-group { text-align: center; }
         }
-
-        /* 控制台卡片 */
         .console-card {
             background-color: var(--panel-bg);
             border: 1px solid #333;
@@ -227,8 +223,6 @@
             border-left: 4px solid var(--neon-green);
             padding-left: 10px;
         }
-
-        /* 经历项 */
         .timeline-item {
             margin-bottom: 15px;
             border-bottom: 1px solid #222;
@@ -259,21 +253,9 @@
             margin: 0;
             text-align: justify;
         }
-
-        /* 跨两栏的卡片 */
-        .full-width {
-            grid-column: span 2;
-        }
-        @media (max-width: 768px) {
-            .full-width { grid-column: span 1; }
-        }
-
-        /* 技能标签群 */
-        .skill-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
+        .full-width { grid-column: span 2; }
+        @media (max-width: 768px) { .full-width { grid-column: span 1; } }
+        .skill-tags { display: flex; flex-wrap: wrap; gap: 10px; }
         .tag {
             background: #000;
             border: 1px solid var(--neon-green);
@@ -289,6 +271,125 @@
             font-weight: bold;
             box-shadow: 0 0 10px var(--neon-green);
         }
+
+        /* ==================== 澳门美食地图板块样式 ==================== */
+        .map-portfolio-wrapper {
+            width: 100%;
+            max-width: 1100px;
+            margin: 40px auto 0 auto;
+        }
+        
+        /* 纵向滑动全屏段落 */
+        .map-section {
+            min-height: calc(100vh - 160px);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+            border-bottom: 1px dashed #222;
+            padding: 60px 0;
+        }
+        .map-section:last-child {
+            border-bottom: none;
+        }
+
+        /* 左右图文排版 */
+        .map-text-side {
+            flex: 1;
+            text-align: left;
+        }
+        .map-visual-side {
+            flex: 1.2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: var(--panel-bg);
+            border: 1px solid #333;
+            border-radius: 6px;
+            padding: 15px;
+            position: relative;
+            overflow: hidden;
+            min-height: 400px;
+        }
+        
+        @media (max-width: 850px) {
+            .map-section { flex-direction: column; padding: 40px 0; }
+            .map-text-side, .map-visual-side { width: 100%; flex: none; }
+        }
+
+        .section-num {
+            font-size: 3rem;
+            color: var(--neon-green);
+            font-family: monospace;
+            margin-bottom: 10px;
+            opacity: 0.5;
+        }
+        .section-heading {
+            font-size: 2.2rem;
+            color: #fff;
+            margin: 0 0 20px 0;
+            border-bottom: 2px solid var(--neon-green);
+            padding-bottom: 10px;
+            display: inline-block;
+        }
+        .section-p {
+            font-size: 1.1rem;
+            color: #ccc;
+            line-height: 1.8;
+            text-align: justify;
+            margin-bottom: 20px;
+        }
+
+        /* 完美的图片自适应容器 */
+        .portfolio-img {
+            width: 100%;
+            height: auto;
+            max-height: 550px;
+            object-fit: contain;
+            display: block;
+            border-radius: 4px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.8);
+        }
+
+        /* 纯代码占位效果图 - 增强视觉设计感 */
+        .code-drawing-placeholder {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0; left: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: radial-gradient(circle, #251008 0%, #0a0a0a 100%);
+            color: var(--macau-warm);
+            border: 1px dashed var(--macau-warm);
+            padding: 20px;
+        }
+        .code-drawing-placeholder::before {
+            content: '';
+            position: absolute;
+            width: 80%; height: 80%;
+            border: 1px solid rgba(255,87,34,0.2);
+            transform: rotate(45deg);
+            pointer-events: none;
+        }
+
+        /* 店铺特色网络卡片 */
+        .shop-badge-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-top: 20px;
+        }
+        .shop-badge {
+            background: #000;
+            border: 1px solid #444;
+            padding: 10px;
+            font-size: 0.85rem;
+            border-radius: 4px;
+        }
+        .shop-badge strong { color: var(--neon-green); }
     </style>
 </head>
 <body>
@@ -339,7 +440,6 @@
             </div>
 
             <div class="resume-grid">
-                
                 <div class="console-card">
                     <div class="card-title">EDUCATION / 教育背景</div>
                     <div class="timeline-item">
@@ -427,7 +527,6 @@
                         • <span style="color:var(--neon-green)">2022.02</span> 参加首届“方正杯”字体设计比赛并获奖
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
@@ -452,8 +551,66 @@
         <button class="neon-btn back-btn-corner" onclick="navigateTo('menu-page')">
             <svg class="arrow-icon" viewBox="0 0 24 24" style="transform: rotate(180deg);"><path d="M5,13H16.17L11.07,18.1L12.49,19.52L20,12L12.49,4.48L11.07,5.9L16.17,11H5V13Z" /></svg>
         </button>
-        <h1>澳门美食地图设计</h1>
-        <p class="placeholder-text">[内容建设中...]</p>
+        
+        <div class="map-portfolio-wrapper">
+            <div class="map-section">
+                <div class="map-text-side">
+                    <div class="section-num">01 / CONCEPT</div>
+                    <div class="section-heading">澳门本土烧腊美食地图</div>
+                    <p class="section-p">《澳门烧腊美食地图》旨在通过视觉化的设计语言，深度挖掘澳门传统餐饮文化的独特魅力。本项目通过一份精心编绘的烧腊导览手册，将地理位置与美食体验深度串联，打造出“地图导览+互动打卡”的沉浸式体验。</p>
+                    <p class="section-p">用户在遵循地图寻味烧腊的过程中，不仅能系统梳理地道烧味信息，还能通过打卡机制获得趣味十足的“烧腊钥匙扣”周边文创。重塑传统美食地图的在地化价值，为受众提供更具参与感与纪念意义的城市文化探索之旅。</p>
+                </div>
+                <div class="map-visual-side">
+                    <img src="brochure.jpg" alt="折页画册设计图" class="portfolio-img" onerror="this.style.display='none'">
+                    <div class="code-drawing-placeholder">
+                        <div style="font-size:2rem; margin-bottom:10px;">📖</div>
+                        <div style="font-size:1.1rem; letter-spacing:2px;">[ 导览折页与概念设计效果图 ]</div>
+                        <div style="font-size:0.8rem; opacity:0.5; margin-top:15px; font-family:monospace;">可在代码中将图像路径替换为：brochure.jpg</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="map-section">
+                <div class="map-text-side">
+                    <div class="section-num">02 / ILLUSTRATION MAP</div>
+                    <div class="section-heading">手绘插画路线</div>
+                    <p class="section-p">地图采用独特的手绘插画风格，将大三巴牌坊、旅游塔等著名地标与六家最具代表性的本土烧腊老店巧妙融合。精心设计了编号指引的两条环形寻味路线，并为每家烧腊店配以极具年代感的门面插画及详细的店铺特色介绍。</p>
+                    
+                    <div class="shop-badge-grid">
+                        <div class="shop-badge"><strong>1. 何文记:</strong> 烧鸭皮脆、白切鸡滑嫩、分量大。</div>
+                        <div class="shop-badge"><strong>2. 芬记:</strong> 巷子老店无招牌，每日限时外卖2小时，现金支付。</div>
+                        <div class="shop-badge"><strong>3. 靈记飯店:</strong> 新马路旁数十年老店，老街坊捧场的怀旧首选。</div>
+                        <div class="shop-badge"><strong>4. 咸城腊味:</strong> 营地大街古法手工腊味，玫瑰制法年节手信。</div>
+                        <div class="shop-badge"><strong>5. 陈光记:</strong> 1956年创立，独创秘制黑椒烧鸭，米其林推荐。</div>
+                        <div class="shop-badge"><strong>6. 龙天烧味:</strong> 烧肉叉烧炭香足，供应高端酒楼，人均亲民。</div>
+                    </div>
+                </div>
+                <div class="map-visual-side" style="flex:1.4;">
+                    <img src="map.jpg" alt="手绘美食地图设计图" class="portfolio-img" onerror="this.style.display='none'">
+                    <div class="code-drawing-placeholder" style="background: radial-gradient(circle, #152210 0%, #0a0a0a 100%); color: var(--neon-green); border-color: var(--neon-green);">
+                        <div style="font-size:2rem; margin-bottom:10px;">🗺️</div>
+                        <div style="font-size:1.1rem; letter-spacing:2px;">[ 澳门名胜地标与六大烧腊老店手绘插画 ]</div>
+                        <div style="font-size:0.8rem; opacity:0.5; margin-top:15px; font-family:monospace;">可在代码中将图像路径替换为：map.jpg</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="map-section">
+                <div class="map-text-side">
+                    <div class="section-num">03 / CREATIVE MERCHANDISE</div>
+                    <div class="section-heading">文创周边：烧腊钥匙扣</div>
+                    <p class="section-p">周边设计采用简洁扁平风格与红、橙、黄等富有食欲的暖色调，将烧腊档中极具烟火气的“挂起”陈列状态，生动地转化为趣味文创。顶部是不锈钢招牌字样，下方挂着迷你鸭子、叉烧及整鸡模型，作为串联起澳门美食记忆的情感载体。</p>
+                </div>
+                <div class="map-visual-side">
+                    <img src="keychains.jpg" alt="文创周边设计图" class="portfolio-img" onerror="this.style.display='none'">
+                    <div class="code-drawing-placeholder" style="background: radial-gradient(circle, #2d2005 0%, #0a0a0a 100%); color: #ffb300; border-color: #ffb300;">
+                        <div style="font-size:2rem; margin-bottom:10px;">🔑</div>
+                        <div style="font-size:1.1rem; letter-spacing:2px;">[ 挂起陈列形态 · 迷你烧腊模型钥匙扣 ]</div>
+                        <div style="font-size:0.8rem; opacity:0.5; margin-top:15px; font-family:monospace;">可在代码中将图像路径替换为：keychains.jpg</div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <div id="page-5" class="page-container">
@@ -477,6 +634,11 @@
                 currentPage.classList.remove('active');
                 targetPage.classList.add('active');
                 
+                // 如果进入了需要滚动的页面，自动重置滚动条到顶端
+                if(targetId === 'page-1' || targetId === 'page-4') {
+                    targetPage.scrollTop = 0;
+                }
+
                 requestAnimationFrame(() => {
                     targetPage.style.opacity = '1';
                 });
