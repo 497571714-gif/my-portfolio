@@ -384,7 +384,6 @@
             font-size: 0.85rem;
             border-radius: 4px;
         }
-        .shop-badge><strong style="color: var(--neon-green);">
 
         /* 钥匙扣多图联动排版样式 */
         .keychain-container-layout {
@@ -439,6 +438,7 @@
 </head>
 <body>
 
+    <!-- 首页 -->
     <div id="home-page" class="page-container active">
         <h1>PORTFOLIO</h1>
         <div class="name">陈旸朗</div>
@@ -449,6 +449,7 @@
         </button>
     </div>
 
+    <!-- 目录页 -->
     <div id="menu-page" class="page-container">
         <button class="neon-btn back-btn-corner" onclick="navigateTo('home-page')" title="返回首页">
             <svg class="arrow-icon" viewBox="0 0 24 24" style="transform: rotate(180deg);">
@@ -466,6 +467,7 @@
         </div>
     </div>
 
+    <!-- 子页面 1: 个人简历 -->
     <div id="page-1" class="page-container">
         <button class="neon-btn back-btn-corner" onclick="navigateTo('menu-page')">
             <svg class="arrow-icon" viewBox="0 0 24 24" style="transform: rotate(180deg);"><path d="M5,13H16.17L11.07,18.1L12.49,19.52L20,12L12.49,4.48L11.07,5.9L16.17,11H5V13Z" /></svg>
@@ -576,6 +578,7 @@
         </div>
     </div>
 
+    <!-- 子页面 2 -->
     <div id="page-2" class="page-container">
         <button class="neon-btn back-btn-corner" onclick="navigateTo('menu-page')">
             <svg class="arrow-icon" viewBox="0 0 24 24" style="transform: rotate(180deg);"><path d="M5,13H16.17L11.07,18.1L12.49,19.52L20,12L12.49,4.48L11.07,5.9L16.17,11H5V13Z" /></svg>
@@ -584,6 +587,7 @@
         <p class="placeholder-text">[内容建设中...]</p>
     </div>
 
+    <!-- 子页面 3 -->
     <div id="page-3" class="page-container">
         <button class="neon-btn back-btn-corner" onclick="navigateTo('menu-page')">
             <svg class="arrow-icon" viewBox="0 0 24 24" style="transform: rotate(180deg);"><path d="M5,13H16.17L11.07,18.1L12.49,19.52L20,12L12.49,4.48L11.07,5.9L16.17,11H5V13Z" /></svg>
@@ -592,29 +596,32 @@
         <p class="placeholder-text">[内容建设中...]</p>
     </div>
 
+    <!-- 子页面 4: 澳门美食地图设计 -->
     <div id="page-4" class="page-container">
         <button class="neon-btn back-btn-corner" onclick="navigateTo('menu-page')">
             <svg class="arrow-icon" viewBox="0 0 24 24" style="transform: rotate(180deg);"><path d="M5,13H16.17L11.07,18.1L12.49,19.52L20,12L12.49,4.48L11.07,5.9L16.17,11H5V13Z" /></svg>
         </button>
         
         <div class="map-portfolio-wrapper">
+            <!-- 纵向第 1 页：项目企划与概念说明 -->
             <div class="map-section">
                 <div class="map-text-side">
                     <div class="section-num">01 / CONCEPT</div>
                     <div class="section-heading">澳门本土烧腊美食地图</div>
                     <p class="section-p">《澳门烧腊美食地图》旨在通过视觉化的设计语言，深度挖掘澳门传统餐饮文化的独特魅力。本项目通过一份精心编绘的烧腊导览手册，将地理位置与美食体验深度串联，打造出“地图导览+互动打卡”的沉浸式体验。</p>
-                    <p class="section-p">用户在遵循地图寻味烧腊的过程中，不仅能系统梳理地道烧味信息，还能通过打卡机制获得趣味十足的“烧腊钥匙扣”周边文创。重塑传统美食地图的在地化价值，为受众提供更具参与感与纪念意义的城市文化探索之旅。</p>
+                    <p class="section-p">用户在遵循地图寻味烧腊的过程中，不仅能 system 梳理地道烧味信息，还能通过打卡机制获得趣味十足的“烧腊钥匙扣”周边文创。重塑传统美食地图的在地化价值，为受众提供更具参与感与纪念意义的城市文化探索之旅。</p>
                 </div>
                 <div class="map-visual-side">
-                    <img src="brochure.jpg" alt="折页画册设计图" class="portfolio-img" onerror="this.style.display='none'">
+                    <img src="brochure.png" alt="折页画册设计图" class="portfolio-img" onerror="this.style.display='none'">
                     <div class="code-drawing-placeholder">
                         <div style="font-size:2rem; margin-bottom:10px;">📖</div>
                         <div style="font-size:1.1rem; letter-spacing:2px;">[ 导览折页与概念设计效果图 ]</div>
-                        <div style="font-size:0.8rem; opacity:0.5; margin-top:15px; font-family:monospace;">图像命名路径：brochure.jpg</div>
+                        <div style="font-size:0.8rem; opacity:0.5; margin-top:15px; font-family:monospace;">图像命名路径：brochure.png</div>
                     </div>
                 </div>
             </div>
 
+            <!-- 纵向第 2 页：手绘插画路线地图 -->
             <div class="map-section">
                 <div class="map-text-side">
                     <div class="section-num">02 / ILLUSTRATION MAP</div>
@@ -631,15 +638,16 @@
                     </div>
                 </div>
                 <div class="map-visual-side" style="flex:1.4;">
-                    <img src="map.jpg" alt="手绘美食地图设计图" class="portfolio-img" onerror="this.style.display='none'">
+                    <img src="map.png" alt="手绘美食地图设计图" class="portfolio-img" onerror="this.style.display='none'">
                     <div class="code-drawing-placeholder" style="background: radial-gradient(circle, #152210 0%, #0a0a0a 100%); color: var(--neon-green); border-color: var(--neon-green);">
                         <div style="font-size:2rem; margin-bottom:10px;">🗺️</div>
                         <div style="font-size:1.1rem; letter-spacing:2px;">[ 澳门名胜地标与六大烧腊老店手绘插画 ]</div>
-                        <div style="font-size:0.8rem; opacity:0.5; margin-top:15px; font-family:monospace;">图像命名路径：map.jpg</div>
+                        <div style="font-size:0.8rem; opacity:0.5; margin-top:15px; font-family:monospace;">图像命名路径：map.png</div>
                     </div>
                 </div>
             </div>
 
+            <!-- 纵向第 3 页：文创周边（全新升级 7 竖图联动排版） -->
             <div class="map-section" style="flex-direction: column; align-items: flex-start; justify-content: flex-start;">
                 <div class="map-text-side" style="margin-bottom: 25px; width: 100%;">
                     <div class="section-num">03 / CREATIVE MERCHANDISE</div>
@@ -647,58 +655,67 @@
                     <p class="section-p">周边设计采用简洁扁平风格与富含食欲的暖色调，将烧腊档中极具烟火气的“挂起”陈列状态转化为趣味文创。顶部是不锈钢招牌，下方挂着迷你模型。以下联动展示了 1 个大版核心范例图以及 6 个店铺系列对应细分版小图：</p>
                 </div>
                 
+                <!-- 7 图联动排版架构区 -->
                 <div class="keychain-container-layout">
                     
+                    <!-- 左侧：核心设计范例（大版竖图区） -->
                     <div class="keychain-main-view">
-                        <img src="keychain-demo.jpg" alt="钥匙扣设计范例版" class="keychain-img-spec" onerror="this.style.display='none'">
+                        <img src="keychain-demo.png" alt="钥匙扣设计范例版" class="keychain-img-spec" onerror="this.style.display='none'">
                         <div class="code-drawing-placeholder" style="background: linear-gradient(135deg, #2d2005 0%, #050505 100%); border-color: #ffb300; color: #ffb300;">
                             <span style="font-size:2.5rem; margin-bottom:10px;">🔑</span>
                             <span style="font-size:1.1rem; text-align:center;">[ 主核心：设计范例大图 ]</span>
-                            <span style="font-size:0.8rem; opacity:0.6; margin-top:10px; font-family:monospace;">keychain-demo.jpg</span>
+                            <span style="font-size:0.8rem; opacity:0.6; margin-top:10px; font-family:monospace;">keychain-demo.png</span>
                         </div>
                     </div>
 
+                    <!-- 右侧：6大老店对应细分版（3×2 矩阵小图区） -->
                     <div class="keychain-sub-grid">
+                        <!-- 店铺1 -->
                         <div class="keychain-sub-view">
-                            <img src="keychain-1.jpg" alt="何文记钥匙扣" class="keychain-img-spec" onerror="this.style.display='none'">
+                            <img src="keychain-1.png" alt="何文记钥匙扣" class="keychain-img-spec" onerror="this.style.display='none'">
                             <div class="code-drawing-placeholder" style="font-size:0.8rem; border-color:#555; color:#aaa;">
                                 <span>01.何文记版</span>
-                                <span style="font-family:monospace; opacity:0.5; margin-top:5px;">keychain-1.jpg</span>
+                                <span style="font-family:monospace; opacity:0.5; margin-top:5px;">keychain-1.png</span>
                             </div>
                         </div>
+                        <!-- 店铺2 -->
                         <div class="keychain-sub-view">
-                            <img src="keychain-2.jpg" alt="芬记钥匙扣" class="keychain-img-spec" onerror="this.style.display='none'">
+                            <img src="keychain-2.png" alt="芬记钥匙扣" class="keychain-img-spec" onerror="this.style.display='none'">
                             <div class="code-drawing-placeholder" style="font-size:0.8rem; border-color:#555; color:#aaa;">
                                 <span>02.芬记版</span>
-                                <span style="font-family:monospace; opacity:0.5; margin-top:5px;">keychain-2.jpg</span>
+                                <span style="font-family:monospace; opacity:0.5; margin-top:5px;">keychain-2.png</span>
                             </div>
                         </div>
+                        <!-- 店铺3 -->
                         <div class="keychain-sub-view">
-                            <img src="keychain-3.jpg" alt="靈记钥匙扣" class="keychain-img-spec" onerror="this.style.display='none'">
+                            <img src="keychain-3.png" alt="靈记钥匙扣" class="keychain-img-spec" onerror="this.style.display='none'">
                             <div class="code-drawing-placeholder" style="font-size:0.8rem; border-color:#555; color:#aaa;">
                                 <span>03.靈记版</span>
-                                <span style="font-family:monospace; opacity:0.5; margin-top:5px;">keychain-3.jpg</span>
+                                <span style="font-family:monospace; opacity:0.5; margin-top:5px;">keychain-3.png</span>
                             </div>
                         </div>
+                        <!-- 店铺4 -->
                         <div class="keychain-sub-view">
-                            <img src="keychain-4.jpg" alt="咸城腊味钥匙扣" class="keychain-img-spec" onerror="this.style.display='none'">
+                            <img src="keychain-4.png" alt="咸城腊味钥匙扣" class="keychain-img-spec" onerror="this.style.display='none'">
                             <div class="code-drawing-placeholder" style="font-size:0.8rem; border-color:#555; color:#aaa;">
                                 <span>04.咸城腊味版</span>
-                                <span style="font-family:monospace; opacity:0.5; margin-top:5px;">keychain-4.jpg</span>
+                                <span style="font-family:monospace; opacity:0.5; margin-top:5px;">keychain-4.png</span>
                             </div>
                         </div>
+                        <!-- 店铺5 -->
                         <div class="keychain-sub-view">
-                            <img src="keychain-5.jpg" alt="陈光记钥匙扣" class="keychain-img-spec" onerror="this.style.display='none'">
+                            <img src="keychain-5.png" alt="陈光记钥匙扣" class="keychain-img-spec" onerror="this.style.display='none'">
                             <div class="code-drawing-placeholder" style="font-size:0.8rem; border-color:#555; color:#aaa;">
                                 <span>05.陈光记版</span>
-                                <span style="font-family:monospace; opacity:0.5; margin-top:5px;">keychain-5.jpg</span>
+                                <span style="font-family:monospace; opacity:0.5; margin-top:5px;">keychain-5.png</span>
                             </div>
                         </div>
+                        <!-- 店铺6 -->
                         <div class="keychain-sub-view">
-                            <img src="keychain-6.jpg" alt="龙天烧味钥匙扣" class="keychain-img-spec" onerror="this.style.display='none'">
+                            <img src="keychain-6.png" alt="龙天烧味钥匙扣" class="keychain-img-spec" onerror="this.style.display='none'">
                             <div class="code-drawing-placeholder" style="font-size:0.8rem; border-color:#555; color:#aaa;">
                                 <span>06.龙天味版</span>
-                                <span style="font-family:monospace; opacity:0.5; margin-top:5px;">keychain-6.jpg</span>
+                                <span style="font-family:monospace; opacity:0.5; margin-top:5px;">keychain-6.png</span>
                             </div>
                         </div>
                     </div>
@@ -708,6 +725,7 @@
         </div>
     </div>
 
+    <!-- 子页面 5 -->
     <div id="page-5" class="page-container">
         <button class="neon-btn back-btn-corner" onclick="navigateTo('menu-page')">
             <svg class="arrow-icon" viewBox="0 0 24 24" style="transform: rotate(180deg);"><path d="M5,13H16.17L11.07,18.1L12.49,19.52L20,12L12.49,4.48L11.07,5.9L16.17,11H5V13Z" /></svg>
