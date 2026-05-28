@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>陈旸朗 | Portfolio v2.2</title>
+    <title>陈旸朗 | Portfolio v2.3</title>
     <link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -279,7 +279,6 @@
             margin: 40px auto 0 auto;
         }
         
-        /* 纵向滑动全屏段落 */
         .map-section {
             min-height: calc(100vh - 160px);
             display: flex;
@@ -293,7 +292,6 @@
             border-bottom: none;
         }
 
-        /* 左右图文排版 */
         .map-text-side {
             flex: 1;
             text-align: left;
@@ -340,7 +338,6 @@
             margin-bottom: 20px;
         }
 
-        /* 完美的图片自适应容器 */
         .portfolio-img {
             width: 100%;
             height: auto;
@@ -351,7 +348,6 @@
             box-shadow: 0 0 20px rgba(0,0,0,0.8);
         }
 
-        /* 纯代码占位效果图 - 增强视觉设计感 */
         .code-drawing-placeholder {
             width: 100%;
             height: 100%;
@@ -375,7 +371,6 @@
             pointer-events: none;
         }
 
-        /* 店铺特色网络卡片 */
         .shop-badge-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -389,7 +384,57 @@
             font-size: 0.85rem;
             border-radius: 4px;
         }
-        .shop-badge strong { color: var(--neon-green); }
+        .shop-badge><strong style="color: var(--neon-green);">
+
+        /* 钥匙扣多图联动排版样式 */
+        .keychain-container-layout {
+            display: flex;
+            width: 100%;
+            gap: 20px;
+        }
+        /* 左侧主图（范例版） */
+        .keychain-main-view {
+            flex: 1.2;
+            background: #161616;
+            border: 1px solid #444;
+            border-radius: 6px;
+            min-height: 480px;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+        }
+        /* 右侧子图矩阵 (3列2行) */
+        .keychain-sub-grid {
+            flex: 1.8;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(2, 1fr);
+            gap: 15px;
+        }
+        .keychain-sub-view {
+            background: #111;
+            border: 1px dashed #333;
+            border-radius: 4px;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 5px;
+            min-height: 232px;
+        }
+        /* 响应式适配移动端 */
+        @media (max-width: 650px) {
+            .keychain-container-layout { flex-direction: column; }
+            .keychain-sub-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        .keychain-img-spec {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: block;
+        }
     </style>
 </head>
 <body>
@@ -565,7 +610,7 @@
                     <div class="code-drawing-placeholder">
                         <div style="font-size:2rem; margin-bottom:10px;">📖</div>
                         <div style="font-size:1.1rem; letter-spacing:2px;">[ 导览折页与概念设计效果图 ]</div>
-                        <div style="font-size:0.8rem; opacity:0.5; margin-top:15px; font-family:monospace;">可在代码中将图像路径替换为：brochure.jpg</div>
+                        <div style="font-size:0.8rem; opacity:0.5; margin-top:15px; font-family:monospace;">图像命名路径：brochure.jpg</div>
                     </div>
                 </div>
             </div>
@@ -590,24 +635,74 @@
                     <div class="code-drawing-placeholder" style="background: radial-gradient(circle, #152210 0%, #0a0a0a 100%); color: var(--neon-green); border-color: var(--neon-green);">
                         <div style="font-size:2rem; margin-bottom:10px;">🗺️</div>
                         <div style="font-size:1.1rem; letter-spacing:2px;">[ 澳门名胜地标与六大烧腊老店手绘插画 ]</div>
-                        <div style="font-size:0.8rem; opacity:0.5; margin-top:15px; font-family:monospace;">可在代码中将图像路径替换为：map.jpg</div>
+                        <div style="font-size:0.8rem; opacity:0.5; margin-top:15px; font-family:monospace;">图像命名路径：map.jpg</div>
                     </div>
                 </div>
             </div>
 
-            <div class="map-section">
-                <div class="map-text-side">
+            <div class="map-section" style="flex-direction: column; align-items: flex-start; justify-content: flex-start;">
+                <div class="map-text-side" style="margin-bottom: 25px; width: 100%;">
                     <div class="section-num">03 / CREATIVE MERCHANDISE</div>
-                    <div class="section-heading">文创周边：烧腊钥匙扣</div>
-                    <p class="section-p">周边设计采用简洁扁平风格与红、橙、黄等富有食欲的暖色调，将烧腊档中极具烟火气的“挂起”陈列状态，生动地转化为趣味文创。顶部是不锈钢招牌字样，下方挂着迷你鸭子、叉烧及整鸡模型，作为串联起澳门美食记忆的情感载体。</p>
+                    <div class="section-heading">文创周边：烧腊钥匙扣（系列设计）</div>
+                    <p class="section-p">周边设计采用简洁扁平风格与富含食欲的暖色调，将烧腊档中极具烟火气的“挂起”陈列状态转化为趣味文创。顶部是不锈钢招牌，下方挂着迷你模型。以下联动展示了 1 个大版核心范例图以及 6 个店铺系列对应细分版小图：</p>
                 </div>
-                <div class="map-visual-side">
-                    <img src="keychains.jpg" alt="文创周边设计图" class="portfolio-img" onerror="this.style.display='none'">
-                    <div class="code-drawing-placeholder" style="background: radial-gradient(circle, #2d2005 0%, #0a0a0a 100%); color: #ffb300; border-color: #ffb300;">
-                        <div style="font-size:2rem; margin-bottom:10px;">🔑</div>
-                        <div style="font-size:1.1rem; letter-spacing:2px;">[ 挂起陈列形态 · 迷你烧腊模型钥匙扣 ]</div>
-                        <div style="font-size:0.8rem; opacity:0.5; margin-top:15px; font-family:monospace;">可在代码中将图像路径替换为：keychains.jpg</div>
+                
+                <div class="keychain-container-layout">
+                    
+                    <div class="keychain-main-view">
+                        <img src="keychain-demo.jpg" alt="钥匙扣设计范例版" class="keychain-img-spec" onerror="this.style.display='none'">
+                        <div class="code-drawing-placeholder" style="background: linear-gradient(135deg, #2d2005 0%, #050505 100%); border-color: #ffb300; color: #ffb300;">
+                            <span style="font-size:2.5rem; margin-bottom:10px;">🔑</span>
+                            <span style="font-size:1.1rem; text-align:center;">[ 主核心：设计范例大图 ]</span>
+                            <span style="font-size:0.8rem; opacity:0.6; margin-top:10px; font-family:monospace;">keychain-demo.jpg</span>
+                        </div>
                     </div>
+
+                    <div class="keychain-sub-grid">
+                        <div class="keychain-sub-view">
+                            <img src="keychain-1.jpg" alt="何文记钥匙扣" class="keychain-img-spec" onerror="this.style.display='none'">
+                            <div class="code-drawing-placeholder" style="font-size:0.8rem; border-color:#555; color:#aaa;">
+                                <span>01.何文记版</span>
+                                <span style="font-family:monospace; opacity:0.5; margin-top:5px;">keychain-1.jpg</span>
+                            </div>
+                        </div>
+                        <div class="keychain-sub-view">
+                            <img src="keychain-2.jpg" alt="芬记钥匙扣" class="keychain-img-spec" onerror="this.style.display='none'">
+                            <div class="code-drawing-placeholder" style="font-size:0.8rem; border-color:#555; color:#aaa;">
+                                <span>02.芬记版</span>
+                                <span style="font-family:monospace; opacity:0.5; margin-top:5px;">keychain-2.jpg</span>
+                            </div>
+                        </div>
+                        <div class="keychain-sub-view">
+                            <img src="keychain-3.jpg" alt="靈记钥匙扣" class="keychain-img-spec" onerror="this.style.display='none'">
+                            <div class="code-drawing-placeholder" style="font-size:0.8rem; border-color:#555; color:#aaa;">
+                                <span>03.靈记版</span>
+                                <span style="font-family:monospace; opacity:0.5; margin-top:5px;">keychain-3.jpg</span>
+                            </div>
+                        </div>
+                        <div class="keychain-sub-view">
+                            <img src="keychain-4.jpg" alt="咸城腊味钥匙扣" class="keychain-img-spec" onerror="this.style.display='none'">
+                            <div class="code-drawing-placeholder" style="font-size:0.8rem; border-color:#555; color:#aaa;">
+                                <span>04.咸城腊味版</span>
+                                <span style="font-family:monospace; opacity:0.5; margin-top:5px;">keychain-4.jpg</span>
+                            </div>
+                        </div>
+                        <div class="keychain-sub-view">
+                            <img src="keychain-5.jpg" alt="陈光记钥匙扣" class="keychain-img-spec" onerror="this.style.display='none'">
+                            <div class="code-drawing-placeholder" style="font-size:0.8rem; border-color:#555; color:#aaa;">
+                                <span>05.陈光记版</span>
+                                <span style="font-family:monospace; opacity:0.5; margin-top:5px;">keychain-5.jpg</span>
+                            </div>
+                        </div>
+                        <div class="keychain-sub-view">
+                            <img src="keychain-6.jpg" alt="龙天烧味钥匙扣" class="keychain-img-spec" onerror="this.style.display='none'">
+                            <div class="code-drawing-placeholder" style="font-size:0.8rem; border-color:#555; color:#aaa;">
+                                <span>06.龙天味版</span>
+                                <span style="font-family:monospace; opacity:0.5; margin-top:5px;">keychain-6.jpg</span>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -634,7 +729,6 @@
                 currentPage.classList.remove('active');
                 targetPage.classList.add('active');
                 
-                // 如果进入了需要滚动的页面，自动重置滚动条到顶端
                 if(targetId === 'page-1' || targetId === 'page-4') {
                     targetPage.scrollTop = 0;
                 }
