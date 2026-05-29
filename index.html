@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>陈旸朗 | Portfolio v2.4</title>
+    <title>陈旸朗 | Portfolio v3.1</title>
     <link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -12,6 +12,7 @@
             --panel-bg: #121212;
             --transition-speed: 0.5s;
             --macau-warm: #ff5722;
+            --temple-red: #ff3333; /* 为土地神庙项目定制的东方红 */
         }
 
         * {
@@ -46,8 +47,8 @@
             transition: opacity var(--transition-speed) ease-in-out;
         }
 
-        /* 滚动页面定制（简历页与美食地图页） */
-        #page-1, #page-4 {
+        /* 滚动页面定制（简历页、美食地图页、土地神庙页） */
+        #page-1, #page-3, #page-4 {
             overflow-y: auto;
             justify-content: flex-start;
             padding-top: 100px;
@@ -56,10 +57,10 @@
         }
 
         /* 隐藏默认滚动条，使其更像完整终端系统 */
-        #page-1::-webkit-scrollbar, #page-4::-webkit-scrollbar {
+        #page-1::-webkit-scrollbar, #page-3::-webkit-scrollbar, #page-4::-webkit-scrollbar {
             width: 6px;
         }
-        #page-1::-webkit-scrollbar-thumb, #page-4::-webkit-scrollbar-thumb {
+        #page-1::-webkit-scrollbar-thumb, #page-3::-webkit-scrollbar-thumb, #page-4::-webkit-scrollbar-thumb {
             background: var(--neon-green);
             border-radius: 3px;
         }
@@ -272,7 +273,7 @@
             box-shadow: 0 0 10px var(--neon-green);
         }
 
-        /* ==================== 澳门美食地图板块样式 ==================== */
+        /* ==================== 澳门美食地图与信息可视化通用纵向流样式 ==================== */
         .map-portfolio-wrapper {
             width: 100%;
             max-width: 1100px;
@@ -338,8 +339,8 @@
             margin-bottom: 20px;
         }
 
-        /* 优化图片层级和加载态 */
-        .portfolio-img {
+        /* 优化图片与视频层级和加载态 */
+        .portfolio-img, .portfolio-video {
             width: 100%;
             height: auto;
             max-height: 550px;
@@ -351,6 +352,14 @@
             transition: opacity 0.5s ease-in-out;
             position: relative;
             z-index: 2;
+        }
+        
+        /* 针对9:16大图的展示框高度优化 */
+        .tall-visual-frame {
+            min-height: 580px;
+        }
+        .tall-visual-frame .portfolio-img {
+            max-height: 700px;
         }
 
         .code-drawing-placeholder {
@@ -397,7 +406,6 @@
             width: 100%;
             gap: 20px;
         }
-        /* 左侧主图（范例版） */
         .keychain-main-view {
             flex: 1.2;
             background: #161616;
@@ -410,7 +418,6 @@
             align-items: center;
             padding: 10px;
         }
-        /* 右侧子图矩阵 (3列2行) */
         .keychain-sub-grid {
             flex: 1.8;
             display: grid;
@@ -430,7 +437,6 @@
             min-height: 232px;
             overflow: hidden;
         }
-        /* 响应式适配移动端 */
         @media (max-width: 650px) {
             .keychain-container-layout { flex-direction: column; }
             .keychain-sub-grid { grid-template-columns: repeat(2, 1fr); }
@@ -445,11 +451,33 @@
             position: relative;
             z-index: 2;
         }
+
+        /* ==================== 土地神庙多图并列排版 ==================== */
+        .temple-double-images {
+            display: flex;
+            width: 100%;
+            gap: 20px;
+            justify-content: center;
+        }
+        .temple-img-box {
+            flex: 1;
+            background: #161212;
+            border: 1px solid #3d2222;
+            padding: 10px;
+            border-radius: 4px;
+            position: relative;
+            min-height: 550px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        @media (max-width: 650px) {
+            .temple-double-images { flex-direction: column; }
+        }
     </style>
 </head>
 <body>
 
-    <!-- 首页 -->
     <div id="home-page" class="page-container active">
         <h1>PORTFOLIO</h1>
         <div class="name">陈旸朗</div>
@@ -460,7 +488,6 @@
         </button>
     </div>
 
-    <!-- 目录页 -->
     <div id="menu-page" class="page-container">
         <button class="neon-btn back-btn-corner" onclick="navigateTo('home-page')" title="返回首页">
             <svg class="arrow-icon" viewBox="0 0 24 24" style="transform: rotate(180deg);">
@@ -478,7 +505,6 @@
         </div>
     </div>
 
-    <!-- 子页面 1: 个人简历 -->
     <div id="page-1" class="page-container">
         <button class="neon-btn back-btn-corner" onclick="navigateTo('menu-page')">
             <svg class="arrow-icon" viewBox="0 0 24 24" style="transform: rotate(180deg);"><path d="M5,13H16.17L11.07,18.1L12.49,19.52L20,12L12.49,4.48L11.07,5.9L16.17,11H5V13Z" /></svg>
@@ -589,7 +615,6 @@
         </div>
     </div>
 
-    <!-- 子页面 2 -->
     <div id="page-2" class="page-container">
         <button class="neon-btn back-btn-corner" onclick="navigateTo('menu-page')">
             <svg class="arrow-icon" viewBox="0 0 24 24" style="transform: rotate(180deg);"><path d="M5,13H16.17L11.07,18.1L12.49,19.52L20,12L12.49,4.48L11.07,5.9L16.17,11H5V13Z" /></svg>
@@ -598,29 +623,70 @@
         <p class="placeholder-text">[内容建设中...]</p>
     </div>
 
-    <!-- 子页面 3 -->
     <div id="page-3" class="page-container">
         <button class="neon-btn back-btn-corner" onclick="navigateTo('menu-page')">
             <svg class="arrow-icon" viewBox="0 0 24 24" style="transform: rotate(180deg);"><path d="M5,13H16.17L11.07,18.1L12.49,19.52L20,12L12.49,4.48L11.07,5.9L16.17,11H5V13Z" /></svg>
         </button>
-        <h1>信息可视化设计</h1>
-        <p class="placeholder-text">[内容建设中...]</p>
+        
+        <div class="map-portfolio-wrapper">
+            <div class="map-section" style="flex-direction: column; align-items: flex-start; justify-content: flex-start;">
+                <div class="map-text-side" style="margin-bottom: 30px; width: 100%;">
+                    <div class="section-num" style="color: var(--temple-red);">01 / STATIC GRAPHICS</div>
+                    <div class="section-heading" style="border-bottom-color: var(--temple-red);">澳门与闽粤土地神庙文化解构</div>
+                    <p class="section-p">本项设计方案围绕澳门与闽粤地区土地神庙文化开展信息可视化设计。方案分为动态与静态两部分：静态展示则运用信息图表，通过空间地图、历史时间轴、神话关系图、方言词云等可视化手段，全方位解构两地在地理特色、祭祀习俗、艺术形象及移民文化等方面的差异，以现代视觉语言对传统民间信仰空间进行在地的建构与传播。</p>
+                </div>
+                
+                <div class="temple-double-images">
+                    <div class="temple-img-box">
+                        <img src="visualization-1.jpg" alt="信息可视化大图 1" class="portfolio-img" style="max-height: 650px;" onload="this.style.opacity=1">
+                        <div class="code-drawing-placeholder" style="background: radial-gradient(circle, #250808 0%, #0a0a0a 100%); color: var(--temple-red); border-color: var(--temple-red);">
+                            <div style="font-size:2rem; margin-bottom:10px;">📊</div>
+                            <div style="font-size:1rem; letter-spacing:1px; text-align:center;">[ 静态图表可视化 - 01 ]</div>
+                            <div style="font-size:0.75rem; opacity:0.5; margin-top:10px; font-family:monospace;">visualization-1.jpg</div>
+                        </div>
+                    </div>
+                    <div class="temple-img-box">
+                        <img src="visualization-2.jpg" alt="信息可视化大图 2" class="portfolio-img" style="max-height: 650px;" onload="this.style.opacity=1">
+                        <div class="code-drawing-placeholder" style="background: radial-gradient(circle, #250808 0%, #0a0a0a 100%); color: var(--temple-red); border-color: var(--temple-red);">
+                            <div style="font-size:2rem; margin-bottom:10px;">📊</div>
+                            <div style="font-size:1rem; letter-spacing:1px; text-align:center;">[ 静态图表可视化 - 02 ]</div>
+                            <div style="font-size:0.75rem; opacity:0.5; margin-top:10px; font-family:monospace;">visualization-2.jpg</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="map-section">
+                <div class="map-text-side">
+                    <div class="section-num" style="color: var(--temple-red);">02 / MOTION GRAPHICS</div>
+                    <div class="section-heading" style="border-bottom-color: var(--temple-red);">动态演示与形象演变</div>
+                    <p class="section-p">动态展示采用GIF微动画与动态影像，直观剖析庙宇建筑结构拆解、呈现两地土地公形象的现象级演变，并辅以方言祈福语交互。</p>
+                    <p class="section-p" style="color: #666; font-size: 0.95rem;">右侧多媒体播放器支持自动循环播放，全方位还原动态交互的细节表现。</p>
+                </div>
+                <div class="map-visual-side tall-visual-frame" style="flex: 1.3;">
+                    <video src="visualization-video.mp4" class="portfolio-video" autoplay loop muted playsinline controls onloadstart="this.style.opacity=1"></video>
+                    <div class="code-drawing-placeholder" style="background: radial-gradient(circle, #102025 0%, #0a0a0a 100%); color: var(--neon-green); border-color: #224455; z-index: 1;">
+                        <div style="font-size:2.5rem; margin-bottom:10px;">🎬</div>
+                        <div style="font-size:1.1rem; letter-spacing:2px;">[ 20秒信息可视化动态微动画视频 ]</div>
+                        <div style="font-size:0.8rem; opacity:0.5; margin-top:15px; font-family:monospace;">视频命名路径：visualization-video.mp4</div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <!-- 子页面 4: 澳门美食地图设计 -->
     <div id="page-4" class="page-container">
         <button class="neon-btn back-btn-corner" onclick="navigateTo('menu-page')">
             <svg class="arrow-icon" viewBox="0 0 24 24" style="transform: rotate(180deg);"><path d="M5,13H16.17L11.07,18.1L12.49,19.52L20,12L12.49,4.48L11.07,5.9L16.17,11H5V13Z" /></svg>
         </button>
         
         <div class="map-portfolio-wrapper">
-            <!-- 纵向第 1 页：项目企划与概念说明 -->
             <div class="map-section">
                 <div class="map-text-side">
                     <div class="section-num">01 / CONCEPT</div>
                     <div class="section-heading">澳门本土烧腊美食地图</div>
                     <p class="section-p">《澳门烧腊美食地图》旨在通过视觉化的设计语言，深度挖掘澳门传统餐饮文化的独特魅力。本项目通过一份精心编绘的烧腊导览手册，将地理位置与美食体验深度串联，打造出“地图导览+互动打卡”的沉浸式体验。</p>
-                    <p class="section-p">用户在遵循地图寻味烧腊的过程中，不仅能系统梳理地道烧味信息，还能通过打卡机制获得趣味十足的“烧腊钥匙扣”周边文创。重塑传统美食地图的在地化价值，为受众提供更具参与感与纪念意义的城市文化探索之旅。</p>
+                    <p class="section-p">用户在遵循地图寻味烧腊的过程中，不仅能系统梳理地道烧味信息，还能通过打卡机制获得趣味十足的“烧腊钥匙扣”周边文创。设计旨在通过视觉传达与互动体验的融合，重塑传统美食地图的在地化价值，为受众提供更具参与感与纪念意义的城市文化探索之旅。</p>
                 </div>
                 <div class="map-visual-side">
                     <img src="brochure.png" alt="折页画册设计图" class="portfolio-img" onload="this.style.opacity=1">
@@ -632,7 +698,6 @@
                 </div>
             </div>
 
-            <!-- 纵向第 2 页：手绘插画路线地图 -->
             <div class="map-section">
                 <div class="map-text-side">
                     <div class="section-num">02 / ILLUSTRATION MAP</div>
@@ -658,7 +723,6 @@
                 </div>
             </div>
 
-            <!-- 纵向第 3 页：文创周边（全新升级 7 竖图联动排版） -->
             <div class="map-section" style="flex-direction: column; align-items: flex-start; justify-content: flex-start;">
                 <div class="map-text-side" style="margin-bottom: 25px; width: 100%;">
                     <div class="section-num">03 / CREATIVE MERCHANDISE</div>
@@ -666,10 +730,7 @@
                     <p class="section-p">周边设计采用简洁扁平风格与富含食欲的暖色调，将烧腊档中极具烟火气的“挂起”陈列状态转化为趣味文创。顶部是不锈钢招牌，下方挂着迷你模型。以下联动展示了 1 个大版核心范例图以及 6 个店铺系列对应细分版小图：</p>
                 </div>
                 
-                <!-- 7 图联动排版架构区 -->
                 <div class="keychain-container-layout">
-                    
-                    <!-- 左侧：核心设计范例（大版竖图区） -->
                     <div class="keychain-main-view">
                         <img src="keychain-demo.png" alt="钥匙扣设计范例版" class="keychain-img-spec" onload="this.style.opacity=1">
                         <div class="code-drawing-placeholder" style="background: linear-gradient(135deg, #2d2005 0%, #050505 100%); border-color: #ffb300; color: #ffb300;">
@@ -679,9 +740,7 @@
                         </div>
                     </div>
 
-                    <!-- 右侧：6大老店对应细分版（3×2 矩阵小图区） -->
                     <div class="keychain-sub-grid">
-                        <!-- 店铺1 -->
                         <div class="keychain-sub-view">
                             <img src="keychain-1.png" alt="何文记钥匙扣" class="keychain-img-spec" onload="this.style.opacity=1">
                             <div class="code-drawing-placeholder" style="font-size:0.8rem; border-color:#555; color:#aaa;">
@@ -689,7 +748,6 @@
                                 <span style="font-family:monospace; opacity:0.5; margin-top:5px;">keychain-1.png</span>
                             </div>
                         </div>
-                        <!-- 店铺2 -->
                         <div class="keychain-sub-view">
                             <img src="keychain-2.png" alt="芬记钥匙扣" class="keychain-img-spec" onload="this.style.opacity=1">
                             <div class="code-drawing-placeholder" style="font-size:0.8rem; border-color:#555; color:#aaa;">
@@ -697,7 +755,6 @@
                                 <span style="font-family:monospace; opacity:0.5; margin-top:5px;">keychain-2.png</span>
                             </div>
                         </div>
-                        <!-- 店铺3 -->
                         <div class="keychain-sub-view">
                             <img src="keychain-3.png" alt="靈记钥匙扣" class="keychain-img-spec" onload="this.style.opacity=1">
                             <div class="code-drawing-placeholder" style="font-size:0.8rem; border-color:#555; color:#aaa;">
@@ -705,7 +762,6 @@
                                 <span style="font-family:monospace; opacity:0.5; margin-top:5px;">keychain-3.png</span>
                             </div>
                         </div>
-                        <!-- 店铺4 -->
                         <div class="keychain-sub-view">
                             <img src="keychain-4.png" alt="咸城腊味钥匙扣" class="keychain-img-spec" onload="this.style.opacity=1">
                             <div class="code-drawing-placeholder" style="font-size:0.8rem; border-color:#555; color:#aaa;">
@@ -713,7 +769,6 @@
                                 <span style="font-family:monospace; opacity:0.5; margin-top:5px;">keychain-4.png</span>
                             </div>
                         </div>
-                        <!-- 店铺5 -->
                         <div class="keychain-sub-view">
                             <img src="keychain-5.png" alt="陈光记钥匙扣" class="keychain-img-spec" onload="this.style.opacity=1">
                             <div class="code-drawing-placeholder" style="font-size:0.8rem; border-color:#555; color:#aaa;">
@@ -721,7 +776,6 @@
                                 <span style="font-family:monospace; opacity:0.5; margin-top:5px;">keychain-5.png</span>
                             </div>
                         </div>
-                        <!-- 店铺6 -->
                         <div class="keychain-sub-view">
                             <img src="keychain-6.png" alt="龙天烧味钥匙扣" class="keychain-img-spec" onload="this.style.opacity=1">
                             <div class="code-drawing-placeholder" style="font-size:0.8rem; border-color:#555; color:#aaa;">
@@ -730,13 +784,11 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- 子页面 5 -->
     <div id="page-5" class="page-container">
         <button class="neon-btn back-btn-corner" onclick="navigateTo('menu-page')">
             <svg class="arrow-icon" viewBox="0 0 24 24" style="transform: rotate(180deg);"><path d="M5,13H16.17L11.07,18.1L12.49,19.52L20,12L12.49,4.48L11.07,5.9L16.17,11H5V13Z" /></svg>
@@ -758,7 +810,7 @@
                 currentPage.classList.remove('active');
                 targetPage.classList.add('active');
                 
-                if(targetId === 'page-1' || targetId === 'page-4') {
+                if(targetId === 'page-1' || targetId === 'page-3' || targetId === 'page-4') {
                     targetPage.scrollTop = 0;
                 }
 
