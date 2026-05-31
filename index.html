@@ -25,7 +25,7 @@
             padding: 0;
             width: 100%;
             height: 100%;
-            background-color: var(--bg-black); /* 🛠️已严格修正拼写，锁死纯黑背景 */
+            background-color: var(--bg-black); /* 严格死守纯黑背景 */
             color: white;
             font-family: 'DotGothic16', sans-serif;
             overflow: hidden;
@@ -279,31 +279,35 @@
         .tag { background: #000; border: 1px solid var(--neon-green); color: var(--neon-green); padding: 6px 12px; font-size: 0.9rem; border-radius: 3px; transition: all 0.3s; }
         .tag:hover { background: var(--neon-green); color: #000; font-weight: bold; box-shadow: 0 0 10px var(--neon-green); }
 
-        /* ==================== 02: 专辑设计专属复合排版样式（🛠️已优化16:10长方形框） ==================== */
+        /* ==================== 02: 专辑设计专属复合排版样式（🛠️已重构为横向A4精密比例） ==================== */
         .album-triple-jpg {
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            gap: 30px;
             width: 100%;
             margin-top: 20px;
+            align-items: center; /* 居中对齐 A4 框 */
         }
         .album-horizontal-box {
             width: 100%;
+            max-width: 1000px; /* 限制大屏下的最大宽度 */
+            aspect-ratio: 297 / 210; /* 🛠️ 核心修改：利用 CSS 纵横比完美锁死横向 A4 比例 (297mm x 210mm) */
             background: #141112;
             border: 1px solid var(--album-pink);
-            padding: 15px;
+            padding: 20px;
             border-radius: 4px;
             position: relative;
-            min-height: 480px; /* 🛠️ 调高容器最小高度，适配16:10正常比例 */
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
+            overflow: hidden;
         }
         .album-horizontal-box .portfolio-img {
-            max-height: 450px; /* 🛠️ 扩大图片最大高度，防止上下被裁 */
             width: 100%;
-            object-fit: contain; /* 🛠️ 改为 contain，确保16:10长方形完整显现，无任何裁切 */
+            height: 100%;
+            max-height: none; /* 解除之前的最大高度限制，交给 aspect-ratio 比例盒控高 */
+            object-fit: contain; /* 确保您的长方形图在 A4 框内全量高保真呈现，不裁剪不拉伸 */
         }
 
         .album-mixed-grid {
@@ -477,7 +481,7 @@
         </button>
         
         <div class="map-portfolio-wrapper">
-            <!-- 纵向第 1 页：设计说明 + 3张JPG 16:10长方形图 -->
+            <!-- 纵向第 1 页：设计说明 + 3张JPG 横向A4比例展示框 -->
             <div class="map-section" style="flex-direction: column; align-items: flex-start; justify-content: flex-start;">
                 <div class="map-text-side" style="margin-bottom: 20px; width: 100%;">
                     <div class="section-num" style="color: var(--album-pink);">01 / CONCEPT & COVERS</div>
@@ -489,19 +493,19 @@
                     <div class="album-horizontal-box">
                         <img src="album-cover-1.jpg" alt="专辑横向图 1" class="portfolio-img" onload="this.style.opacity=1">
                         <div class="code-drawing-placeholder" style="background: radial-gradient(circle, #250515 0%, #0a0a0a 100%); color: var(--album-pink); border-color: var(--album-pink);">
-                            <div style="font-size:2rem; margin-bottom:5px;">💿</div><div style="font-size:1rem;">[ 专辑横向视觉展示 - 01 ]</div>
+                            <div style="font-size:2rem; margin-bottom:5px;">💿</div><div style="font-size:1rem;">[ 专辑横向视觉展示 (横向 A4 比例) - 01 ]</div>
                         </div>
                     </div>
                     <div class="album-horizontal-box">
                         <img src="album-cover-2.jpg" alt="专辑横向图 2" class="portfolio-img" onload="this.style.opacity=1">
                         <div class="code-drawing-placeholder" style="background: radial-gradient(circle, #250515 0%, #0a0a0a 100%); color: var(--album-pink); border-color: var(--album-pink);">
-                            <div style="font-size:2rem; margin-bottom:5px;">💿</div><div style="font-size:1rem;">[ 专辑横向视觉展示 - 02 ]</div>
+                            <div style="font-size:2rem; margin-bottom:5px;">💿</div><div style="font-size:1rem;">[ 专辑横向视觉展示 (横向 A4 比例) - 02 ]</div>
                         </div>
                     </div>
                     <div class="album-horizontal-box">
                         <img src="album-cover-3.jpg" alt="专辑横向图 3" class="portfolio-img" onload="this.style.opacity=1">
                         <div class="code-drawing-placeholder" style="background: radial-gradient(circle, #250515 0%, #0a0a0a 100%); color: var(--album-pink); border-color: var(--album-pink);">
-                            <div style="font-size:2rem; margin-bottom:5px;">💿</div><div style="font-size:1rem;">[ 专辑横向视觉展示 - 03 ]</div>
+                            <div style="font-size:2rem; margin-bottom:5px;">💿</div><div style="font-size:1rem;">[ 专辑横向视觉展示 (横向 A4 比例) - 03 ]</div>
                         </div>
                     </div>
                 </div>
