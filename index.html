@@ -49,7 +49,7 @@
         }
 
         /* 滚动页面定制 */
-        #page-1, #page-2, #page-3, #page-4 {
+        #page-1, #page-2, #page-3, #page-4, #page-5 {
             overflow-y: auto;
             justify-content: flex-start;
             padding-top: 100px;
@@ -58,10 +58,10 @@
         }
 
         /* 隐藏默认滚动条 */
-        #page-1::-webkit-scrollbar, #page-2::-webkit-scrollbar, #page-3::-webkit-scrollbar, #page-4::-webkit-scrollbar {
+        #page-1::-webkit-scrollbar, #page-2::-webkit-scrollbar, #page-3::-webkit-scrollbar, #page-4::-webkit-scrollbar, #page-5::-webkit-scrollbar {
             width: 6px;
         }
-        #page-1::-webkit-scrollbar-thumb, #page-2::-webkit-scrollbar-thumb, #page-3::-webkit-scrollbar-thumb, #page-4::-webkit-scrollbar-thumb {
+        #page-1::-webkit-scrollbar-thumb, #page-2::-webkit-scrollbar-thumb, #page-3::-webkit-scrollbar-thumb, #page-4::-webkit-scrollbar-thumb, #page-5::-webkit-scrollbar-thumb {
             background: var(--neon-green);
             border-radius: 3px;
         }
@@ -296,6 +296,7 @@
             position: relative;
             min-height: 260px;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
         }
@@ -348,7 +349,6 @@
 </head>
 <body>
 
-    <!-- 首页 -->
     <div id="home-page" class="page-container active">
         <h1>PORTFOLIO</h1>
         <div class="name">陈旸朗</div>
@@ -359,7 +359,6 @@
         </button>
     </div>
 
-    <!-- 目录页 -->
     <div id="menu-page" class="page-container">
         <button class="neon-btn back-btn-corner" onclick="navigateTo('home-page')" title="返回首页">
             <svg class="arrow-icon" viewBox="0 0 24 24" style="transform: rotate(180deg);"><path d="M5,13H16.17L11.07,18.1L12.49,19.52L20,12L12.49,4.48L11.07,5.9L16.17,11H5V13Z" /></svg>
@@ -374,7 +373,6 @@
         </div>
     </div>
 
-    <!-- 子页面 1: 个人简历 -->
     <div id="page-1" class="page-container">
         <button class="neon-btn back-btn-corner" onclick="navigateTo('menu-page')">
             <svg class="arrow-icon" viewBox="0 0 24 24" style="transform: rotate(180deg);"><path d="M5,13H16.17L11.07,18.1L12.49,19.52L20,12L12.49,4.48L11.07,5.9L16.17,11H5V13Z" /></svg>
@@ -439,14 +437,12 @@
         </div>
     </div>
 
-    <!-- 子页面 2: 专辑设计 -->
     <div id="page-2" class="page-container">
         <button class="neon-btn back-btn-corner" onclick="navigateTo('menu-page')" style="border-color: var(--album-pink); color: var(--album-pink); box-shadow: 0 0 10px rgba(255,0,136,0.2);">
             <svg class="arrow-icon" viewBox="0 0 24 24" style="transform: rotate(180deg);"><path d="M5,13H16.17L11.07,18.1L12.49,19.52L20,12L12.49,4.48L11.07,5.9L16.17,11H5V13Z" /></svg>
         </button>
         
         <div class="map-portfolio-wrapper">
-            <!-- 纵向第 1 页：设计说明 + 3张JPG横版图 -->
             <div class="map-section" style="flex-direction: column; align-items: flex-start; justify-content: flex-start;">
                 <div class="map-text-side" style="margin-bottom: 20px; width: 100%;">
                     <div class="section-num" style="color: var(--album-pink);">01 / CONCEPT & COVERS</div>
@@ -476,7 +472,6 @@
                 </div>
             </div>
 
-            <!-- 纵向第 2 页 -->
             <div class="map-section" style="flex-direction: column; align-items: flex-start; justify-content: flex-start;">
                 <div class="map-text-side" style="margin-bottom: 30px; width: 100%;">
                     <div class="section-num" style="color: var(--album-pink);">02 / POSTERS & SCREENSHOTS</div>
@@ -508,7 +503,6 @@
                 </div>
             </div>
 
-            <!-- 纵向第 3 页 -->
             <div class="map-section">
                 <div class="map-text-side">
                     <div class="section-num" style="color: var(--album-pink);">03 / MOTION VISUALIZATION</div>
@@ -525,7 +519,6 @@
         </div>
     </div>
 
-    <!-- 子页面 3: 信息可视化设计 -->
     <div id="page-3" class="page-container">
         <button class="neon-btn back-btn-corner" onclick="navigateTo('menu-page')">
             <svg class="arrow-icon" viewBox="0 0 24 24" style="transform: rotate(180deg);"><path d="M5,13H16.17L11.07,18.1L12.49,19.52L20,12L12.49,4.48L11.07,5.9L16.17,11H5V13Z" /></svg>
@@ -553,13 +546,11 @@
         </div>
     </div>
 
-    <!-- 子页面 4: 澳门美食地图设计（★已真正严谨核对，补齐 6 家老字号，修改标题） -->
     <div id="page-4" class="page-container">
         <button class="neon-btn back-btn-corner" onclick="navigateTo('menu-page')">
             <svg class="arrow-icon" viewBox="0 0 24 24" style="transform: rotate(180deg);"><path d="M5,13H16.17L11.07,18.1L12.49,19.52L20,12L12.49,4.48L11.07,5.9L16.17,11H5V13Z" /></svg>
         </button>
         <div class="map-portfolio-wrapper">
-            <!-- 纵向第 1 页：创意阐述 -->
             <div class="map-section">
                 <div class="map-text-side">
                     <div class="section-num" style="color: var(--macau-warm);">01 / CONCEPT</div>
@@ -572,14 +563,12 @@
                 </div>
             </div>
 
-            <!-- 纵向第 2 页：手绘路线与 6 家正宗老字号烧腊店精细解构 -->
             <div class="map-section">
                 <div class="map-text-side">
                     <div class="section-num" style="color: var(--macau-warm);">02 / ILLUSTRATION MAP</div>
                     <div class="section-heading" style="border-bottom-color: var(--macau-warm);">手绘插画路线与店铺解构</div>
                     <p class="section-p">此页面集中呈现核心手绘插画地图。精心绘制的路线串联起澳门本土最负盛名的烧腊地标，并对各家老字号的招牌菜品、出炉时间、口味限定进行了细致的图文归纳，让平面地图转变为具备探索趣味的故事媒介。</p>
                     
-                    <!-- 🛠️已死磕修正：真正的 6 家老字号全量排布，代码标签数量已对齐文字 -->
                     <div class="shop-badge-grid">
                         <div class="shop-badge" style="border-color: var(--macau-warm);"><strong>1. 何文记烧腊:</strong> 每日仅限时外卖2小时的传奇店，其切鸡、熏蹄与叉烧肉质极其厚实丰盈。</div>
                         <div class="shop-badge" style="border-color: var(--macau-warm);"><strong>2. 芬记烧腊:</strong> 澳门黑椒烧鸭的鼻祖，秘制黑椒汁浓郁入味，鸭皮油亮酥脆。</div>
@@ -595,46 +584,43 @@
                 </div>
             </div>
 
-            <!-- 纵向第 3 页：文创周边（★已更名去掉“亚克力”，完美锁死 1+6 矩阵） -->
             <div class="map-section" style="flex-direction: column; align-items: flex-start; justify-content: flex-start;">
                 <div class="map-text-side" style="margin-bottom: 25px; width: 100%;">
                     <div class="section-num" style="color: var(--macau-warm);">03 / CREATIVE MERCHANDISE</div>
-                    <!-- ✨ 标题精准删除了“亚克力”三个字 -->
                     <div class="section-heading" style="border-bottom-color: var(--macau-warm);">文创周边：烧腊系列钥匙扣</div>
                     <p class="section-p">作为项目的衍生延展，设计提炼了“烧鸭”、“叉烧”等高辨识度的市井符号，转化为一套极具玩味与港澳复古质感的实体文创钥匙扣。左侧为整体宣发打样效果，右侧网格为 6 款限定款样式的全独立细节展示，实现传统平面视觉向高溢价消费周边的闭环落地。</p>
                 </div>
                 
                 <div class="keychain-container-layout">
-                    <!-- 左侧主效果大框 -->
                     <div class="keychain-main-view" style="border-color: var(--macau-warm);">
                         <img src="keychain-demo.png" class="keychain-img-spec" alt="钥匙扣主宣传图" onload="this.style.opacity=1">
-                        <div class="code-drawing-placeholder">🔑<br>[ 钥匙扣文创全景效果 ]<br><span style="font-size:0.8rem; opacity:0.6;">keychain-demo.png</span></div>
+                        <div class="code-drawing-placeholder" style="background: radial-gradient(circle, #251008 0%, #0a0a0a 100%); color: var(--macau-warm); border-color: var(--macau-warm);">🔑<br>[ 钥匙扣主效果宣传图 ]<br><span style="font-size:0.8rem; opacity:0.6;">keychain-demo.png</span></div>
                     </div>
-                    <!-- 右侧 6 个完整的子样式九宫格矩阵 -->
+                    
                     <div class="keychain-sub-grid">
-                        <div class="keychain-sub-view" style="border-color: var(--macau-warm);">
-                            <img src="keychain-1.png" class="keychain-img-spec" onload="this.style.opacity=1">
-                            <div class="code-drawing-placeholder">✨ 01 款<br><span style="font-size:0.7rem; opacity:0.5;">keychain-1.png</span></div>
+                        <div class="keychain-sub-view">
+                            <img src="keychain-1.png" class="keychain-img-spec" alt="款式 1" onload="this.style.opacity=1">
+                            <div class="code-drawing-placeholder" style="background: #111; color: var(--macau-warm);">[ 01. 何文记限定款 ]</div>
                         </div>
-                        <div class="keychain-sub-view" style="border-color: var(--macau-warm);">
-                            <img src="keychain-2.png" class="keychain-img-spec" onload="this.style.opacity=1">
-                            <div class="code-drawing-placeholder">✨ 02 款<br><span style="font-size:0.7rem; opacity:0.5;">keychain-2.png</span></div>
+                        <div class="keychain-sub-view">
+                            <img src="keychain-2.png" class="keychain-img-spec" alt="款式 2" onload="this.style.opacity=1">
+                            <div class="code-drawing-placeholder" style="background: #111; color: var(--macau-warm);">[ 02. 芬记限定款 ]</div>
                         </div>
-                        <div class="keychain-sub-view" style="border-color: var(--macau-warm);">
-                            <img src="keychain-3.png" class="keychain-img-spec" onload="this.style.opacity=1">
-                            <div class="code-drawing-placeholder">✨ 03 款<br><span style="font-size:0.7rem; opacity:0.5;">keychain-3.png</span></div>
+                        <div class="keychain-sub-view">
+                            <img src="keychain-3.png" class="keychain-img-spec" alt="款式 3" onload="this.style.opacity=1">
+                            <div class="code-drawing-placeholder" style="background: #111; color: var(--macau-warm);">[ 03. 灵记限定款 ]</div>
                         </div>
-                        <div class="keychain-sub-view" style="border-color: var(--macau-warm);">
-                            <img src="keychain-4.png" class="keychain-img-spec" onload="this.style.opacity=1">
-                            <div class="code-drawing-placeholder">✨ 04 款<br><span style="font-size:0.7rem; opacity:0.5;">keychain-4.png</span></div>
+                        <div class="keychain-sub-view">
+                            <img src="keychain-4.png" class="keychain-img-spec" alt="款式 4" onload="this.style.opacity=1">
+                            <div class="code-drawing-placeholder" style="background: #111; color: var(--macau-warm);">[ 04. 凤城限定款 ]</div>
                         </div>
-                        <div class="keychain-sub-view" style="border-color: var(--macau-warm);">
-                            <img src="keychain-5.png" class="keychain-img-spec" onload="this.style.opacity=1">
-                            <div class="code-drawing-placeholder">✨ 05 款<br><span style="font-size:0.7rem; opacity:0.5;">keychain-5.png</span></div>
+                        <div class="keychain-sub-view">
+                            <img src="keychain-5.png" class="keychain-img-spec" alt="款式 5" onload="this.style.opacity=1">
+                            <div class="code-drawing-placeholder" style="background: #111; color: var(--macau-warm);">[ 05. 陈光记限定款 ]</div>
                         </div>
-                        <div class="keychain-sub-view" style="border-color: var(--macau-warm);">
-                            <img src="keychain-6.png" class="keychain-img-spec" onload="this.style.opacity=1">
-                            <div class="code-drawing-placeholder">✨ 06 款<br><span style="font-size:0.7rem; opacity:0.5;">keychain-6.png</span></div>
+                        <div class="keychain-sub-view">
+                            <img src="keychain-6.png" class="keychain-img-spec" alt="款式 6" onload="this.style.opacity=1">
+                            <div class="code-drawing-placeholder" style="background: #111; color: var(--macau-warm);">[ 06. 龙天限定款 ]</div>
                         </div>
                     </div>
                 </div>
@@ -642,28 +628,51 @@
         </div>
     </div>
 
-    <!-- 子页面 5: 书籍封面设计 -->
     <div id="page-5" class="page-container">
         <button class="neon-btn back-btn-corner" onclick="navigateTo('menu-page')">
             <svg class="arrow-icon" viewBox="0 0 24 24" style="transform: rotate(180deg);"><path d="M5,13H16.17L11.07,18.1L12.49,19.52L20,12L12.49,4.48L11.07,5.9L16.17,11H5V13Z" /></svg>
         </button>
-        <h1>书籍封面设计</h1><p class="placeholder-text">[内容建设中...]</p>
+        <div class="map-portfolio-wrapper">
+            <div class="map-section">
+                <div class="map-text-side">
+                    <div class="section-num" style="color: var(--neon-green);">01 / BOOK COVER DESIGN</div>
+                    <div class="section-heading">现代平面视觉之书籍封面设计</div>
+                    <p class="section-p">本项设计关注于书籍装帧和平面排版创意。通过对书籍核心文本精神、内容张力以及次文化符号的结构，提取极具隐喻性的视觉元素，运用大面积纯色色块、独特的字体编排以及具有空间张力的版面构成形式，呈现具有前卫潮流质感和深刻文化厚度的现代立体装帧视觉系统。</p>
+                </div>
+                <div class="map-visual-side tall-visual-frame">
+                    <img src="book-cover.jpg" class="portfolio-img" alt="书籍封面设计大图" onload="this.style.opacity=1">
+                    <div class="code-drawing-placeholder" style="background: radial-gradient(circle, #0e1c08 0%, #0a0a0a 100%); color: var(--neon-green); border-color: var(--neon-green);">📖<br>[ 书籍封面装帧展示图 ]<br><span style="font-size:0.8rem; opacity:0.6;">book-cover.jpg</span></div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script>
-        function navigateTo(targetId) {
-            const currentPage = document.querySelector('.page-container.active');
-            const targetPage = document.getElementById(targetId);
-            if (!targetPage || currentPage === targetPage) return;
-            currentPage.style.opacity = '0';
-            setTimeout(() => {
-                currentPage.classList.remove('active');
-                targetPage.classList.add('active');
-                if(['page-1', 'page-2', 'page-3', 'page-4'].includes(targetId)) {
-                    targetPage.scrollTop = 0;
+        function navigateTo(pageId) {
+            // 获取所有的页面容器
+            const pages = document.querySelectorAll('.page-container');
+            
+            // 遍历并关闭当前的活动页面状态
+            pages.forEach(page => {
+                if (page.classList.contains('active')) {
+                    page.style.opacity = '0';
+                    setTimeout(() => {
+                        page.classList.remove('active');
+                        
+                        // 激活目标页面
+                        const targetPage = document.getElementById(pageId);
+                        if (targetPage) {
+                            targetPage.classList.add('active');
+                            // 重置目标页面的滚动条到最顶部
+                            targetPage.scrollTop = 0;
+                            // 延时触发渐显动画
+                            setTimeout(() => {
+                                targetPage.style.opacity = '1';
+                            }, 50);
+                        }
+                    }, 500); // 对应 CSS 中 0.5s 的渐变过渡速度
                 }
-                requestAnimationFrame(() => { targetPage.style.opacity = '1'; });
-            }, 500); 
+            });
         }
     </script>
 </body>
