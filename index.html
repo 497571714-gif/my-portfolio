@@ -25,7 +25,7 @@
             padding: 0;
             width: 100%;
             height: 100%;
-            background-color: var(--bg Black);
+            background-color: var(--bg-black); /* 🛠️已严格修正拼写，锁死纯黑背景 */
             color: white;
             font-family: 'DotGothic16', sans-serif;
             overflow: hidden;
@@ -349,6 +349,7 @@
 </head>
 <body>
 
+    <!-- 首页 -->
     <div id="home-page" class="page-container active">
         <h1>PORTFOLIO</h1>
         <div class="name">陈旸朗</div>
@@ -359,6 +360,7 @@
         </button>
     </div>
 
+    <!-- 目录页 -->
     <div id="menu-page" class="page-container">
         <button class="neon-btn back-btn-corner" onclick="navigateTo('home-page')" title="返回首页">
             <svg class="arrow-icon" viewBox="0 0 24 24" style="transform: rotate(180deg);"><path d="M5,13H16.17L11.07,18.1L12.49,19.52L20,12L12.49,4.48L11.07,5.9L16.17,11H5V13Z" /></svg>
@@ -373,6 +375,7 @@
         </div>
     </div>
 
+    <!-- 子页面 1: 个人简历 -->
     <div id="page-1" class="page-container">
         <button class="neon-btn back-btn-corner" onclick="navigateTo('menu-page')">
             <svg class="arrow-icon" viewBox="0 0 24 24" style="transform: rotate(180deg);"><path d="M5,13H16.17L11.07,18.1L12.49,19.52L20,12L12.49,4.48L11.07,5.9L16.17,11H5V13Z" /></svg>
@@ -407,6 +410,7 @@
                     <div class="item-desc" style="color: #888;">• 大学英语四级证书 (CET-4)<br>• C1E 驾照 & 澳门特别驾驶许可 A1</div>
                 </div>
                 
+                <!-- 实习经历 -->
                 <div class="console-card full-width">
                     <div class="card-title">INTERNSHIP / 实习经历</div>
                     <div class="timeline-item">
@@ -431,6 +435,7 @@
                     </div>
                 </div>
                 
+                <!-- 校园与学术 -->
                 <div class="console-card full-width">
                     <div class="card-title">CAMPUS & RESEARCH / 校园经历与学术成果</div>
                     <div class="timeline-item">
@@ -450,6 +455,7 @@
                     </div>
                 </div>
                 
+                <!-- 荣誉奖项 -->
                 <div class="console-card full-width">
                     <div class="card-title">AWARDS / 获得奖项</div>
                     <div class="item-desc" style="line-height: 2; color: #ddd;">
@@ -464,17 +470,19 @@
         </div>
     </div>
 
+    <!-- 子页面 2: 专辑设计 -->
     <div id="page-2" class="page-container">
         <button class="neon-btn back-btn-corner" onclick="navigateTo('menu-page')" style="border-color: var(--album-pink); color: var(--album-pink); box-shadow: 0 0 10px rgba(255,0,136,0.2);">
             <svg class="arrow-icon" viewBox="0 0 24 24" style="transform: rotate(180deg);"><path d="M5,13H16.17L11.07,18.1L12.49,19.52L20,12L12.49,4.48L11.07,5.9L16.17,11H5V13Z" /></svg>
         </button>
         
         <div class="map-portfolio-wrapper">
+            <!-- 纵向第 1 页：设计说明 + 3张JPG 16:10长方形图 -->
             <div class="map-section" style="flex-direction: column; align-items: flex-start; justify-content: flex-start;">
                 <div class="map-text-side" style="margin-bottom: 20px; width: 100%;">
                     <div class="section-num" style="color: var(--album-pink);">01 / CONCEPT & COVERS</div>
                     <div class="section-heading" style="border-bottom-color: var(--album-pink); color: #fff;">传统闽南宫庙文化与硬核金属乐跨界融合专辑设计</div>
-                    <p class="section-p">本设计旨在将传统闽南宫庙文化与硬核金属乐进行跨界融合，打造独具民俗风味的音乐专辑视觉。设计在视觉上深度挖掘寺庙建筑美学，以极极具工艺感的藻井元素为核心，运用现代设计手法呈现出万花筒式的迷幻视觉风格。整体包装及音乐可视化MV设计提取了菩萨、香火、木鱼等传统符号，将其具象化的古典美感与金属乐激进、强烈的冲击力进行解构重组。通过高饱和度的色彩撞击与繁复递进的空间构图，将民族乐器的听觉能量转化为极具次文化张力的视觉语言，实现了传统民俗符号在现代先锋唱片设计中的前卫表达。</p>
+                    <p class="section-p">本设计旨在将传统闽南宫庙文化与硬核金属乐进行跨界融合，打造独具民俗风味的音乐专辑视觉。设计在视觉上深度挖掘寺庙建筑美学，以极极具工艺感的藻井元素为核心，运用现代设计手法呈现出万花筒式的迷幻视觉风格。整体包装及音乐可视化MV设计提取了菩萨、香火、木鱼等传统符号，将其具象化的古典美感与金属乐激进、强烈的冲击力进行解构重组。通过高饱和度的色彩撞击与繁复递进的空间构图，将民族乐器的听觉能量转化为极极具次文化张力的视觉语言，实现了传统民俗符号在现代先锋唱片设计中的前卫表达。</p>
                 </div>
                 
                 <div class="album-triple-jpg">
@@ -499,6 +507,7 @@
                 </div>
             </div>
 
+            <!-- 纵向第 2 页 -->
             <div class="map-section" style="flex-direction: column; align-items: flex-start; justify-content: flex-start;">
                 <div class="map-text-side" style="margin-bottom: 30px; width: 100%;">
                     <div class="section-num" style="color: var(--album-pink);">02 / POSTERS & SCREENSHOTS</div>
@@ -530,6 +539,7 @@
                 </div>
             </div>
 
+            <!-- 纵向第 3 页 -->
             <div class="map-section">
                 <div class="map-text-side">
                     <div class="section-num" style="color: var(--album-pink);">03 / MOTION VISUALIZATION</div>
@@ -546,6 +556,7 @@
         </div>
     </div>
 
+    <!-- 子页面 3: 信息可视化设计 -->
     <div id="page-3" class="page-container">
         <button class="neon-btn back-btn-corner" onclick="navigateTo('menu-page')">
             <svg class="arrow-icon" viewBox="0 0 24 24" style="transform: rotate(180deg);"><path d="M5,13H16.17L11.07,18.1L12.49,19.52L20,12L12.49,4.48L11.07,5.9L16.17,11H5V13Z" /></svg>
@@ -573,16 +584,18 @@
         </div>
     </div>
 
+    <!-- 子页面 4: 澳门美食地图设计 -->
     <div id="page-4" class="page-container">
         <button class="neon-btn back-btn-corner" onclick="navigateTo('menu-page')">
             <svg class="arrow-icon" viewBox="0 0 24 24" style="transform: rotate(180deg);"><path d="M5,13H16.17L11.07,18.1L12.49,19.52L20,12L12.49,4.48L11.07,5.9L16.17,11H5V13Z" /></svg>
         </button>
         <div class="map-portfolio-wrapper">
+            <!-- 纵向第 1 页：创意阐述 -->
             <div class="map-section">
                 <div class="map-text-side">
                     <div class="section-num" style="color: var(--macau-warm);">01 / CONCEPT</div>
                     <div class="section-heading" style="border-bottom-color: var(--macau-warm);">澳门本土烧腊美食地图</div>
-                    <p class="section-p">《澳门烧腊美食地图》旨在通过视觉化的设计语言，深度挖掘澳门传统餐饮文化的独特魅力。折页设计整体采用复古温暖的在地色调，将澳门大街小巷极具市井烟火气的经典老字号烧腊铺予以收录整合，为旅客提供兼具实用价值与美学收藏意义的城市美食指南。</p>
+                    <p class="section-p">《澳门烧腊美食地图》旨在通过视觉化的设计语言，深度挖掘澳门传统餐饮文化的独特魅力。折页设计整体采用复古温暖的在地色调，将澳门大街小巷极极具市井烟火气的经典老字号烧腊铺予以收录整合，为旅客提供兼具实用价值与美学收藏意义的城市美食指南。</p>
                 </div>
                 <div class="map-visual-side" style="border-color: var(--macau-warm);">
                     <img src="brochure.png" class="portfolio-img" alt="折页展示" onload="this.style.opacity=1">
@@ -590,6 +603,7 @@
                 </div>
             </div>
 
+            <!-- 纵向第 2 页：手绘路线与老字号解构 -->
             <div class="map-section">
                 <div class="map-text-side">
                     <div class="section-num" style="color: var(--macau-warm);">02 / ILLUSTRATION MAP</div>
@@ -611,6 +625,7 @@
                 </div>
             </div>
 
+            <!-- 纵向第 3 页：文创周边 -->
             <div class="map-section" style="flex-direction: column; align-items: flex-start; justify-content: flex-start;">
                 <div class="map-text-side" style="margin-bottom: 25px; width: 100%;">
                     <div class="section-num" style="color: var(--macau-warm);">03 / CREATIVE MERCHANDISE</div>
@@ -619,11 +634,13 @@
                 </div>
                 
                 <div class="keychain-container-layout">
+                    <!-- 左侧主效果大框 -->
                     <div class="keychain-main-view" style="border-color: var(--macau-warm);">
                         <img src="keychain-demo.png" class="keychain-img-spec" alt="钥匙扣主宣传图" onload="this.style.opacity=1">
                         <div class="code-drawing-placeholder" style="background: radial-gradient(circle, #251008 0%, #0a0a0a 100%); color: var(--macau-warm); border-color: var(--macau-warm);">🔑<br>[ 钥匙扣主效果宣传图 ]<br><span style="font-size:0.8rem; opacity:0.6;">keychain-demo.png</span></div>
                     </div>
                     
+                    <!-- 右侧网格 6款细节 -->
                     <div class="keychain-sub-grid">
                         <div class="keychain-sub-view">
                             <img src="keychain-1.png" class="keychain-img-spec" alt="款式 1" onload="this.style.opacity=1">
@@ -655,6 +672,7 @@
         </div>
     </div>
 
+    <!-- 子页面 5: 书籍封面设计 -->
     <div id="page-5" class="page-container">
         <button class="neon-btn back-btn-corner" onclick="navigateTo('menu-page')">
             <svg class="arrow-icon" viewBox="0 0 24 24" style="transform: rotate(180deg);"><path d="M5,13H16.17L11.07,18.1L12.49,19.52L20,12L12.49,4.48L11.07,5.9L16.17,11H5V13Z" /></svg>
@@ -674,6 +692,7 @@
         </div>
     </div>
 
+    <!-- 基础路由 JS 控制脚本 -->
     <script>
         function navigateTo(pageId) {
             const pages = document.querySelectorAll('.page-container');
