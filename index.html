@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>陈旸朗 | Portfolio v3.9.0</title>
+    <title>陈旸朗 | Portfolio v3.9.1</title>
     <link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -26,46 +26,45 @@
             padding: 0;
             width: 100%;
             height: 100%;
-            background-color: var(--bg-black) !important; 
+            background-color: var(--bg-black); 
             color: white;
             font-family: 'DotGothic16', sans-serif;
-            overflow: hidden; /* 严禁外层穿透滚动 */
+            overflow: hidden; 
         }
 
-        /* ==================== 核心容器重构（拒绝死锁） ==================== */
+        /* ==================== 核心容器重构（彻底修复隐藏逻辑） ==================== */
         .page-container {
-            position: fixed; /* 改用 fixed，锁定物理视口，防止滚动条高度塌陷 */
+            position: fixed; 
             top: 0;
             left: 0;
             width: 100vw;
             height: 100vh;
             
-            /* 100% 物理隐匿：display + visibility 双保险，彻底从浏览器射线检测中蒸发，绝对不拦截任何点击 */
-            display: none !important; 
-            visibility: hidden !important; 
-            pointer-events: none !important;
+            /* 修正点：默认不要加 !important，允许下面的 active 正常覆盖显示 */
+            display: none; 
+            visibility: hidden; 
+            pointer-events: none;
             
             opacity: 0;
             transition: opacity var(--transition-speed) ease-in-out;
             z-index: 1;
             
-            /* 允许容器内部安全滚动，且不影响外部视口 */
             overflow-x: hidden;
             overflow-y: auto;
             -webkit-overflow-scrolling: touch;
             padding: 40px 20px;
         }
 
-        /* 核心修复：激活状态不仅是显示，更是在底层图层架构上强行置顶 */
+        /* 核心修复：激活状态通过强制优先级凌驾于一切之上，瞬间解锁物理点击与显示 */
         .page-container.active {
-            display: block !important; /* 切换为块级，利于长文本自然向下延伸与滚动条计算 */
+            display: block !important; 
             visibility: visible !important;
-            pointer-events: auto !important; /* 瞬间激活最高交互权 */
+            pointer-events: auto !important; 
             opacity: 1 !important;
-            z-index: 9999 !important; /* 强制凌驾于一切隐形图层之上，粉碎“防弹玻璃”效应 */
+            z-index: 9999 !important; 
         }
 
-        /* 针对需要居中对齐的首页和目录页，单独恢复 flex 布局 */
+        /* 特殊处理：针对需要居中对齐的首页和目录页，激活时转为 flex 布局 */
         #home-page.active, #menu-page.active {
             display: flex !important;
             flex-direction: column;
@@ -73,20 +72,16 @@
             align-items: center;
         }
 
-        /* 隐藏与定制滚动条（确保各子页面滚动丝滑） */
-        .page-container::-webkit-scrollbar {
-            width: 6px;
-        }
-        .page-container::-webkit-scrollbar-thumb {
-            border-radius: 3px;
-        }
+        /* 定制各子页面滚动条 */
+        .page-container::-webkit-scrollbar { width: 6px; }
+        .page-container::-webkit-scrollbar-thumb { border-radius: 3px; }
         #page-1::-webkit-scrollbar-thumb { background: var(--neon-green); }
         #page-2::-webkit-scrollbar-thumb { background: var(--album-pink); }
         #page-3::-webkit-scrollbar-thumb { background: var(--temple-red); }
         #page-4::-webkit-scrollbar-thumb { background: var(--macau-warm); }
         #page-5::-webkit-scrollbar-thumb { background: var(--grape-purple); }
 
-        /* ==================== 以下完全保留您原汁原味的视觉与排版系统 ==================== */
+        /* ==================== 100% 还原的视觉与排版系统 ==================== */
         h1 {
             font-size: clamp(2.5rem, 8vw, 6rem);
             margin: 0;
@@ -128,13 +123,13 @@
         }
 
         .back-btn-corner {
-            position: fixed; /* 悬浮固定，不受内容滚动影响 */
+            position: fixed; 
             top: 30px;
             left: 30px;
             width: 50px;
             height: 50px;
             border-radius: 5px;
-            z-index: 10000; /* 确保返回按钮绝对可点 */
+            z-index: 10000; 
         }
 
         .menu-list {
@@ -152,4 +147,173 @@
             padding: 10px 20px;
             border: 1px solid transparent;
             transition: all 0.3s;
-            cursor:
+            cursor: pointer;
+            z-index: 30;
+        }
+
+        .menu-item:hover {
+            border: 1px solid var(--neon-green);
+            background: rgba(57, 255, 20, 0.1);
+            transform: scale(1.05);
+        }
+
+        .arrow-icon {
+            width: 30px;
+            height: 30px;
+            fill: currentColor;
+        }
+
+        /* 通用展示流样式 */
+        .map-portfolio-wrapper {
+            width: 100%;
+            max-width: 1100px;
+            margin: 80px auto 0 auto; 
+        }
+        
+        .map-section {
+            min-height: calc(100vh - 160px);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+            border-bottom: 1px dashed #222;
+            padding: 60px 0;
+        }
+        .map-section:last-child { border-bottom: none; }
+
+        .map-text-side { flex: 1; text-align: left; }
+        .map-visual-side {
+            flex: 1.2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: var(--panel-bg);
+            border: 1px solid #333;
+            border-radius: 6px;
+            padding: 15px;
+            position: relative;
+            overflow: hidden;
+            min-height: 400px;
+        }
+        
+        @media (max-width: 850px) {
+            .map-section { flex-direction: column; padding: 40px 0; }
+            .map-text-side, .map-visual-side { width: 100%; flex: none; }
+        }
+
+        .section-num { font-size: 3rem; color: var(--neon-green); font-family: monospace; margin-bottom: 10px; opacity: 0.5; }
+        .section-heading { font-size: 2.2rem; color: #fff; margin: 0 0 20px 0; border-bottom: 2px solid var(--neon-green); padding-bottom: 10px; display: inline-block; }
+        .section-p { font-size: 1.1rem; color: #ccc; line-height: 1.8; text-align: justify; margin-bottom: 20px; }
+
+        .portfolio-img, .portfolio-video {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: block;
+            border-radius: 4px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.8);
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .tall-visual-frame { min-height: 580px; }
+        .tall-visual-frame .portfolio-img { max-height: 700px; }
+
+        .code-drawing-placeholder {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0; left: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: radial-gradient(circle, #251008 0%, #0a0a0a 100%);
+            color: var(--macau-warm);
+            border: 1px dashed var(--macau-warm);
+            padding: 20px;
+            z-index: 1;
+        }
+
+        /* 个人简历板块样式 */
+        .resume-wrapper { width: 100%; max-width: 1000px; text-align: left; margin: 80px auto 0 auto; }
+        .info-header { border-bottom: 2px dashed var(--neon-green); padding-bottom: 20px; margin-bottom: 30px; display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 15px; }
+        .info-header .title-group h2 { font-size: 2.5rem; margin: 0; color: var(--neon-green); }
+        .info-header .title-group p { margin: 5px 0 0 0; color: #aaa; font-size: 1.1rem; }
+        .info-header .contact-group { text-align: right; font-size: 1rem; color: #ccc; line-height: 1.6; }
+        .resume-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 25px; }
+        @media (max-width: 768px) { .resume-grid { grid-template-columns: 1fr; } .info-header { text-align: center; justify-content: center; } .info-header .contact-group { text-align: center; } }
+        .console-card { background-color: var(--panel-bg); border: 1px solid #333; padding: 20px; border-radius: 4px; transition: all 0.3s; }
+        .console-card:hover { border-color: var(--neon-green); box-shadow: 0 0 15px rgba(57, 255, 20, 0.1); }
+        .card-title { color: var(--neon-green); font-size: 1.4rem; margin-top: 0; margin-bottom: 15px; border-left: 4px solid var(--neon-green); padding-left: 10px; }
+        .timeline-item { margin-bottom: 15px; border-bottom: 1px solid #222; padding-bottom: 15px; }
+        .timeline-item:last-child { margin-bottom: 0; border-bottom: none; padding-bottom: 0; }
+        .time-location { display: flex; justify-content: space-between; font-size: 0.9rem; color: #888; margin-bottom: 5px; }
+        .item-name { font-size: 1.1rem; font-weight: bold; color: #fff; margin-bottom: 5px; }
+        .item-desc { font-size: 0.95rem; color: #bbb; line-height: 1.5; margin: 0; text-align: justify; }
+        .full-width { grid-column: span 2; }
+        @media (max-width: 768px) { .full-width { grid-column: span 1; } }
+        .skill-tags { display: flex; flex-wrap: wrap; gap: 10px; }
+        .tag { background: #000; border: 1px solid var(--neon-green); color: var(--neon-green); padding: 6px 12px; font-size: 0.9rem; border-radius: 3px; transition: all 0.3s; }
+        .tag:hover { background: var(--neon-green); color: #000; font-weight: bold; box-shadow: 0 0 10px var(--neon-green); }
+
+        /* 专辑设计排版 */
+        .album-triple-jpg { display: flex; flex-direction: column; gap: 20px; width: 100%; margin-top: 20px; align-items: center; }
+        .album-row-split { display: flex; flex-direction: row; gap: 20px; width: 100%; max-width: 1000px; justify-content: center; }
+        @media (max-width: 650px) { .album-row-split { flex-direction: column; align-items: center; } }
+        .album-horizontal-box { flex: 1; width: 100%; max-width: 490px; aspect-ratio: 297 / 210; background: #141112; border: 1px solid var(--album-pink); padding: 12px; border-radius: 4px; position: relative; display: flex; flex-direction: column; justify-content: center; align-items: center; overflow: hidden; }
+        .album-horizontal-box.full-row-box { max-width: 490px; }
+        .album-horizontal-box .portfolio-img { width: 100%; height: 100%; max-height: none; object-fit: contain; }
+
+        .album-mixed-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; width: 100%; }
+        @media (max-width: 768px) { .album-mixed-grid { grid-template-columns: 1fr; } }
+        .grid-card-pink { background: #121212; border: 1px dashed var(--album-pink); padding: 10px; border-radius: 4px; position: relative; display: flex; justify-content: center; align-items: center; overflow: hidden; }
+        .h-poster { grid-column: span 2; min-height: 250px; }
+        .sq-poster { grid-column: span 1; min-height: 250px; }
+        .v-poster { grid-column: span 1; grid-row: span 2; min-height: 520px; }
+        .screenshot-box { grid-column: span 1; min-height: 250px; }
+
+        /* 澳门美食地图与其他 */
+        .shop-badge-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-top: 20px; }
+        .shop-badge { background: #000; border: 1px solid #444; padding: 12px; font-size: 0.85rem; border-radius: 4px; text-align: left; line-height: 1.5; }
+        
+        .keychain-container-layout { display: flex; width: 100%; gap: 20px; }
+        .keychain-main-view { flex: 1.2; background: #161616; border: 1px solid #444; border-radius: 6px; min-height: 480px; position: relative; display: flex; justify-content: center; align-items: center; padding: 10px; }
+        .keychain-sub-grid { flex: 1.8; display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: repeat(2, 1fr); gap: 15px; }
+        .keychain-sub-view { background: #111; border: 1px dashed #333; border-radius: 4px; position: relative; display: flex; justify-content: center; align-items: center; padding: 5px; min-height: 232px; overflow: hidden; }
+        @media (max-width: 850px) { .keychain-container-layout { flex-direction: column; } .keychain-sub-grid { grid-template-columns: repeat(2, 1fr); } }
+        .keychain-img-spec { width: 100%; height: 100%; object-fit: contain; display: block; opacity: 0; transition: opacity 0.5s ease-in-out; position: relative; z-index: 2; }
+        
+        .temple-double-images { display: flex; width: 100%; gap: 20px; justify-content: center; }
+        .temple-img-box { flex: 1; background: #161212; border: 1px solid #3d2222; padding: 10px; border-radius: 4px; position: relative; min-height: 550px; display: flex; justify-content: center; align-items: center; }
+        @media (max-width: 650px) { .temple-double-images { flex-direction: column; } }
+
+        /* 包装设计排版 */
+        .pkg-render-stream { display: flex; flex-direction: column; gap: 30px; width: 100%; margin-top: 20px; align-items: center; }
+        .pkg-box-16-9 { width: 100%; max-width: 850px; aspect-ratio: 16 / 9; background: #150f18; border: 1px solid var(--grape-purple); padding: 15px; border-radius: 4px; position: relative; display: flex; justify-content: center; align-items: center; overflow: hidden; }
+        
+        .pkg-unfold-stream { display: flex; flex-direction: column; gap: 25px; width: 100%; margin-top: 20px; }
+        .pkg-box-unfold { width: 100%; max-width: 1000px; margin: 0 auto; min-height: 380px; background: #110e12; border: 1px dashed var(--grape-purple); padding: 15px; border-radius: 4px; position: relative; display: flex; justify-content: center; align-items: center; overflow: hidden; }
+        
+        .pkg-view3-grid { display: flex; flex-direction: column; gap: 20px; width: 100%; margin-top: 20px; }
+        .pkg-view3-row-top { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; width: 100%; max-width: 1000px; margin: 0 auto; }
+        .pkg-view3-row-bottom { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; width: 100%; max-width: 1000px; margin: 0 auto; }
+        @media (max-width: 768px) { .pkg-view3-row-top, .pkg-view3-row-bottom { grid-template-columns: 1fr; } }
+        .pkg-box-4-3 { width: 100%; aspect-ratio: 4 / 3; background: #130d16; border: 1px solid var(--grape-purple); padding: 10px; border-radius: 4px; position: relative; display: flex; justify-content: center; align-items: center; overflow: hidden; }
+    </style>
+</head>
+<body>
+
+    <div id="home-page" class="page-container active">
+        <h1>PORTFOLIO</h1>
+        <div class="name">陈旸朗</div>
+        <button class="neon-btn enter-btn" onclick="navigateTo('menu-page')">
+            <svg class="arrow-icon" viewBox="0 0 24 24">
+                <path d="M5,13H16.17L11.07,18.1L12.49,19.52L20,12L12.49,4.48L11.07,5.9L16.17,11H5V13Z" />
+            </svg>
+        </button>
+    </div>
+
+    <div id="menu-page
