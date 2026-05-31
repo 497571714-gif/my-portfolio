@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>陈旸朗 | Portfolio v3.8</title>
+    <title>陈旸朗 | Portfolio v3.8.1</title>
     <link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -46,6 +46,7 @@
             text-align: center;
             padding: 40px;
             opacity: 0;
+            pointer-events: none; /* 默认关闭所有未激活页面的点击拦截 */
             transition: opacity var(--transition-speed) ease-in-out;
         }
 
@@ -72,6 +73,7 @@
         .active {
             display: flex;
             opacity: 1;
+            pointer-events: auto; /* 激活页面开启点击 */
         }
 
         h1 {
@@ -111,6 +113,7 @@
             bottom: 15%;
             padding: 15px 40px;
             font-size: 2rem;
+            z-index: 10;
         }
 
         .back-btn-corner {
@@ -309,7 +312,7 @@
         .temple-img-box { flex: 1; background: #161212; border: 1px solid #3d2222; padding: 10px; border-radius: 4px; position: relative; min-height: 550px; display: flex; justify-content: center; align-items: center; }
         @media (max-width: 650px) { .temple-double-images { flex-direction: column; } }
 
-        /* ==================== 05: 包装设计专属高级排版样式（🛠️全量全新添加） ==================== */
+        /* ==================== 05: 包装设计专属高级排版样式 ==================== */
         .pkg-render-stream { display: flex; flex-direction: column; gap: 30px; width: 100%; margin-top: 20px; align-items: center; }
         .pkg-box-16-9 { width: 100%; max-width: 850px; aspect-ratio: 16 / 9; background: #150f18; border: 1px solid var(--grape-purple); padding: 15px; border-radius: 4px; position: relative; display: flex; justify-content: center; align-items: center; overflow: hidden; }
         
@@ -554,4 +557,56 @@
 
     <div id="page-4" class="page-container">
         <button class="neon-btn back-btn-corner" onclick="navigateTo('menu-page')">
-            <svg class="arrow-icon" viewBox="0 0 24 24" style="transform: rotate(180deg);"><path d="M5,13H16.1
+            <svg class="arrow-icon" viewBox="0 0 24 24" style="transform: rotate(180deg);"><path d="M5,13H16.17L11.07,18.1L12.49,19.52L20,12L12.49,4.48L11.07,5.9L16.17,11H5V13Z" /></svg>
+        </button>
+        <div class="map-portfolio-wrapper">
+            <div class="map-section">
+                <div class="map-text-side">
+                    <div class="section-num" style="color: var(--macau-warm);">01 / CONCEPT</div>
+                    <div class="section-heading" style="border-bottom-color: var(--macau-warm);">澳门本土烧腊美食地图</div>
+                    <p class="section-p">《澳门烧腊美食地图》旨在通过视觉化的设计语言，深度挖掘澳门传统餐饮文化的独特魅力。折页设计整体采用复古温暖的在地色调，将澳门大街小巷极极具市井烟火气的经典老字号烧腊铺予以收录整合，为旅客提供兼具实用价值与美学收藏意义的城市美食指南。</p>
+                </div>
+                <div class="map-visual-side" style="border-color: var(--macau-warm);">
+                    <img src="brochure.png" class="portfolio-img" alt="折页展示" onload="this.style.opacity=1">
+                    <div class="code-drawing-placeholder">🗺️<br>[ 折页设计视觉效果图 ]<br><span style="font-size:0.8rem; opacity:0.6;">brochure.png</span></div>
+                </div>
+            </div>
+
+            <div class="map-section">
+                <div class="map-text-side">
+                    <div class="section-num" style="color: var(--macau-warm);">02 / ILLUSTRATION MAP</div>
+                    <div class="section-heading" style="border-bottom-color: var(--macau-warm);">手绘插画路线与店铺解构</div>
+                    <p class="section-p">此页面集中呈现核心手绘插画地图。精心绘制的路线串联起澳门本土最负盛名的烧腊地标，并对各家老字号的招牌菜品、出炉时间、口味限定进行了细致的图文归纳，让平面地图转变为具备探索趣味的故事媒介。</p>
+                    
+                    <div class="shop-badge-grid">
+                        <div class="shop-badge" style="border-color: var(--macau-warm);"><strong>1. 何文记烧腊:</strong> 每日仅限时外卖2小时的传奇店，其切鸡、熏蹄与叉烧肉质极其厚实丰盈。</div>
+                        <div class="shop-badge" style="border-color: var(--macau-warm);"><strong>2. 芬记烧腊:</strong> 澳门黑椒烧鸭的鼻祖，秘制黑椒汁浓郁入味，鸭皮油亮酥脆。</div>
+                        <div class="shop-badge" style="border-color: var(--macau-warm);"><strong>3. 灵记粥面:</strong> 独具市井情怀，除竹升面外，其深夜档的传统秘制烧味与卤水大肠亦是极品。</div>
+                        <div class="shop-badge" style="border-color: var(--macau-warm);"><strong>4. 凤城:</strong> 备受本地街坊推崇的传统茶餐厅烧味，蜜汁叉烧甜而不腻，火候极佳。</div>
+                        <div class="shop-badge" style="border-color: var(--macau-warm);"><strong>5. 陈光记烧腊:</strong> 经典的街坊高性价比饭堂，斩料分量十足，脆皮烧肉层次分明、皮酥肉嫩。</div>
+                        <div class="shop-badge" style="border-color: var(--macau-warm);"><strong>6. 龙天烧腊:</strong> 延续老澳门传统炭火风味的烧味铺，肥姐与街坊力荐的古法烧排骨极具风味。</div>
+                    </div>
+                </div>
+                <div class="map-visual-side" style="flex: 1.4; border-color: var(--macau-warm);">
+                    <img src="map.png" class="portfolio-img" alt="插画地图主图" onload="this.style.opacity=1">
+                    <div class="code-drawing-placeholder">🗺️<br>[ 手绘插画地图大图 ]<br><span style="font-size:0.8rem; opacity:0.6;">map.png</span></div>
+                </div>
+            </div>
+
+            <div class="map-section" style="flex-direction: column; align-items: flex-start; justify-content: flex-start;">
+                <div class="map-text-side" style="margin-bottom: 25px; width: 100%;">
+                    <div class="section-num" style="color: var(--macau-warm);">03 / CREATIVE MERCHANDISE</div>
+                    <div class="section-heading" style="border-bottom-color: var(--macau-warm);">文创周边：烧腊系列钥匙扣</div>
+                    <p class="section-p">作为项目的衍生延展，设计提炼了“烧鸭”、“叉烧”等高辨识度的市井符号，转化为一套极极具玩味与港澳复古质感的实体文创钥匙扣。左侧为整体宣发打样效果，右侧网格为 6 款限定款样式的全独立细节展示，实现传统平面视觉向高溢价消费周边的闭环落地。</p>
+                </div>
+                
+                <div class="keychain-container-layout">
+                    <div class="keychain-main-view" style="border-color: var(--macau-warm);">
+                        <img src="keychain-demo.png" class="keychain-img-spec" alt="钥匙扣主宣传图" onload="this.style.opacity=1">
+                        <div class="code-drawing-placeholder" style="background: radial-gradient(circle, #251008 0%, #0a0a0a 100%); color: var(--macau-warm); border-color: var(--macau-warm);">🔑<br>[ 钥匙扣主效果宣传图 ]<br><span style="font-size:0.8rem; opacity:0.6;">keychain-demo.png</span></div>
+                    </div>
+                    
+                    <div class="keychain-sub-grid">
+                        <div class="keychain-sub-view"><img src="keychain-1.png" class="keychain-img-spec" alt="款式 1" onload="this.style.opacity=1"><div class="code-drawing-placeholder" style="background: #111; color: var(--macau-warm);">[ 01. 何文记限定款 ]</div></div>
+                        <div class="keychain-sub-view"><img src="keychain-2.png" class="keychain-img-spec" alt="款式 2" onload="this.style.opacity=1"><div class="code-drawing-placeholder" style="background: #111; color: var(--macau-warm);">[ 02. 芬记限定款 ]</div></div>
+                        <div class="keychain-sub-view"><img src
