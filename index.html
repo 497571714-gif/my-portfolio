@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>陈旸朗 | Portfolio v3.3</title>
+    <title>陈旸朗 | Portfolio v3.4</title>
     <link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -12,7 +12,7 @@
             --bg-black: #0a0a0a;
             --panel-bg: #121212;
             --transition-speed: 0.5s;
-            --macau-warm: #ff5722;
+            --macau-warm: #ff5722; /* 澳门美食地图标志性暖橙色 */
             --temple-red: #ff3333; 
         }
 
@@ -61,12 +61,15 @@
         #page-1::-webkit-scrollbar, #page-2::-webkit-scrollbar, #page-3::-webkit-scrollbar, #page-4::-webkit-scrollbar {
             width: 6px;
         }
-        #page-1::-webkit-scrollbar-thumb, #page-2::-webkit-scrollbar-thumb, #page-3::-webkit-scrollbar-thumb, #page-4::-webkit-scrollbar-thumb {
+        #page-1::-webkit-scrollbar-thumb, #page-3::-webkit-scrollbar-thumb, #page-4::-webkit-scrollbar-thumb {
             background: var(--neon-green);
             border-radius: 3px;
         }
         #page-2::-webkit-scrollbar-thumb {
             background: var(--album-pink); /* 专辑页滚动条定制为粉色 */
+        }
+        #page-4::-webkit-scrollbar-thumb {
+            background: var(--macau-warm); /* 美食地图页滚动条定制为暖橙色 */
         }
 
         .active {
@@ -331,15 +334,83 @@
         .v-poster { grid-column: span 1; grid-row: span 2; min-height: 520px; }
         .screenshot-box { grid-column: span 1; min-height: 250px; }
 
-        /* ==================== 澳门美食地图与其他样式 ==================== */
-        .shop-badge-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-top: 20px; }
-        .shop-badge { background: #000; border: 1px solid #444; padding: 10px; font-size: 0.85rem; border-radius: 4px; }
-        .keychain-container-layout { display: flex; width: 100%; gap: 20px; }
-        .keychain-main-view { flex: 1.2; background: #161616; border: 1px solid #444; border-radius: 6px; min-height: 480px; position: relative; display: flex; justify-content: center; align-items: center; padding: 10px; }
-        .keychain-sub-grid { flex: 1.8; display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: repeat(2, 1fr); gap: 15px; }
-        .keychain-sub-view { background: #111; border: 1px dashed #333; border-radius: 4px; position: relative; display: flex; justify-content: center; align-items: center; padding: 5px; min-height: 232px; overflow: hidden; }
-        @media (max-width: 650px) { .keychain-container-layout { flex-direction: column; } .keychain-sub-grid { grid-template-columns: repeat(2, 1fr); } }
-        .keychain-img-spec { width: 100%; height: 100%; object-fit: contain; display: block; opacity: 0; transition: opacity 0.5s ease-in-out; position: relative; z-index: 2; }
+        /* ==================== 04: 澳门美食地图专属独立样式 ==================== */
+        .shop-badge-grid { 
+            display: grid; 
+            grid-template-columns: repeat(2, 1fr); 
+            gap: 15px; 
+            margin-top: 20px; 
+        }
+        .shop-badge { 
+            background: #141414; 
+            border-left: 4px solid var(--macau-warm); 
+            border-top: 1px solid #333;
+            border-right: 1px solid #333;
+            border-bottom: 1px solid #333;
+            padding: 15px; 
+            font-size: 0.95rem; 
+            border-radius: 0 4px 4px 0; 
+            text-align: left;
+            line-height: 1.6;
+        }
+        .shop-badge strong {
+            color: var(--macau-warm);
+            display: block;
+            margin-bottom: 4px;
+            font-size: 1.05rem;
+        }
+        .keychain-container-layout { 
+            display: flex; 
+            width: 100%; 
+            gap: 20px; 
+        }
+        .keychain-main-view { 
+            flex: 1.2; 
+            background: #161616; 
+            border: 1px solid #444; 
+            border-radius: 6px; 
+            min-height: 510px; 
+            position: relative; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            padding: 15px; 
+        }
+        .keychain-sub-grid { 
+            flex: 1.8; 
+            display: grid; 
+            grid-template-columns: repeat(3, 1fr); 
+            grid-template-rows: repeat(2, 1fr); 
+            gap: 15px; 
+        }
+        .keychain-sub-view { 
+            background: #111; 
+            border: 1px dashed #333; 
+            border-radius: 4px; 
+            position: relative; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            padding: 10px; 
+            min-height: 247px; 
+            overflow: hidden; 
+        }
+        @media (max-width: 850px) { 
+            .keychain-container-layout { flex-direction: column; } 
+            .keychain-sub-grid { grid-template-columns: repeat(2, 1fr); } 
+        }
+        .keychain-img-spec { 
+            width: 100%; 
+            height: 100%; 
+            object-fit: contain; 
+            display: block; 
+            opacity: 0; 
+            transition: opacity 0.5s ease-in-out; 
+            position: relative; 
+            z-index: 2; 
+        }
+        
+        /* 03: 信息可视化神庙专有 */
         .temple-double-images { display: flex; width: 100%; gap: 20px; justify-content: center; }
         .temple-img-box { flex: 1; background: #161212; border: 1px solid #3d2222; padding: 10px; border-radius: 4px; position: relative; min-height: 550px; display: flex; justify-content: center; align-items: center; }
         @media (max-width: 650px) { .temple-double-images { flex-direction: column; } }
@@ -419,7 +490,7 @@
                     </div>
                     <div class="timeline-item">
                         <div class="time-location"><span>2022.06 - 2022.08</span><span>龙岩</span></div>
-                        <div class="item-name">龙岩市电视台 (见习美术编辑)</div>
+                        <div class="item-name">龙岩市电视台 (见戏美术编辑)</div>
                         <p class="item-desc">跟随记者外出采访，学习新闻排版编辑等。</p>
                     </div>
                 </div>
@@ -566,7 +637,7 @@
             <div class="map-section" style="flex-direction: column; align-items: flex-start; justify-content: flex-start;">
                 <div class="map-text-side" style="margin-bottom: 30px; width: 100%;">
                     <div class="section-num" style="color: var(--temple-red);">01 / STATIC GRAPHICS</div>
-                    <div class="section-heading" style="border-bottom-color: var(--temple-red);">澳门与闽粤土地神庙文化解构</div>
+                    <div class="section-heading" style="border-bottom-color: var(--temple-red); color: #fff;">澳门与闽粤土地神庙文化解构</div>
                     <p class="section-p">本项设计方案围绕澳门与闽粤地区土地神庙文化开展信息可视化设计。方案分为动态与静态两部分：静态展示则运用信息图表，通过空间地图、历史时间轴、神话关系图、方言词云等可视化手段，全方位解构两地在地理特色、祭祀习俗、艺术形象及移民文化等方面的差异，以现代视觉语言对传统民间信仰空间进行在地的建构与传播。</p>
                 </div>
                 <div class="temple-double-images">
@@ -577,45 +648,108 @@
             <div class="map-section">
                 <div class="map-text-side">
                     <div class="section-num" style="color: var(--temple-red);">02 / MOTION GRAPHICS</div>
-                    <div class="section-heading" style="border-bottom-color: var(--temple-red);">动态演示与形象演变</div>
+                    <div class="section-heading" style="border-bottom-color: var(--temple-red); color: #fff;">动态演示与形象演变</div>
                     <p class="section-p">动态展示采用GIF微动画与动态影像，直观剖析庙宇建筑结构拆解、呈现两地土地公形象的现象级演变。</p>
                 </div>
-                <div class="map-visual-side tall-visual-frame" style="flex: 1.3;"><video src="visualization-video.mp4" class="portfolio-video" autoplay loop muted playsinline controls onloadstart="this.style.opacity=1"></video></div>
+                <div class="map-visual-side tall-visual-frame" style="flex: 1.3; border-color: var(--temple-red);"><video src="visualization-video.mp4" class="portfolio-video" autoplay loop muted playsinline controls onloadstart="this.style.opacity=1"></video></div>
             </div>
         </div>
     </div>
 
     <!-- 子页面 4: 澳门美食地图设计 -->
     <div id="page-4" class="page-container">
-        <button class="neon-btn back-btn-corner" onclick="navigateTo('menu-page')">
+        <button class="neon-btn back-btn-corner" onclick="navigateTo('menu-page')" style="border-color: var(--macau-warm); color: var(--macau-warm); box-shadow: 0 0 10px rgba(255,87,34,0.2);">
             <svg class="arrow-icon" viewBox="0 0 24 24" style="transform: rotate(180deg);"><path d="M5,13H16.17L11.07,18.1L12.49,19.52L20,12L12.49,4.48L11.07,5.9L16.17,11H5V13Z" /></svg>
         </button>
         <div class="map-portfolio-wrapper">
+            <!-- 纵向第 1 页：设计概念 + 宣传册成品图 -->
             <div class="map-section">
                 <div class="map-text-side">
-                    <div class="section-num">01 / CONCEPT</div><div class="section-heading">澳门本土烧腊美食地图</div>
-                    <p class="section-p">《澳门烧腊美食地图》旨在通过视觉化的设计语言，深度挖掘澳门传统餐饮文化的独特魅力。</p>
+                    <div class="section-num" style="color: var(--macau-warm);">01 / CONCEPT</div>
+                    <div class="section-heading" style="border-bottom-color: var(--macau-warm); color: #fff;">澳门本土烧腊美食地图</div>
+                    <p class="section-p">《澳门烧腊美食地图》旨在通过视觉化的设计语言，深度挖掘澳门传统餐饮文化的独特魅力。本方案聚焦于澳门大街小巷中深入人心的“烧腊”这一极具市井烟火气的符号，通过实地考察、数据采集、路线规划，将其转化为适合游客与本土文化爱好者的视觉导览指南。整体视觉采用充满复古中式美学、同时兼具现代构成感的暖橙色调，将繁杂的店铺信息系统地梳理为可读性极强的民俗设计作品。</p>
                 </div>
-                <div class="map-visual-side"><img src="brochure.png" class="portfolio-img" onload="this.style.opacity=1"></div>
+                <div class="map-visual-side" style="border-color: var(--macau-warm);">
+                    <img src="brochure.png" class="portfolio-img" alt="折页成品展示" onload="this.style.opacity=1">
+                    <div class="code-drawing-placeholder">📖<br>[ 折页宣传册成品图 ]<br><span style="font-size:0.75rem; opacity:0.5;">brochure.png</span></div>
+                </div>
             </div>
+
+            <!-- 纵向第 2 页：手绘路线插画 + 详细介绍流（完全恢复！） -->
             <div class="map-section">
                 <div class="map-text-side">
-                    <div class="section-num">02 / ILLUSTRATION MAP</div><div class="section-heading">手绘插画路线</div>
+                    <div class="section-num" style="color: var(--macau-warm);">02 / ILLUSTRATION MAP</div>
+                    <div class="section-heading" style="border-bottom-color: var(--macau-warm); color: #fff;">手绘插画路线与店铺解构</div>
+                    <p class="section-p">核心地图部分采用趣味手绘插画风格，生动勾勒出澳门半岛与氹仔的街道轮廓及地标建筑。针对精选的四家最具代表性的老字号烧腊店进行深入解构，提炼各自的招牌菜品与文化特色，在折页上形成一条兼具实用功能与美学价值的饕餮路线。</p>
+                    
+                    <!-- 完整复原的 4 家店铺介绍卡片流 -->
                     <div class="shop-badge-grid">
-                        <div class="shop-badge"><strong>1. 何文记:</strong> 烧鸭皮脆、分量大。</div><div class="shop-badge"><strong>2. 芬记:</strong> 每日限时外卖2小时。</div>
+                        <div class="shop-badge">
+                            <strong>1. 何文记烧腊</strong>
+                            招牌烧鸭皮脆肉嫩，分量十足。作为老字号，完美传承了炭火烘烤的传统工艺。
+                        </div>
+                        <div class="shop-badge">
+                            <strong>2. 芬记烧腊</strong>
+                            澳门极具传奇色彩的店铺，每日限时外卖2小时，其厚切叉烧与蹄膀堪称一绝。
+                        </div>
+                        <div class="shop-badge">
+                            <strong>3. 陈光记烧腊</strong>
+                            以独特的黑椒烧鸭闻名遐迩，酱汁浓郁、入味至骨，是现代创新烧腊的典范。
+                        </div>
+                        <div class="shop-badge">
+                            <strong>4. 百老汇烧腊</strong>
+                            融合现代标准工艺与古典风味，其蜜汁叉烧色泽诱人、肥而不腻。
+                        </div>
                     </div>
                 </div>
-                <div class="map-visual-side" style="flex:1.4;"><img src="map.png" class="portfolio-img" onload="this.style.opacity=1"></div>
+                <div class="map-visual-side" style="flex:1.4; border-color: var(--macau-warm);">
+                    <img src="map.png" class="portfolio-img" alt="手绘地图展示" onload="this.style.opacity=1">
+                    <div class="code-drawing-placeholder">🗺️<br>[ 完整手绘路线地图大图 ]<br><span style="font-size:0.75rem; opacity:0.5;">map.png</span></div>
+                </div>
             </div>
+
+            <!-- 纵向第 3 页：创意周边钥匙扣（完全恢复 1大 + 6小 豪华网格结构！） -->
             <div class="map-section" style="flex-direction: column; align-items: flex-start; justify-content: flex-start;">
                 <div class="map-text-side" style="margin-bottom: 25px; width: 100%;">
-                    <div class="section-num">03 / CREATIVE MERCHANDISE</div><div class="section-heading">文创周边：烧腊钥匙扣</div>
+                    <div class="section-num" style="color: var(--macau-warm);">03 / CREATIVE MERCHANDISE</div>
+                    <div class="section-heading" style="border-bottom-color: var(--macau-warm); color: #fff;">文创周边：烧腊系列亚克力钥匙扣</div>
+                    <p class="section-p">为了增强视觉衍生与IP化拓展，设计提取了烧腊文化中的标志性菜品符号，衍生出一组兼具趣味性与波普次文化特征的文创周边产品。左侧为精美的实体包装与展示大图（PNG），右侧分门别类展示了6款独立的烧腊单品挂件，使传统饮食符号成功破圈转化为受年轻人喜爱的潮流随身配饰。</p>
                 </div>
+                
+                <!-- 豪华网格排版区 -->
                 <div class="keychain-container-layout">
-                    <div class="keychain-main-view"><img src="keychain-demo.png" class="keychain-img-spec" onload="this.style.opacity=1"></div>
+                    <!-- 左侧：效果大图占 1.2 比重 -->
+                    <div class="keychain-main-view" style="border-color: var(--macau-warm);">
+                        <img src="keychain-demo.png" class="keychain-img-spec" alt="钥匙扣实体整体展示效果图" onload="this.style.opacity=1">
+                        <div class="code-drawing-placeholder" style="color: var(--macau-warm);">🎁<br>[ 钥匙扣整体精装效果图 ]<br><span style="font-size:0.75rem; opacity:0.5;">keychain-demo.png</span></div>
+                    </div>
+                    
+                    <!-- 右侧：6 款单品微型亚克力挂件 2行3列 豪华子网格占 1.8 比重 -->
                     <div class="keychain-sub-grid">
-                        <div class="keychain-sub-view"><img src="keychain-1.png" class="keychain-img-spec" onload="this.style.opacity=1"></div>
-                        <div class="keychain-sub-view"><img src="keychain-2.png" class="keychain-img-spec" onload="this.style.opacity=1"></div>
+                        <div class="keychain-sub-view">
+                            <img src="keychain-1.png" class="keychain-img-spec" alt="叉烧钥匙扣" onload="this.style.opacity=1">
+                            <div class="code-drawing-placeholder" style="font-size:0.85rem; border-color:#333;">🏷️ 01. 叉烧挂件<br><span style="font-size:0.65rem; opacity:0.4;">keychain-1.png</span></div>
+                        </div>
+                        <div class="keychain-sub-view">
+                            <img src="keychain-2.png" class="keychain-img-spec" alt="烧肉钥匙扣" onload="this.style.opacity=1">
+                            <div class="code-drawing-placeholder" style="font-size:0.85rem; border-color:#333;">🏷️ 02. 烧肉挂件<br><span style="font-size:0.65rem; opacity:0.4;">keychain-2.png</span></div>
+                        </div>
+                        <div class="keychain-sub-view">
+                            <img src="keychain-3.png" class="keychain-img-spec" alt="乳猪钥匙扣" onload="this.style.opacity=1">
+                            <div class="code-drawing-placeholder" style="font-size:0.85rem; border-color:#333;">🏷️ 03. 乳猪挂件<br><span style="font-size:0.65rem; opacity:0.4;">keychain-3.png</span></div>
+                        </div>
+                        <div class="keychain-sub-view">
+                            <img src="keychain-4.png" class="keychain-img-spec" alt="切鸡钥匙扣" onload="this.style.opacity=1">
+                            <div class="code-drawing-placeholder" style="font-size:0.85rem; border-color:#333;">🏷️ 04. 切鸡挂件<br><span style="font-size:0.65rem; opacity:0.4;">keychain-4.png</span></div>
+                        </div>
+                        <div class="keychain-sub-view">
+                            <img src="keychain-5.png" class="keychain-img-spec" alt="烧鸭钥匙扣" onload="this.style.opacity=1">
+                            <div class="code-drawing-placeholder" style="font-size:0.85rem; border-color:#333;">🏷️ 05. 烧鸭挂件<br><span style="font-size:0.65rem; opacity:0.4;">keychain-5.png</span></div>
+                        </div>
+                        <div class="keychain-sub-view">
+                            <img src="keychain-6.png" class="keychain-img-spec" alt="双拼钥匙扣" onload="this.style.opacity=1">
+                            <div class="code-drawing-placeholder" style="font-size:0.85rem; border-color:#333;">🏷️ 06. 双拼挂件<br><span style="font-size:0.65rem; opacity:0.4;">keychain-6.png</span></div>
+                        </div>
                     </div>
                 </div>
             </div>
