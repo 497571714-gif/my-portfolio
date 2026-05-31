@@ -3,16 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>陈旸朗 | Portfolio v3.1</title>
+    <title>陈旸朗 | Portfolio v3.2</title>
     <link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
     <style>
         :root {
             --neon-green: #39FF14;
+            --album-pink: #ff0088; /* 专为金属宫庙专辑定制的先锋粉 */
             --bg-black: #0a0a0a;
             --panel-bg: #121212;
             --transition-speed: 0.5s;
             --macau-warm: #ff5722;
-            --temple-red: #ff3333; /* 为土地神庙项目定制的东方红 */
+            --temple-red: #ff3333; 
         }
 
         * {
@@ -47,8 +48,8 @@
             transition: opacity var(--transition-speed) ease-in-out;
         }
 
-        /* 滚动页面定制（简历页、美食地图页、土地神庙页） */
-        #page-1, #page-3, #page-4 {
+        /* 滚动页面定制 */
+        #page-1, #page-2, #page-3, #page-4 {
             overflow-y: auto;
             justify-content: flex-start;
             padding-top: 100px;
@@ -56,22 +57,23 @@
             scroll-behavior: smooth;
         }
 
-        /* 隐藏默认滚动条，使其更像完整终端系统 */
-        #page-1::-webkit-scrollbar, #page-3::-webkit-scrollbar, #page-4::-webkit-scrollbar {
+        /* 隐藏默认滚动条 */
+        #page-1::-webkit-scrollbar, #page-2::-webkit-scrollbar, #page-3::-webkit-scrollbar, #page-4::-webkit-scrollbar {
             width: 6px;
         }
-        #page-1::-webkit-scrollbar-thumb, #page-3::-webkit-scrollbar-thumb, #page-4::-webkit-scrollbar-thumb {
+        #page-1::-webkit-scrollbar-thumb, #page-2::-webkit-scrollbar-thumb, #page-3::-webkit-scrollbar-thumb, #page-4::-webkit-scrollbar-thumb {
             background: var(--neon-green);
             border-radius: 3px;
         }
+        #page-2::-webkit-scrollbar-thumb {
+            background: var(--album-pink); /* 专辑页滚动条定制为粉色 */
+        }
 
-        /* 当前激活页面 */
         .active {
             display: flex;
             opacity: 1;
         }
 
-        /* 像素大标题 */
         h1 {
             font-size: clamp(2.5rem, 8vw, 6rem);
             margin: 0;
@@ -86,7 +88,6 @@
             letter-spacing: 5px;
         }
 
-        /* 按钮基础样式 */
         .neon-btn {
             background-color: black;
             border: 2px solid var(--neon-green);
@@ -105,7 +106,6 @@
             box-shadow: 0 0 30px var(--neon-green);
         }
 
-        /* 首页进入按钮 */
         .enter-btn {
             position: absolute;
             bottom: 15%;
@@ -113,7 +113,6 @@
             font-size: 2rem;
         }
 
-        /* 左上角返回按钮 */
         .back-btn-corner {
             position: fixed;
             top: 30px;
@@ -124,7 +123,6 @@
             z-index: 100;
         }
 
-        /* 目录项样式 */
         .menu-list {
             margin-top: 30px;
             display: flex;
@@ -148,132 +146,19 @@
             transform: scale(1.05);
         }
 
-        /* 图标样式 */
         .arrow-icon {
             width: 30px;
             height: 30px;
             fill: currentColor;
         }
 
-        /* 子页面留空提示 */
         .placeholder-text {
             color: #555;
             margin-top: 20px;
             font-size: 1.2rem;
         }
 
-        /* ==================== 个人简历板块样式 ==================== */
-        .resume-wrapper {
-            width: 100%;
-            max-width: 1000px;
-            text-align: left;
-            margin-top: 40px;
-        }
-        .info-header {
-            border-bottom: 2px dashed var(--neon-green);
-            padding-bottom: 20px;
-            margin-bottom: 30px;
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
-            flex-wrap: wrap;
-            gap: 15px;
-        }
-        .info-header .title-group h2 {
-            font-size: 2.5rem;
-            margin: 0;
-            color: var(--neon-green);
-        }
-        .info-header .title-group p {
-            margin: 5px 0 0 0;
-            color: #aaa;
-            font-size: 1.1rem;
-        }
-        .info-header .contact-group {
-            text-align: right;
-            font-size: 1rem;
-            color: #ccc;
-            line-height: 1.6;
-        }
-        .resume-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 25px;
-        }
-        @media (max-width: 768px) {
-            .resume-grid { grid-template-columns: 1fr; }
-            .info-header { text-align: center; justify-content: center; }
-            .info-header .contact-group { text-align: center; }
-        }
-        .console-card {
-            background-color: var(--panel-bg);
-            border: 1px solid #333;
-            padding: 20px;
-            border-radius: 4px;
-            transition: all 0.3s;
-        }
-        .console-card:hover {
-            border-color: var(--neon-green);
-            box-shadow: 0 0 15px rgba(57, 255, 20, 0.1);
-        }
-        .card-title {
-            color: var(--neon-green);
-            font-size: 1.4rem;
-            margin-top: 0;
-            margin-bottom: 15px;
-            border-left: 4px solid var(--neon-green);
-            padding-left: 10px;
-        }
-        .timeline-item {
-            margin-bottom: 15px;
-            border-bottom: 1px solid #222;
-            padding-bottom: 15px;
-        }
-        .timeline-item:last-child {
-            margin-bottom: 0;
-            border-bottom: none;
-            padding-bottom: 0;
-        }
-        .time-location {
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.9rem;
-            color: #888;
-            margin-bottom: 5px;
-        }
-        .item-name {
-            font-size: 1.1rem;
-            font-weight: bold;
-            color: #fff;
-            margin-bottom: 5px;
-        }
-        .item-desc {
-            font-size: 0.95rem;
-            color: #bbb;
-            line-height: 1.5;
-            margin: 0;
-            text-align: justify;
-        }
-        .full-width { grid-column: span 2; }
-        @media (max-width: 768px) { .full-width { grid-column: span 1; } }
-        .skill-tags { display: flex; flex-wrap: wrap; gap: 10px; }
-        .tag {
-            background: #000;
-            border: 1px solid var(--neon-green);
-            color: var(--neon-green);
-            padding: 6px 12px;
-            font-size: 0.9rem;
-            border-radius: 3px;
-            transition: all 0.3s;
-        }
-        .tag:hover {
-            background: var(--neon-green);
-            color: #000;
-            font-weight: bold;
-            box-shadow: 0 0 10px var(--neon-green);
-        }
-
-        /* ==================== 澳门美食地图与信息可视化通用纵向流样式 ==================== */
+        /* ==================== 通用大图/视频展示流样式 ==================== */
         .map-portfolio-wrapper {
             width: 100%;
             max-width: 1100px;
@@ -339,7 +224,6 @@
             margin-bottom: 20px;
         }
 
-        /* 优化图片与视频层级和加载态 */
         .portfolio-img, .portfolio-video {
             width: 100%;
             height: auto;
@@ -354,13 +238,8 @@
             z-index: 2;
         }
         
-        /* 针对9:16大图的展示框高度优化 */
-        .tall-visual-frame {
-            min-height: 580px;
-        }
-        .tall-visual-frame .portfolio-img {
-            max-height: 700px;
-        }
+        .tall-visual-frame { min-height: 580px; }
+        .tall-visual-frame .portfolio-img { max-height: 700px; }
 
         .code-drawing-placeholder {
             width: 100%;
@@ -377,107 +256,98 @@
             padding: 20px;
             z-index: 1;
         }
-        .code-drawing-placeholder::before {
-            content: '';
-            position: absolute;
-            width: 80%; height: 80%;
-            border: 1px solid rgba(255,87,34,0.2);
-            transform: rotate(45deg);
-            pointer-events: none;
-        }
 
-        .shop-badge-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 12px;
+        /* ==================== 个人简历板块样式 ==================== */
+        .resume-wrapper { width: 100%; max-width: 1000px; text-align: left; margin-top: 40px; }
+        .info-header { border-bottom: 2px dashed var(--neon-green); padding-bottom: 20px; margin-bottom: 30px; display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 15px; }
+        .info-header .title-group h2 { font-size: 2.5rem; margin: 0; color: var(--neon-green); }
+        .info-header .title-group p { margin: 5px 0 0 0; color: #aaa; font-size: 1.1rem; }
+        .info-header .contact-group { text-align: right; font-size: 1rem; color: #ccc; line-height: 1.6; }
+        .resume-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 25px; }
+        @media (max-width: 768px) { .resume-grid { grid-template-columns: 1fr; } .info-header { text-align: center; justify-content: center; } .info-header .contact-group { text-align: center; } }
+        .console-card { background-color: var(--panel-bg); border: 1px solid #333; padding: 20px; border-radius: 4px; transition: all 0.3s; }
+        .console-card:hover { border-color: var(--neon-green); box-shadow: 0 0 15px rgba(57, 255, 20, 0.1); }
+        .card-title { color: var(--neon-green); font-size: 1.4rem; margin-top: 0; margin-bottom: 15px; border-left: 4px solid var(--neon-green); padding-left: 10px; }
+        .timeline-item { margin-bottom: 15px; border-bottom: 1px solid #222; padding-bottom: 15px; }
+        .timeline-item:last-child { margin-bottom: 0; border-bottom: none; padding-bottom: 0; }
+        .time-location { display: flex; justify-content: space-between; font-size: 0.9rem; color: #888; margin-bottom: 5px; }
+        .item-name { font-size: 1.1rem; font-weight: bold; color: #fff; margin-bottom: 5px; }
+        .item-desc { font-size: 0.95rem; color: #bbb; line-height: 1.5; margin: 0; text-align: justify; }
+        .full-width { grid-column: span 2; }
+        @media (max-width: 768px) { .full-width { grid-column: span 1; } }
+        .skill-tags { display: flex; flex-wrap: wrap; gap: 10px; }
+        .tag { background: #000; border: 1px solid var(--neon-green); color: var(--neon-green); padding: 6px 12px; font-size: 0.9rem; border-radius: 3px; transition: all 0.3s; }
+        .tag:hover { background: var(--neon-green); color: #000; font-weight: bold; box-shadow: 0 0 10px var(--neon-green); }
+
+        /* ==================== 02: 专辑设计专属复合排版样式 ==================== */
+        .album-triple-jpg {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            width: 100%;
             margin-top: 20px;
         }
-        .shop-badge {
-            background: #000;
-            border: 1px solid #444;
-            padding: 10px;
-            font-size: 0.85rem;
-            border-radius: 4px;
-        }
-
-        /* 钥匙扣多图联动排版样式 */
-        .keychain-container-layout {
-            display: flex;
+        .album-horizontal-box {
             width: 100%;
-            gap: 20px;
-        }
-        .keychain-main-view {
-            flex: 1.2;
-            background: #161616;
-            border: 1px solid #444;
-            border-radius: 6px;
-            min-height: 480px;
+            background: #141112;
+            border: 1px solid var(--album-pink);
+            padding: 10px;
+            border-radius: 4px;
             position: relative;
+            min-height: 260px;
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 10px;
         }
-        .keychain-sub-grid {
-            flex: 1.8;
+        .album-horizontal-box .portfolio-img {
+            max-height: 240px;
+            width: 100%;
+            object-fit: cover;
+        }
+
+        /* 第二页：海报与截图复合网格 */
+        .album-mixed-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            grid-template-rows: repeat(2, 1fr);
-            gap: 15px;
-        }
-        .keychain-sub-view {
-            background: #111;
-            border: 1px dashed #333;
-            border-radius: 4px;
-            position: relative;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 5px;
-            min-height: 232px;
-            overflow: hidden;
-        }
-        @media (max-width: 650px) {
-            .keychain-container-layout { flex-direction: column; }
-            .keychain-sub-grid { grid-template-columns: repeat(2, 1fr); }
-        }
-        .keychain-img-spec {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            display: block;
-            opacity: 0;
-            transition: opacity 0.5s ease-in-out;
-            position: relative;
-            z-index: 2;
-        }
-
-        /* ==================== 土地神庙多图并列排版 ==================== */
-        .temple-double-images {
-            display: flex;
-            width: 100%;
             gap: 20px;
-            justify-content: center;
+            width: 100%;
         }
-        .temple-img-box {
-            flex: 1;
-            background: #161212;
-            border: 1px solid #3d2222;
+        @media (max-width: 768px) {
+            .album-mixed-grid { grid-template-columns: 1fr; }
+        }
+        .grid-card-pink {
+            background: #121212;
+            border: 1px dashed var(--album-pink);
             padding: 10px;
             border-radius: 4px;
             position: relative;
-            min-height: 550px;
             display: flex;
             justify-content: center;
             align-items: center;
+            overflow: hidden;
         }
-        @media (max-width: 650px) {
-            .temple-double-images { flex-direction: column; }
-        }
+        .h-poster { grid-column: span 2; min-height: 250px; }
+        .sq-poster { grid-column: span 1; min-height: 250px; }
+        .v-poster { grid-column: span 1; grid-row: span 2; min-height: 520px; }
+        .screenshot-box { grid-column: span 1; min-height: 250px; }
+
+        /* ==================== 澳门美食地图与其他样式 ==================== */
+        .shop-badge-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-top: 20px; }
+        .shop-badge { background: #000; border: 1px solid #444; padding: 10px; font-size: 0.85rem; border-radius: 4px; }
+        .keychain-container-layout { display: flex; width: 100%; gap: 20px; }
+        .keychain-main-view { flex: 1.2; background: #161616; border: 1px solid #444; border-radius: 6px; min-height: 480px; position: relative; display: flex; justify-content: center; align-items: center; padding: 10px; }
+        .keychain-sub-grid { flex: 1.8; display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: repeat(2, 1fr); gap: 15px; }
+        .keychain-sub-view { background: #111; border: 1px dashed #333; border-radius: 4px; position: relative; display: flex; justify-content: center; align-items: center; padding: 5px; min-height: 232px; overflow: hidden; }
+        @media (max-width: 650px) { .keychain-container-layout { flex-direction: column; } .keychain-sub-grid { grid-template-columns: repeat(2, 1fr); } }
+        .keychain-img-spec { width: 100%; height: 100%; object-fit: contain; display: block; opacity: 0; transition: opacity 0.5s ease-in-out; position: relative; z-index: 2; }
+        .temple-double-images { display: flex; width: 100%; gap: 20px; justify-content: center; }
+        .temple-img-box { flex: 1; background: #161212; border: 1px solid #3d2222; padding: 10px; border-radius: 4px; position: relative; min-height: 550px; display: flex; justify-content: center; align-items: center; }
+        @media (max-width: 650px) { .temple-double-images { flex-direction: column; } }
     </style>
 </head>
 <body>
 
+    <!-- 首页 -->
     <div id="home-page" class="page-container active">
         <h1>PORTFOLIO</h1>
         <div class="name">陈旸朗</div>
@@ -488,6 +358,7 @@
         </button>
     </div>
 
+    <!-- 目录页 -->
     <div id="menu-page" class="page-container">
         <button class="neon-btn back-btn-corner" onclick="navigateTo('home-page')" title="返回首页">
             <svg class="arrow-icon" viewBox="0 0 24 24" style="transform: rotate(180deg);">
@@ -498,31 +369,27 @@
         <h1>CONTENTS</h1>
         <div class="menu-list">
             <div class="menu-item" onclick="navigateTo('page-1')">01. 个人简历</div>
-            <div class="menu-item" onclick="navigateTo('page-2')">02. AI动画</div>
+            <div class="menu-item" onclick="navigateTo('page-2')">02. 专辑设计</div>
             <div class="menu-item" onclick="navigateTo('page-3')">03. 信息可视化设计</div>
             <div class="menu-item" onclick="navigateTo('page-4')">04. 澳门美食地图设计</div>
             <div class="menu-item" onclick="navigateTo('page-5')">05. 书籍封面设计</div>
         </div>
     </div>
 
+    <!-- 子页面 1: 个人简历 -->
     <div id="page-1" class="page-container">
         <button class="neon-btn back-btn-corner" onclick="navigateTo('menu-page')">
             <svg class="arrow-icon" viewBox="0 0 24 24" style="transform: rotate(180deg);"><path d="M5,13H16.17L11.07,18.1L12.49,19.52L20,12L12.49,4.48L11.07,5.9L16.17,11H5V13Z" /></svg>
         </button>
-        
+        <!-- 简历核心内容保持不变 -->
         <div class="resume-wrapper">
             <div class="info-header">
                 <div class="title-group">
                     <h2>陈旸朗</h2>
                     <p>意向岗位: 平面UI / 多媒体视频编辑 / 视觉设计</p>
                 </div>
-                <div class="contact-group">
-                    学历: 硕士<br>
-                    电话: 18950821079<br>
-                    邮箱: 497571714@qq.com
-                </div>
+                <div class="contact-group">学历: 硕士<br>电话: 18950821079<br>邮箱: 497571714@qq.com</div>
             </div>
-
             <div class="resume-grid">
                 <div class="console-card">
                     <div class="card-title">EDUCATION / 教育背景</div>
@@ -537,22 +404,13 @@
                         <p class="item-desc">视觉传达设计专业 (本科)</p>
                     </div>
                 </div>
-
                 <div class="console-card">
                     <div class="card-title">SKILLS & CERTIFICATES / 技能证书</div>
                     <div class="skill-tags" style="margin-bottom: 15px;">
-                        <span class="tag">精通 PS & AI</span>
-                        <span class="tag">AI 图像/视频制作</span>
-                        <span class="tag">PR / AE 特效剪辑</span>
-                        <span class="tag">Cubase / 库乐队音频</span>
-                        <span class="tag">办公自动化 (Office)</span>
+                        <span class="tag">精通 PS & AI</span><span class="tag">AI 图像/视频制作</span><span class="tag">PR / AE 特效剪辑</span><span class="tag">Cubase / 库乐队音频</span><span class="tag">办公自动化 (Office)</span>
                     </div>
-                    <div class="item-desc" style="color: #888;">
-                        • 大学英语四级证书 (CET-4)<br>
-                        • C1E 驾照 & 澳门特别驾驶许可 A1
-                    </div>
+                    <div class="item-desc" style="color: #888;">• 大学英语四级证书 (CET-4)<br>• C1E 驾照 & 澳门特别驾驶许可 A1</div>
                 </div>
-
                 <div class="console-card full-width">
                     <div class="card-title">INTERNSHIP / 实习经历</div>
                     <div class="timeline-item">
@@ -562,72 +420,149 @@
                     </div>
                     <div class="timeline-item">
                         <div class="time-location"><span>2022.06 - 2022.08</span><span>龙岩</span></div>
-                        <div class="item-name">龙岩市电视台 (见习美术编辑)</div>
+                        <div class="item-name">龙岩市电视台 (见息美术编辑)</div>
                         <p class="item-desc">跟随记者外出采访，学习新闻排版编辑等。</p>
                     </div>
-                    <div class="timeline-item">
-                        <div class="time-location"><span>2022.05 - 2022.06</span><span>深圳</span></div>
-                        <div class="item-name">深圳开思时代科技有限公司 / 开思集团 (多媒体创作实习)</div>
-                        <p class="item-desc">负责多媒体视频的剪辑、拍摄及创意后期工作。</p>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="time-location"><span>2021.05 - 2021.08</span><span>龙岩</span></div>
-                        <div class="item-name">龙岩市融媒体中心 / 闽西日报社 (美术编辑实习)</div>
-                        <p class="item-desc">负责设计与制作宣传海报、官方公众号排版及视觉设计，并跟随记者进行外出采访。</p>
-                    </div>
                 </div>
-
                 <div class="console-card">
                     <div class="card-title">CAMPUS / 校园与学术</div>
                     <div class="timeline-item">
-                        <div class="time-location"><span>2024.09 - 2026.06</span><span>澳门城市大学</span></div>
-                        <div class="item-name">人文社会科学学院 · 助理职位</div>
-                        <p class="item-desc">负责平面设计、微信公众号排版制作、文件处理等学院行政与视觉事务。</p>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="time-location"><span>学术成果</span><span>Google Scholar 可查</span></div>
                         <div class="item-name">发表学术论文</div>
                         <p class="item-desc">发表论文《听众对人工智能创作流行音乐的辨识度研究》，收录于学术期刊《Art Horizon》。</p>
                     </div>
-                    <div class="timeline-item">
-                        <div class="time-location"><span>2020.09 - 2024.06</span><span>澳门科技大学</span></div>
-                        <div class="item-name">艺术团电声乐队 · 乐手/主唱/队长顾问</div>
-                        <p class="item-desc">参加迎新晚会、毕业晚会、艺术团专场等，并主导参与了各项演出的视觉海报设计。</p>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="time-location"><span>策展实践</span><span>横琴</span></div>
-                        <div class="item-name">横琴粤澳深度合作区华联会展研究院</div>
-                        <p class="item-desc">作为核心成员参与了研究院的策展与空间视觉设计。</p>
-                    </div>
                 </div>
-
                 <div class="console-card">
                     <div class="card-title">AWARDS / 荣誉奖项</div>
                     <div class="item-desc" style="line-height: 1.8; color: #ddd;">
                         • <span style="color:var(--neon-green)">2025.06</span> 获得澳门城市大学体验学习奖学金<br>
-                        • <span style="color:var(--neon-green)">2024.09</span> 参与中华设计奖“帮农客杯”设计大赛并入围<br>
-                        • <span style="color:var(--neon-green)">2024.03</span> 代表澳门科技大学参加粤港澳高校联演并获一等奖<br>
-                        • <span style="color:var(--neon-green)">2022.11</span> 获得澳门科技大学艺术团“年度卓越表现团员”校级奖<br>
-                        • <span style="color:var(--neon-green)">2022.02</span> 参加首届“方正杯”字体设计比赛并获奖
+                        • <span style="color:var(--neon-green)">2024.03</span> 代表澳门科技大学参加粤港澳高校联演并获一等奖
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
+    <!-- 子页面 2: 专辑设计（原AI动画） -->
     <div id="page-2" class="page-container">
-        <button class="neon-btn back-btn-corner" onclick="navigateTo('menu-page')">
+        <button class="neon-btn back-btn-corner" onclick="navigateTo('menu-page')" style="border-color: var(--album-pink); color: var(--album-pink); box-shadow: 0 0 10px rgba(255,0,136,0.2);">
             <svg class="arrow-icon" viewBox="0 0 24 24" style="transform: rotate(180deg);"><path d="M5,13H16.17L11.07,18.1L12.49,19.52L20,12L12.49,4.48L11.07,5.9L16.17,11H5V13Z" /></svg>
         </button>
-        <h1>AI动画</h1>
-        <p class="placeholder-text">[内容建设中...]</p>
+        
+        <div class="map-portfolio-wrapper">
+            <!-- 纵向第 1 页：设计说明 + 3张JPG横版图 -->
+            <div class="map-section" style="flex-direction: column; align-items: flex-start; justify-content: flex-start;">
+                <div class="map-text-side" style="margin-bottom: 20px; width: 100%;">
+                    <div class="section-num" style="color: var(--album-pink);">01 / CONCEPT & COVERS</div>
+                    <div class="section-heading" style="border-bottom-color: var(--album-pink); color: var(--album-pink);">传统闽南宫庙文化与硬核金属乐跨界融合专辑设计</div>
+                    <p class="section-p">本设计旨在将传统闽南宫庙文化与硬核金属乐进行跨界融合，打造独具民俗风味的音乐专辑视觉。设计在视觉上深度挖掘寺庙建筑美学，以极具工艺感的藻井元素为核心，运用现代设计手法呈现出万花筒式的迷幻视觉风格。整体包装及音乐可视化MV设计提取了菩萨、香火、木鱼等传统符号，将其具象化的古典美感与金属乐激进、强烈的冲击力进行解构重组。通过高饱和度的色彩撞击与繁复递进的空间构图，将民族乐器的听觉能量转化为极具次文化张力的视觉语言，实现了传统民俗符号在现代先锋唱片设计中的前卫表达。</p>
+                </div>
+                
+                <!-- 三张 JPG 横向专辑展示图 -->
+                <div class="album-triple-jpg">
+                    <div class="album-horizontal-box">
+                        <img src="album-cover-1.jpg" alt="专辑横向图 1" class="portfolio-img" onload="this.style.opacity=1">
+                        <div class="code-drawing-placeholder" style="background: radial-gradient(circle, #250515 0%, #0a0a0a 100%); color: var(--album-pink); border-color: var(--album-pink);">
+                            <div style="font-size:2rem; margin-bottom:5px;">💿</div>
+                            <div style="font-size:1rem;">[ 专辑横向视觉展示 - 01 ]</div>
+                            <div style="font-size:0.75rem; opacity:0.5; font-family:monospace; margin-top:5px;">album-cover-1.jpg</div>
+                        </div>
+                    </div>
+                    <div class="album-horizontal-box">
+                        <img src="album-cover-2.jpg" alt="专辑横向图 2" class="portfolio-img" onload="this.style.opacity=1">
+                        <div class="code-drawing-placeholder" style="background: radial-gradient(circle, #250515 0%, #0a0a0a 100%); color: var(--album-pink); border-color: var(--album-pink);">
+                            <div style="font-size:2rem; margin-bottom:5px;">💿</div>
+                            <div style="font-size:1rem;">[ 专辑横向视觉展示 - 02 ]</div>
+                            <div style="font-size:0.75rem; opacity:0.5; font-family:monospace; margin-top:5px;">album-cover-2.jpg</div>
+                        </div>
+                    </div>
+                    <div class="album-horizontal-box">
+                        <img src="album-cover-3.jpg" alt="专辑横向图 3" class="portfolio-img" onload="this.style.opacity=1">
+                        <div class="code-drawing-placeholder" style="background: radial-gradient(circle, #250515 0%, #0a0a0a 100%); color: var(--album-pink); border-color: var(--album-pink);">
+                            <div style="font-size:2rem; margin-bottom:5px;">💿</div>
+                            <div style="font-size:1rem;">[ 专辑横向视觉展示 - 03 ]</div>
+                            <div style="font-size:0.75rem; opacity:0.5; font-family:monospace; margin-top:5px;">album-cover-3.jpg</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 纵向第 2 页：两张竖版截屏展示图(jpg) + 三张海报图(png) -->
+            <div class="map-section" style="flex-direction: column; align-items: flex-start; justify-content: flex-start;">
+                <div class="map-text-side" style="margin-bottom: 30px; width: 100%;">
+                    <div class="section-num" style="color: var(--album-pink);">02 / POSTERS & SCREENSHOTS</div>
+                    <div class="section-heading" style="border-bottom-color: var(--album-pink); color: var(--album-pink);">多端截屏媒体与全尺寸海报衍生矩阵</div>
+                    <p class="section-p">本页集中展示专辑在数字终端媒介下的交互界面适配，以及基于闽南民俗符号解构衍生出的三款不同画幅限定海报（涵盖横版宏观构图、正方形概念符号以及竖版空间递进架构），完美展现高饱和度空间色彩撞击在不同媒介载体下的视觉延展性。</p>
+                </div>
+
+                <!-- 复合网格排版区 -->
+                <div class="album-mixed-grid">
+                    <!-- 横版海报 png -->
+                    <div class="grid-card-pink h-poster">
+                        <img src="poster-horizontal.png" alt="横版海报" class="portfolio-img" onload="this.style.opacity=1">
+                        <div class="code-drawing-placeholder" style="background: #180b11; color: var(--album-pink);">
+                            <span>🖼️ 横版海报 (PNG)</span>
+                            <span style="font-family:monospace; font-size:0.75rem; opacity:0.5;">poster-horizontal.png</span>
+                        </div>
+                    </div>
+                    <!-- 正方形海报 png -->
+                    <div class="grid-card-pink sq-poster">
+                        <img src="poster-square.png" alt="正方形海报" class="portfolio-img" onload="this.style.opacity=1">
+                        <div class="code-drawing-placeholder" style="background: #180b11; color: var(--album-pink);">
+                            <span>🔲 正方形海报 (PNG)</span>
+                            <span style="font-family:monospace; font-size:0.75rem; opacity:0.5;">poster-square.png</span>
+                        </div>
+                    </div>
+                    <!-- 竖版海报 png -->
+                    <div class="grid-card-pink v-poster">
+                        <img src="poster-vertical.png" alt="竖版海报" class="portfolio-img" style="max-height: 490px;" onload="this.style.opacity=1">
+                        <div class="code-drawing-placeholder" style="background: #180b11; color: var(--album-pink);">
+                            <span>📜 竖版海报 (PNG)</span>
+                            <span style="font-family:monospace; font-size:0.75rem; opacity:0.5;">poster-vertical.png</span>
+                        </div>
+                    </div>
+                    <!-- 屏幕截图 1 jpg -->
+                    <div class="grid-card-pink screenshot-box">
+                        <img src="screenshot-1.jpg" alt="屏幕截图 1" class="portfolio-img" onload="this.style.opacity=1">
+                        <div class="code-drawing-placeholder" style="background: #12080d; color: var(--album-pink);">
+                            <span>📱 9:16 截屏 01 (JPG)</span>
+                            <span style="font-family:monospace; font-size:0.75rem; opacity:0.5;">screenshot-1.jpg</span>
+                        </div>
+                    </div>
+                    <!-- 屏幕截图 2 jpg -->
+                    <div class="grid-card-pink screenshot-box">
+                        <img src="screenshot-2.jpg" alt="屏幕截图 2" class="portfolio-img" onload="this.style.opacity=1">
+                        <div class="code-drawing-placeholder" style="background: #12080d; color: var(--album-pink);">
+                            <span>📱 9:16 截屏 02 (JPG)</span>
+                            <span style="font-family:monospace; font-size:0.75rem; opacity:0.5;">screenshot-2.jpg</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 纵向第 3 页：音乐可视化视频 -->
+            <div class="map-section">
+                <div class="map-text-side">
+                    <div class="section-num" style="color: var(--album-pink);">03 / MOTION VISUALIZATION</div>
+                    <div class="section-heading" style="border-bottom-color: var(--album-pink); color: var(--album-pink);">万花筒式音乐可视化MV</div>
+                    <p class="section-p">动态影像部分将民族乐器的听觉能量彻底转化为视觉洪流。视频提炼了菩萨、香火、木鱼等符号，在强烈的金属乐重击节拍下配合高饱和度的空间构图进行音画联动。通过次文化的视觉重组，直观呈现民俗信仰与现代前卫音乐交织的迷幻视听震撼。</p>
+                </div>
+                <div class="map-visual-side tall-visual-frame" style="flex: 1.3; border-color: var(--album-pink);">
+                    <video src="album-video.mp4" class="portfolio-video" autoplay loop muted playsinline controls onloadstart="this.style.opacity=1"></video>
+                    <div class="code-drawing-placeholder" style="background: radial-gradient(circle, #200512 0%, #0a0a0a 100%); color: var(--album-pink); z-index: 1;">
+                        <div style="font-size:2.5rem; margin-bottom:10px;">🎬</div>
+                        <div style="font-size:1.1rem; letter-spacing:2px;">[ 音乐可视化动态视频 ]</div>
+                        <div style="font-size:0.8rem; opacity:0.5; margin-top:15px; font-family:monospace;">视频命名路径：album-video.mp4</div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
+    <!-- 子页面 3: 信息可视化设计 -->
     <div id="page-3" class="page-container">
         <button class="neon-btn back-btn-corner" onclick="navigateTo('menu-page')">
             <svg class="arrow-icon" viewBox="0 0 24 24" style="transform: rotate(180deg);"><path d="M5,13H16.17L11.07,18.1L12.49,19.52L20,12L12.49,4.48L11.07,5.9L16.17,11H5V13Z" /></svg>
         </button>
-        
         <div class="map-portfolio-wrapper">
             <div class="map-section" style="flex-direction: column; align-items: flex-start; justify-content: flex-start;">
                 <div class="map-text-side" style="margin-bottom: 30px; width: 100%;">
@@ -635,188 +570,80 @@
                     <div class="section-heading" style="border-bottom-color: var(--temple-red);">澳门与闽粤土地神庙文化解构</div>
                     <p class="section-p">本项设计方案围绕澳门与闽粤地区土地神庙文化开展信息可视化设计。方案分为动态与静态两部分：静态展示则运用信息图表，通过空间地图、历史时间轴、神话关系图、方言词云等可视化手段，全方位解构两地在地理特色、祭祀习俗、艺术形象及移民文化等方面的差异，以现代视觉语言对传统民间信仰空间进行在地的建构与传播。</p>
                 </div>
-                
                 <div class="temple-double-images">
-                    <div class="temple-img-box">
-                        <img src="visualization-1.jpg" alt="信息可视化大图 1" class="portfolio-img" style="max-height: 650px;" onload="this.style.opacity=1">
-                        <div class="code-drawing-placeholder" style="background: radial-gradient(circle, #250808 0%, #0a0a0a 100%); color: var(--temple-red); border-color: var(--temple-red);">
-                            <div style="font-size:2rem; margin-bottom:10px;">📊</div>
-                            <div style="font-size:1rem; letter-spacing:1px; text-align:center;">[ 静态图表可视化 - 01 ]</div>
-                            <div style="font-size:0.75rem; opacity:0.5; margin-top:10px; font-family:monospace;">visualization-1.jpg</div>
-                        </div>
-                    </div>
-                    <div class="temple-img-box">
-                        <img src="visualization-2.jpg" alt="信息可视化大图 2" class="portfolio-img" style="max-height: 650px;" onload="this.style.opacity=1">
-                        <div class="code-drawing-placeholder" style="background: radial-gradient(circle, #250808 0%, #0a0a0a 100%); color: var(--temple-red); border-color: var(--temple-red);">
-                            <div style="font-size:2rem; margin-bottom:10px;">📊</div>
-                            <div style="font-size:1rem; letter-spacing:1px; text-align:center;">[ 静态图表可视化 - 02 ]</div>
-                            <div style="font-size:0.75rem; opacity:0.5; margin-top:10px; font-family:monospace;">visualization-2.jpg</div>
-                        </div>
-                    </div>
+                    <div class="temple-img-box"><img src="visualization-1.jpg" alt="大图 1" class="portfolio-img" style="max-height: 650px;" onload="this.style.opacity=1"><div class="code-drawing-placeholder" style="background: radial-gradient(circle, #250808 0%, #0a0a0a 100%); color: var(--temple-red); border-color: var(--temple-red);">📊<br>[ 静态图表 - 01 ]</div></div>
+                    <div class="temple-img-box"><img src="visualization-2.jpg" alt="大图 2" class="portfolio-img" style="max-height: 650px;" onload="this.style.opacity=1"><div class="code-drawing-placeholder" style="background: radial-gradient(circle, #250808 0%, #0a0a0a 100%); color: var(--temple-red); border-color: var(--temple-red);">📊<br>[ 静态图表 - 02 ]</div></div>
                 </div>
             </div>
-
             <div class="map-section">
                 <div class="map-text-side">
                     <div class="section-num" style="color: var(--temple-red);">02 / MOTION GRAPHICS</div>
                     <div class="section-heading" style="border-bottom-color: var(--temple-red);">动态演示与形象演变</div>
-                    <p class="section-p">动态展示采用GIF微动画与动态影像，直观剖析庙宇建筑结构拆解、呈现两地土地公形象的现象级演变，并辅以方言祈福语交互。</p>
-                    <p class="section-p" style="color: #666; font-size: 0.95rem;">右侧多媒体播放器支持自动循环播放，全方位还原动态交互的细节表现。</p>
+                    <p class="section-p">动态展示采用GIF微动画与动态影像，直观剖析庙宇建筑结构拆解、呈现两地土地公形象的现象级演变。</p>
                 </div>
-                <div class="map-visual-side tall-visual-frame" style="flex: 1.3;">
-                    <video src="visualization-video.mp4" class="portfolio-video" autoplay loop muted playsinline controls onloadstart="this.style.opacity=1"></video>
-                    <div class="code-drawing-placeholder" style="background: radial-gradient(circle, #102025 0%, #0a0a0a 100%); color: var(--neon-green); border-color: #224455; z-index: 1;">
-                        <div style="font-size:2.5rem; margin-bottom:10px;">🎬</div>
-                        <div style="font-size:1.1rem; letter-spacing:2px;">[ 20秒信息可视化动态微动画视频 ]</div>
-                        <div style="font-size:0.8rem; opacity:0.5; margin-top:15px; font-family:monospace;">视频命名路径：visualization-video.mp4</div>
-                    </div>
-                </div>
+                <div class="map-visual-side tall-visual-frame" style="flex: 1.3;"><video src="visualization-video.mp4" class="portfolio-video" autoplay loop muted playsinline controls onloadstart="this.style.opacity=1"></video></div>
             </div>
         </div>
     </div>
 
+    <!-- 子页面 4: 澳门美食地图设计 -->
     <div id="page-4" class="page-container">
         <button class="neon-btn back-btn-corner" onclick="navigateTo('menu-page')">
             <svg class="arrow-icon" viewBox="0 0 24 24" style="transform: rotate(180deg);"><path d="M5,13H16.17L11.07,18.1L12.49,19.52L20,12L12.49,4.48L11.07,5.9L16.17,11H5V13Z" /></svg>
         </button>
-        
         <div class="map-portfolio-wrapper">
             <div class="map-section">
                 <div class="map-text-side">
-                    <div class="section-num">01 / CONCEPT</div>
-                    <div class="section-heading">澳门本土烧腊美食地图</div>
-                    <p class="section-p">《澳门烧腊美食地图》旨在通过视觉化的设计语言，深度挖掘澳门传统餐饮文化的独特魅力。本项目通过一份精心编绘的烧腊导览手册，将地理位置与美食体验深度串联，打造出“地图导览+互动打卡”的沉浸式体验。</p>
-                    <p class="section-p">用户在遵循地图寻味烧腊的过程中，不仅能系统梳理地道烧味信息，还能通过打卡机制获得趣味十足的“烧腊钥匙扣”周边文创。设计旨在通过视觉传达与互动体验的融合，重塑传统美食地图的在地化价值，为受众提供更具参与感与纪念意义的城市文化探索之旅。</p>
+                    <div class="section-num">01 / CONCEPT</div><div class="section-heading">澳门本土烧腊美食地图</div>
+                    <p class="section-p">《澳门烧腊美食地图》旨在通过视觉化的设计语言，深度挖掘澳门传统餐饮文化的独特魅力。</p>
                 </div>
-                <div class="map-visual-side">
-                    <img src="brochure.png" alt="折页画册设计图" class="portfolio-img" onload="this.style.opacity=1">
-                    <div class="code-drawing-placeholder">
-                        <div style="font-size:2rem; margin-bottom:10px;">📖</div>
-                        <div style="font-size:1.1rem; letter-spacing:2px;">[ 导览折页与概念设计效果图 ]</div>
-                        <div style="font-size:0.8rem; opacity:0.5; margin-top:15px; font-family:monospace;">图像命名路径：brochure.png</div>
-                    </div>
-                </div>
+                <div class="map-visual-side"><img src="brochure.png" class="portfolio-img" onload="this.style.opacity=1"></div>
             </div>
-
             <div class="map-section">
                 <div class="map-text-side">
-                    <div class="section-num">02 / ILLUSTRATION MAP</div>
-                    <div class="section-heading">手绘插画路线</div>
-                    <p class="section-p">地图采用独特的手绘插画风格，将大三巴牌坊、旅游塔等著名地标与六家最具代表性的本土烧腊老店巧妙融合。精心设计了编号指引的两条环形寻味路线，并为每家烧腊店配以极极具年代感的门面插画及详细的店铺特色介绍。</p>
-                    
+                    <div class="section-num">02 / ILLUSTRATION MAP</div><div class="section-heading">手绘插画路线</div>
                     <div class="shop-badge-grid">
-                        <div class="shop-badge"><strong>1. 何文记:</strong> 烧鸭皮脆、白切鸡滑嫩、分量大。</div>
-                        <div class="shop-badge"><strong>2. 芬记:</strong> 巷子老店无招牌，每日限时外卖2小时，现金支付。</div>
-                        <div class="shop-badge"><strong>3. 靈记飯店:</strong> 新马路旁数十年老店，老街坊捧场的怀旧首选。</div>
-                        <div class="shop-badge"><strong>4. 咸城腊味:</strong> 营地大街古法手工腊味，玫瑰制法年节手信。</div>
-                        <div class="shop-badge"><strong>5. 陈光记:</strong> 1956年创立，独创秘制黑椒烧鸭，米其林推荐。</div>
-                        <div class="shop-badge"><strong>6. 龙天烧味:</strong> 烧肉叉烧炭香足，供应高端酒楼，人均亲民。</div>
+                        <div class="shop-badge"><strong>1. 何文记:</strong> 烧鸭皮脆、分量大。</div><div class="shop-badge"><strong>2. 芬记:</strong> 每日限时外卖2小时。</div>
                     </div>
                 </div>
-                <div class="map-visual-side" style="flex:1.4;">
-                    <img src="map.png" alt="手绘美食地图设计图" class="portfolio-img" onload="this.style.opacity=1">
-                    <div class="code-drawing-placeholder" style="background: radial-gradient(circle, #152210 0%, #0a0a0a 100%); color: var(--neon-green); border-color: var(--neon-green);">
-                        <div style="font-size:2rem; margin-bottom:10px;">🗺️</div>
-                        <div style="font-size:1.1rem; letter-spacing:2px;">[ 澳门名胜地标与六大烧腊老店手绘插画 ]</div>
-                        <div style="font-size:0.8rem; opacity:0.5; margin-top:15px; font-family:monospace;">图像命名路径：map.png</div>
-                    </div>
-                </div>
+                <div class="map-visual-side" style="flex:1.4;"><img src="map.png" class="portfolio-img" onload="this.style.opacity=1"></div>
             </div>
-
             <div class="map-section" style="flex-direction: column; align-items: flex-start; justify-content: flex-start;">
                 <div class="map-text-side" style="margin-bottom: 25px; width: 100%;">
-                    <div class="section-num">03 / CREATIVE MERCHANDISE</div>
-                    <div class="section-heading">文创周边：烧腊钥匙扣（系列设计）</div>
-                    <p class="section-p">周边设计采用简洁扁平风格与富含食欲的暖色调，将烧腊档中极具烟火气的“挂起”陈列状态转化为趣味文创。顶部是不锈钢招牌，下方挂着迷你模型。以下联动展示了 1 个大版核心范例图以及 6 个店铺系列对应细分版小图：</p>
+                    <div class="section-num">03 / CREATIVE MERCHANDISE</div><div class="section-heading">文创周边：烧腊钥匙扣</div>
                 </div>
-                
                 <div class="keychain-container-layout">
-                    <div class="keychain-main-view">
-                        <img src="keychain-demo.png" alt="钥匙扣设计范例版" class="keychain-img-spec" onload="this.style.opacity=1">
-                        <div class="code-drawing-placeholder" style="background: linear-gradient(135deg, #2d2005 0%, #050505 100%); border-color: #ffb300; color: #ffb300;">
-                            <span style="font-size:2.5rem; margin-bottom:10px;">🔑</span>
-                            <span style="font-size:1.1rem; text-align:center;">[ 主核心：设计范例大图 ]</span>
-                            <span style="font-size:0.8rem; opacity:0.6; margin-top:10px; font-family:monospace;">keychain-demo.png</span>
-                        </div>
-                    </div>
-
+                    <div class="keychain-main-view"><img src="keychain-demo.png" class="keychain-img-spec" onload="this.style.opacity=1"></div>
                     <div class="keychain-sub-grid">
-                        <div class="keychain-sub-view">
-                            <img src="keychain-1.png" alt="何文记钥匙扣" class="keychain-img-spec" onload="this.style.opacity=1">
-                            <div class="code-drawing-placeholder" style="font-size:0.8rem; border-color:#555; color:#aaa;">
-                                <span>01.何文记版</span>
-                                <span style="font-family:monospace; opacity:0.5; margin-top:5px;">keychain-1.png</span>
-                            </div>
-                        </div>
-                        <div class="keychain-sub-view">
-                            <img src="keychain-2.png" alt="芬记钥匙扣" class="keychain-img-spec" onload="this.style.opacity=1">
-                            <div class="code-drawing-placeholder" style="font-size:0.8rem; border-color:#555; color:#aaa;">
-                                <span>02.芬记版</span>
-                                <span style="font-family:monospace; opacity:0.5; margin-top:5px;">keychain-2.png</span>
-                            </div>
-                        </div>
-                        <div class="keychain-sub-view">
-                            <img src="keychain-3.png" alt="靈记钥匙扣" class="keychain-img-spec" onload="this.style.opacity=1">
-                            <div class="code-drawing-placeholder" style="font-size:0.8rem; border-color:#555; color:#aaa;">
-                                <span>03.靈记版</span>
-                                <span style="font-family:monospace; opacity:0.5; margin-top:5px;">keychain-3.png</span>
-                            </div>
-                        </div>
-                        <div class="keychain-sub-view">
-                            <img src="keychain-4.png" alt="咸城腊味钥匙扣" class="keychain-img-spec" onload="this.style.opacity=1">
-                            <div class="code-drawing-placeholder" style="font-size:0.8rem; border-color:#555; color:#aaa;">
-                                <span>04.咸城腊味版</span>
-                                <span style="font-family:monospace; opacity:0.5; margin-top:5px;">keychain-4.png</span>
-                            </div>
-                        </div>
-                        <div class="keychain-sub-view">
-                            <img src="keychain-5.png" alt="陈光记钥匙扣" class="keychain-img-spec" onload="this.style.opacity=1">
-                            <div class="code-drawing-placeholder" style="font-size:0.8rem; border-color:#555; color:#aaa;">
-                                <span>05.陈光记版</span>
-                                <span style="font-family:monospace; opacity:0.5; margin-top:5px;">keychain-5.png</span>
-                            </div>
-                        </div>
-                        <div class="keychain-sub-view">
-                            <img src="keychain-6.png" alt="龙天烧味钥匙扣" class="keychain-img-spec" onload="this.style.opacity=1">
-                            <div class="code-drawing-placeholder" style="font-size:0.8rem; border-color:#555; color:#aaa;">
-                                <span>06.龙天味版</span>
-                                <span style="font-family:monospace; opacity:0.5; margin-top:5px;">keychain-6.png</span>
-                            </div>
-                        </div>
+                        <div class="keychain-sub-view"><img src="keychain-1.png" class="keychain-img-spec" onload="this.style.opacity=1"></div>
+                        <div class="keychain-sub-view"><img src="keychain-2.png" class="keychain-img-spec" onload="this.style.opacity=1"></div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
+    <!-- 子页面 5: 书籍封面设计 -->
     <div id="page-5" class="page-container">
         <button class="neon-btn back-btn-corner" onclick="navigateTo('menu-page')">
             <svg class="arrow-icon" viewBox="0 0 24 24" style="transform: rotate(180deg);"><path d="M5,13H16.17L11.07,18.1L12.49,19.52L20,12L12.49,4.48L11.07,5.9L16.17,11H5V13Z" /></svg>
         </button>
-        <h1>书籍封面设计</h1>
-        <p class="placeholder-text">[内容建设中...]</p>
+        <h1>书籍封面设计</h1><p class="placeholder-text">[内容建设中...]</p>
     </div>
 
     <script>
         function navigateTo(targetId) {
             const currentPage = document.querySelector('.page-container.active');
             const targetPage = document.getElementById(targetId);
-
             if (!targetPage || currentPage === targetPage) return;
-
             currentPage.style.opacity = '0';
-
             setTimeout(() => {
                 currentPage.classList.remove('active');
                 targetPage.classList.add('active');
-                
-                if(targetId === 'page-1' || targetId === 'page-3' || targetId === 'page-4') {
+                if(['page-1', 'page-2', 'page-3', 'page-4'].includes(targetId)) {
                     targetPage.scrollTop = 0;
                 }
-
-                requestAnimationFrame(() => {
-                    targetPage.style.opacity = '1';
-                });
+                requestAnimationFrame(() => { targetPage.style.opacity = '1'; });
             }, 500); 
         }
     </script>
