@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>陈旸朗 | Portfolio v3.9.2</title>
+    <title>陈旸朗 | Portfolio v3.9.3</title>
     <link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -40,12 +40,12 @@
             width: 100vw;
             height: 100vh;
             
-            /* 1. 基础状态：通过透明度和可见性实现彻底隐藏，腾出点击流 */
+            /* 基础状态：通过透明度和可见性实现彻底隐藏，腾出点击流 */
             opacity: 0;
             visibility: hidden;
             pointer-events: none;
             
-            /* 2. 核心动画：加入高平滑度的淡入淡出过渡 */
+            /* 核心动画：加入高平滑度的淡入淡出过渡 */
             transition: opacity var(--transition-speed) ease-in-out, visibility var(--transition-speed) ease-in-out;
             z-index: 1;
             
@@ -298,17 +298,17 @@
         .temple-img-box { flex: 1; background: #161212; border: 1px solid #3d2222; padding: 10px; border-radius: 4px; position: relative; min-height: 550px; display: flex; justify-content: center; align-items: center; }
         @media (max-width: 650px) { .temple-double-images { flex-direction: column; } }
 
-        /* 包装设计排版 */
+        /* 包装设计排版系统 */
         .pkg-render-stream { display: flex; flex-direction: column; gap: 30px; width: 100%; margin-top: 20px; align-items: center; }
         .pkg-box-16-9 { width: 100%; max-width: 850px; aspect-ratio: 16 / 9; background: #150f18; border: 1px solid var(--grape-purple); padding: 15px; border-radius: 4px; position: relative; display: flex; justify-content: center; align-items: center; overflow: hidden; }
         
         .pkg-unfold-stream { display: flex; flex-direction: column; gap: 25px; width: 100%; margin-top: 20px; }
         .pkg-box-unfold { width: 100%; max-width: 1000px; margin: 0 auto; min-height: 380px; background: #110e12; border: 1px dashed var(--grape-purple); padding: 15px; border-radius: 4px; position: relative; display: flex; justify-content: center; align-items: center; overflow: hidden; }
         
-        .pkg-view3-grid { display: flex; flex-direction: column; gap: 20px; width: 100%; margin-top: 20px; }
-        .pkg-view3-row-top { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; width: 100%; max-width: 1000px; margin: 0 auto; }
-        .pkg-view3-row-bottom { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; width: 100%; max-width: 1000px; margin: 0 auto; }
-        @media (max-width: 768px) { .pkg-view3-row-top, .pkg-view3-row-bottom { grid-template-columns: 1fr; } }
+        /* 优化重构后的四图对称矩阵样式 */
+        .pkg-view4-grid-wrapper { display: flex; flex-direction: column; gap: 20px; width: 100%; margin-top: 20px; }
+        .pkg-view4-matrix { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; width: 100%; max-width: 1000px; margin: 0 auto; }
+        @media (max-width: 768px) { .pkg-view4-matrix { grid-template-columns: 1fr; } }
         .pkg-box-4-3 { width: 100%; aspect-ratio: 4 / 3; background: #130d16; border: 1px solid var(--grape-purple); padding: 10px; border-radius: 4px; position: relative; display: flex; justify-content: center; align-items: center; overflow: hidden; }
     </style>
 </head>
@@ -614,7 +614,7 @@
                 <div class="map-text-side" style="margin-bottom: 20px; width: 100%;">
                     <div class="section-num" style="color: var(--grape-purple);">01 / OVERVIEW & RENDERS</div>
                     <div class="section-heading" style="border-bottom-color: var(--grape-purple); color: #fff;">临海优质葡萄概念系列包装设计</div>
-                    <p class="section-p">本系列包装以展现临海优质葡萄为核心，打造了兼顾送礼与批量购买的礼盒及箱装设计。视觉上采用简约高级的淡紫色调，画面中心通过细腻光影勾勒出晶莹饱满、如宝石般水润的葡萄主视觉。结构材质上选用坚固耐用的外壳，内里配合精准的稳固凹槽，兼顾了运输防护性与高端质感。醒目的“好食来临”品牌标识不仅传达了地域美味承诺，更整体提升了产品的档次感，全面释放临海葡萄的独特魅力。</p>
+                    <p class="section-p">本系列包装以展现临海优质葡萄为核心，打造了兼顾送礼与批量购买的礼盒及箱装设计。视觉上采用简约高级的淡紫色调，画面中心通过细腻光影勾勒出晶莹饱满、如宝石般水润的葡萄主视觉。结构材质上选用坚固耐用的外壳，内里配合精准的稳固凹槽，兼顾了运输防护性与高端质感。醒目的“好食来临” brand标识不仅传达了地域美味承诺，更整体提升了产品的档次感，全面释放临海葡萄的独特魅力。</p>
                 </div>
                 
                 <div class="pkg-render-stream">
@@ -660,32 +660,26 @@
                 <div class="map-text-side" style="margin-bottom: 25px; width: 100%;">
                     <div class="section-num" style="color: var(--grape-purple);">03 / THREE-VIEW ORTHOGRAPHIC</div>
                     <div class="section-heading" style="border-bottom-color: var(--grape-purple); color: #fff;">双款容器多维标准三视图矩阵</div>
-                    <p class="section-p">多视角三维物理空间映射矩阵。上排布局呈现第一款主打送礼情境的奢华礼盒正、侧多维角度；下排布局无缝呈现第二款主打批量零售的刚性结构体正面、侧面及俯视多维解构，全面验证其工业防护与货架堆叠堆码极限。</p>
+                    <p class="section-p">多视角三维物理空间映射矩阵。采用 2×2 对称结构，无缝布局呈现奢华礼盒与物流箱装的正、侧、多维空间结构标准视图，全面验证其工业防护与货架堆叠堆码极限。</p>
                 </div>
 
-                <div class="pkg-view3-grid">
-                    <div class="pkg-view3-row-top">
+                <div class="pkg-view4-grid-wrapper">
+                    <div class="pkg-view4-matrix">
                         <div class="pkg-box-4-3">
-                            <img src="package-view-1.jpg" alt="礼盒三视图 1" class="portfolio-img" onload="this.style.opacity=1">
+                            <img src="package-view-1.jpg" alt="礼盒多维视角 1" class="portfolio-img" onload="this.style.opacity=1">
                             <div class="code-drawing-placeholder" style="background: #0f0a11; color: var(--grape-purple);"><span>📐 礼盒多维视角 01 (4:3 JPG)</span></div>
                         </div>
                         <div class="pkg-box-4-3">
-                            <img src="package-view-2.jpg" alt="礼盒三视图 2" class="portfolio-img" onload="this.style.opacity=1">
-                        </div>
-                    </div>
-                    
-                    <div class="pkg-view3-row-bottom">
-                        <div class="pkg-box-4-3">
-                            <img src="package-view-3.jpg" alt="箱装三视图 1" class="portfolio-img" onload="this.style.opacity=1">
-                            <div class="code-drawing-placeholder" style="background: #0d080e; color: var(--grape-purple); font-size: 0.85rem;"><span>📐 箱装主视图 (4:3 JPG)</span></div>
+                            <img src="package-view-2.jpg" alt="礼盒多维视角 2" class="portfolio-img" onload="this.style.opacity=1">
+                            <div class="code-drawing-placeholder" style="background: #0f0a11; color: var(--grape-purple);"><span>📐 礼盒多维视角 02 (4:3 JPG)</span></div>
                         </div>
                         <div class="pkg-box-4-3">
-                            <img src="package-view-4.jpg" alt="箱装三视图 2" class="portfolio-img" onload="this.style.opacity=1">
-                            <div class="code-drawing-placeholder" style="background: #0d080e; color: var(--grape-purple); font-size: 0.85rem;"><span>📐 箱装侧视图 (4:3 JPG)</span></div>
+                            <img src="package-view-3.jpg" alt="箱装多维视角 1" class="portfolio-img" onload="this.style.opacity=1">
+                            <div class="code-drawing-placeholder" style="background: #0d080e; color: var(--grape-purple);"><span>📐 箱装多维视角 01 (4:3 JPG)</span></div>
                         </div>
                         <div class="pkg-box-4-3">
-                            <img src="package-view-5.jpg" alt="箱装三视图 3" class="portfolio-img" onload="this.style.opacity=1">
-                            <div class="code-drawing-placeholder" style="background: #0d080e; color: var(--grape-purple); font-size: 0.85rem;"><span>📐 箱装俯视图 (4:3 JPG)</span></div>
+                            <img src="package-view-4.jpg" alt="箱装多维视角 2" class="portfolio-img" onload="this.style.opacity=1">
+                            <div class="code-drawing-placeholder" style="background: #0d080e; color: var(--grape-purple);"><span>📐 箱装多维视角 02 (4:3 JPG)</span></div>
                         </div>
                     </div>
                 </div>
