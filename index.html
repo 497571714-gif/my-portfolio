@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>陈旸朗 | Portfolio v3.9.1</title>
+    <title>陈旸朗 | Portfolio v3.9.2</title>
     <link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -11,7 +11,7 @@
             --album-pink: #ff0088; 
             --bg-black: #0a0a0a;
             --panel-bg: #121212;
-            --transition-speed: 0.35s;
+            --transition-speed: 0.4s; /* 淡入淡出标准时长 */
             --macau-warm: #ff5722;
             --temple-red: #ff3333; 
             --grape-purple: #b026ff; 
@@ -32,7 +32,7 @@
             overflow: hidden; 
         }
 
-        /* ==================== 核心容器重构（彻底修复隐藏逻辑） ==================== */
+        /* ==================== 核心容器重构（平滑淡入淡出支持） ==================== */
         .page-container {
             position: fixed; 
             top: 0;
@@ -40,33 +40,41 @@
             width: 100vw;
             height: 100vh;
             
-            /* 修正点：默认不要加 !important，允许下面的 active 正常覆盖显示 */
-            display: none; 
-            visibility: hidden; 
+            /* 1. 基础状态：通过透明度和可见性实现彻底隐藏，腾出点击流 */
+            opacity: 0;
+            visibility: hidden;
             pointer-events: none;
             
-            opacity: 0;
-            transition: opacity var(--transition-speed) ease-in-out;
+            /* 2. 核心动画：加入高平滑度的淡入淡出过渡 */
+            transition: opacity var(--transition-speed) ease-in-out, visibility var(--transition-speed) ease-in-out;
             z-index: 1;
             
             overflow-x: hidden;
             overflow-y: auto;
             -webkit-overflow-scrolling: touch;
             padding: 40px 20px;
+            background-color: var(--bg-black); /* 确保切换时底层不穿透透底 */
         }
 
-        /* 核心修复：激活状态通过强制优先级凌驾于一切之上，瞬间解锁物理点击与显示 */
+        /* 核心激活状态：淡入并解锁鼠标物理点击 */
         .page-container.active {
-            display: block !important; 
             visibility: visible !important;
             pointer-events: auto !important; 
             opacity: 1 !important;
             z-index: 9999 !important; 
         }
 
-        /* 特殊处理：针对需要居中对齐的首页和目录页，激活时转为 flex 布局 */
+        /* 结构兼容：首页和目录页在激活显现时，转为原本的 flex 居中排版 */
         #home-page.active, #menu-page.active {
             display: flex !important;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        /* 非激活状态下的特殊处理：确保首页和目录在隐藏时不干扰底层 flex 容器 */
+        #home-page, #menu-page {
+            display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
@@ -690,14 +698,19 @@
             const targetPage = document.getElementById(pageId);
             if (!targetPage) return;
 
-            // 1. 先把所有页面重置隐藏（剔除了所有样式硬改指令）
+            // 1. 获取所有页面，执行淡出隐藏
             const allPages = document.querySelectorAll('.page-container');
             allPages.forEach(p => {
-                p.classList.remove('active');
+                if (p.classList.contains('active')) {
+                    p.classList.remove('active'); // 开始平滑向 opacity: 0 渐隐
+                }
             });
 
-            // 2. 瞬间解封目标页面并将其滚动条重置回顶部
+            // 2. 瞬间解封并激活新目标页面
+            // CSS 的 transition 会自动处理从 opacity 0 -> 1 的无缝高质感淡入
             targetPage.classList.add('active');
+            
+            // 3. 安全重置目标子页面的滚动条回到顶部
             targetPage.scrollTop = 0;
         }
     </script>
